@@ -9,7 +9,7 @@
  *
  */
 $pa_includes = array(
-  //'lib/metaboxes.php',       // Metaboxes
+  'lib/extensions/extensions.php',      // Metaboxes
   'lib/options.php',         // Theme Options
   'lib/utils.php',           // Utility functions
   'lib/init.php',            // Initial theme setup and constants
