@@ -9,6 +9,8 @@
  *
  */
 $pa_includes = array(
+  //'lib/metaboxes.php',       // Metaboxes
+  'lib/options.php',         // Theme Options
   'lib/utils.php',           // Utility functions
   'lib/init.php',            // Initial theme setup and constants
   'lib/wrapper.php',         // Theme wrapper class
@@ -16,7 +18,7 @@ $pa_includes = array(
   'lib/config.php',          // Configuration
   'lib/titles.php',          // Page titles
   'lib/nav.php',             // Custom nav modifications
-  'lib/dependencies.php',         // Custom [gallery] modifications
+  'lib/dependencies.php',    // Install deoendency plugins
   'lib/scripts.php',         // Scripts and stylesheets
   'lib/extras.php',          // Custom functions
 );
