@@ -196,7 +196,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
             array(
                 'id' => 'sidebar',
                 'title' => __( 'Sidebar', 'fusion-framework' ),
-                'desc' => 'Please select the sidebar you would like to display on this page. Note: You must first create the sidebar under Appearance > Widgets.',
+                'desc' => 'Select custom sidebar, if left blank default "Primary" sidebar is used. You can create custom sidebars under Appearance > Widgets.',
                 'type' => 'select',
                 'required' => array('layout','>','1'),       
                 'data' => 'sidebars',

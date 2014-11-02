@@ -618,19 +618,15 @@
                     ),
                     */
                         array(
-                            'id'       => 'opt-editor',
+                            'id'       => 'footer_text',
                             'type'     => 'editor',
                             'title'    => __( 'Footer Text', 'redux-framework-demo' ),
-                            'subtitle' => __( 'You can use the following shortcodes in your footer text: [wp-url] [site-url] [theme-url] [login-url] [logout-url] [site-title] [site-tagline] [current-year]', 'redux-framework-demo' ),
                             'default'  => 'Powered by Redux Framework.',
+                            'args'     => array(
+                                'media_buttons' => false,
+                                //'teeny'         => false,
+                            ),
                         ),
-                        array(
-                            'id'       => 'password',
-                            'type'     => 'password',
-                            'username' => true,
-                            'title'    => 'SMTP Account',
-                            //'placeholder' => array('username' => 'Enter your Username')
-                        )
                     )
                 );
 

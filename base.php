@@ -12,6 +12,8 @@
     get_template_part('templates/header');
   ?>
 
+  <?php get_template_part('templates/page', 'nav'); ?>
+
   <div class="wrap container" role="document">
     <div class="content row">
       <main class="main" role="main">

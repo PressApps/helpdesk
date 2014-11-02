@@ -76,3 +76,40 @@ function pa_output_css() {
 
 }
 
+/**
+ * Page breadcrumbs
+ */
+function pa_breadcrumbs() {
+  if (!is_home()) {
+    echo '<ol class="navbar-text breadcrumb">';
+    global $post;
+    echo '<li><a href="' . get_home_url() . '"><span class="icon-Home"></span></a> </li>';
+    if ( is_page() && $post->post_parent ) {
+      // get the parent page breadcrumb
+      $parent_title = get_the_title($post->post_parent);
+      if ( $parent_title != the_title(' ', ' ', false) ) {
+        echo '<li>><a href=' . get_permalink($post->post_parent) . '' . 'title=' . $parent_title . '>' . $parent_title . '</a></li>';
+      }
+    } else {
+      // first, display the blog page link, since that's a global parent, but only if it's set to be different than the home page
+      if ( get_option('page_for_posts') ) {
+        // defines the blog page if it's set
+        $blog_page_uri = get_permalink( get_option( 'page_for_posts' ) );
+        echo '<li><a href="' . $blog_page_uri . '">News</a></li>';
+      }
+      // this is a post, so get the category, if it exists
+      $category = get_the_category();
+      if ($category) {
+        foreach($category as $category) {
+        echo '<li><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
+        }
+      }
+    }
+  }
+  if (is_singular()) {
+    echo the_title('<li class="active">', '</li>');
+  }
+  echo '</ol>';
+}
+
+
