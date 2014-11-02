@@ -112,4 +112,13 @@ function pa_breadcrumbs() {
   echo '</ol>';
 }
 
-
+/**
+ * Add custom favicon to head
+ */
+function pa_add_favicon(){ 
+  global $helpdesk;
+  ?>
+  <!-- Custom Favicons -->
+  <link rel="shortcut icon" href="<?php echo $helpdesk['favicon']['url']; ?>"/>
+  <?php }
+add_action('wp_head','pa_add_favicon');

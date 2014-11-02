@@ -1,7 +1,7 @@
 <div class="page-nav">
   <div class="container">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-7 hidden-sm">
         <?php pa_breadcrumbs(); ?>
       </div>
       <div class="col-md-5">

@@ -293,13 +293,6 @@
                             'required' => array( 'section-media-checkbox', "=", 1 ),
                         ),
                         array(
-                            'id'       => 'media-no-url',
-                            'type'     => 'media',
-                            'title'    => __( 'Media w/o URL', 'redux-framework-demo' ),
-                            'desc'     => __( 'This represents the minimalistic view. It does not have the preview box or the display URL in an input box. ', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Upload any media using the WordPress native uploader', 'redux-framework-demo' ),
-                        ),
-                        array(
                             'id'       => 'media-no-preview',
                             'type'     => 'media',
                             'preview'  => false,
@@ -555,6 +548,18 @@
                     'title'  => __( 'General Settings', 'redux-framework-demo' ),
                     'fields' => array(
                         array(
+                            'id' => 'logo',
+                            'type' => 'media', 
+                            'title' => __('Logo Upload', 'pressapps' ), 
+                            'subtitle' => __('Upload logo image.', 'pressapps' ),
+                        ),
+                        array(
+                            'id' => 'favicon',
+                            'type' => 'media', 
+                            'title' => __('Favicon Upload', 'pressapps' ), 
+                            'subtitle' => __('Upload favicon image.', 'pressapps' ),
+                        ),
+                        array(
                             'id'       => 'layout',
                             'type'     => 'image_select',
                             'compiler' => true,
@@ -636,21 +641,14 @@
                     'subsection' => true,
                     'fields'     => array(
                         array(
-                            'id'       => 'opt-select-stylesheet',
-                            'type'     => 'select',
-                            'title'    => __( 'Theme Stylesheet', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Select your themes alternative color scheme.', 'redux-framework-demo' ),
-                            'options'  => array( 'default.css' => 'default.css', 'color1.css' => 'color1.css' ),
-                            'default'  => 'default.css',
-                        ),
-                        array(
                             'id'       => 'opt-color-background',
                             'type'     => 'color',
-                            'output'   => array( '.site-title' ),
-                            'title'    => __( 'Body Background Color', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Pick a background color for the theme (default: #fff).', 'redux-framework-demo' ),
-                            'default'  => '#FFFFFF',
+                            'title'    => __( 'Title Colors', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Pick a header color.', 'redux-framework-demo' ),
+                            'default'  => '#E56C41',
+                            'transparent' => false,
                             'validate' => 'color',
+                            'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
                         ),
                         array(
                             'id'       => 'opt-background',
@@ -690,9 +688,9 @@
                             )
                         ),
                         array(
-                            'id'       => 'opt-link-color',
+                            'id'       => 'navbar_link_color',
                             'type'     => 'link_color',
-                            'title'    => __( 'Links Color Option', 'redux-framework-demo' ),
+                            'title'    => __( 'Nav Links Color Option', 'redux-framework-demo' ),
                             'subtitle' => __( 'Only color validation can be done on this field type', 'redux-framework-demo' ),
                             'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
                             //'regular'   => false, // Disable Regular Color
@@ -701,9 +699,27 @@
                             //'visited'   => true,  // Enable Visited Color
                             'default'  => array(
                                 'regular' => '#aaa',
+                                'hover'   => '#E85248',
+                                'active'  => '#E85248',
+                            ),
+                            'output'   => array( '.navbar-default .navbar-nav li > a' ),
+                        ),
+                        array(
+                            'id'       => 'link_color',
+                            'type'     => 'link_color',
+                            'title'    => __( 'Links Color Option', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Only color validation can be done on this field type', 'redux-framework-demo' ),
+                            'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
+                            //'regular'   => false, // Disable Regular Color
+                            //'hover'     => false, // Disable Hover Color
+                            'active'    => false, // Disable Active Color
+                            //'visited'   => true,  // Enable Visited Color
+                            'default'  => array(
+                                'regular' => '#aaa',
                                 'hover'   => '#bbb',
                                 'active'  => '#ccc',
-                            )
+                            ),
+                            'output'   => array( '.page-nav a', '.wrap a' ),
                         ),
                         array(
                             'id'       => 'opt-header-border',
@@ -773,6 +789,7 @@
                                 'font-family' => 'Arial,Helvetica,sans-serif',
                                 'font-weight' => 'Normal',
                             ),
+                            'output'   => array( 'body' ),
                         ),
                         array(
                             'id'       => 'opt-custom-css',
