@@ -695,14 +695,13 @@
                             'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
                             //'regular'   => false, // Disable Regular Color
                             //'hover'     => false, // Disable Hover Color
-                            //'active'    => false, // Disable Active Color
+                            'active'    => false, // Disable Active Color
                             //'visited'   => true,  // Enable Visited Color
                             'default'  => array(
-                                'regular' => '#aaa',
-                                'hover'   => '#E85248',
-                                'active'  => '#E85248',
+                                'regular' => '#999',
+                                'hover'   => '#82ba50',
                             ),
-                            'output'   => array( '.navbar-default .navbar-nav li > a' ),
+                            //'output'   => array( '.navbar-default .navbar-nav li > a' ),
                         ),
                         array(
                             'id'       => 'link_color',

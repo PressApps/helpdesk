@@ -65,6 +65,14 @@ function pa_output_css() {
   global $helpdesk;
 
   $output = '';
+                          
+  if ($helpdesk['navbar_link_color']) {
+    $output .= '.navbar-default .navbar-nav > li > a, .dropdown-menu > li > a { color: ' . $helpdesk['navbar_link_color']['regular'] . '; }';
+    $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover,
+    .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
+  
+
+  }
 
   if ($helpdesk['layout'] == '2') {
     $output .= '@media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
