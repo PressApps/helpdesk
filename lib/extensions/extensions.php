@@ -262,16 +262,13 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'title'     => __( 'Layout', 'redux-framework-demo' ),
                 'desc'      => __( 'Select main content and sidebar arrangement. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
                 'id'        => 'layout',
-                'default'   => 1,
+                //'default'   => 1,
                 'type'      => 'image_select',
                 'customizer'=> array(),
                 'options'   => array( 
-                0           => ReduxFramework::$_url . 'assets/img/1c.png',
-                1           => ReduxFramework::$_url . 'assets/img/2cr.png',
+                1           => ReduxFramework::$_url . 'assets/img/1c.png',
                 2           => ReduxFramework::$_url . 'assets/img/2cl.png',
-                3           => ReduxFramework::$_url . 'assets/img/3cl.png',
-                4           => ReduxFramework::$_url . 'assets/img/3cr.png',
-                5           => ReduxFramework::$_url . 'assets/img/3cm.png',
+                3           => ReduxFramework::$_url . 'assets/img/2cr.png',
                 )
             ),
         )

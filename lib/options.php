@@ -555,7 +555,7 @@
                     'title'  => __( 'General Settings', 'redux-framework-demo' ),
                     'fields' => array(
                         array(
-                            'id'       => 'opt-layout',
+                            'id'       => 'layout',
                             'type'     => 'image_select',
                             'compiler' => true,
                             'title'    => __( 'Main Layout', 'redux-framework-demo' ),
@@ -573,18 +573,6 @@
                                     'alt' => '2 Column Right',
                                     'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                                 ),
-                                '4' => array(
-                                    'alt' => '3 Column Middle',
-                                    'img' => ReduxFramework::$_url . 'assets/img/3cm.png'
-                                ),
-                                '5' => array(
-                                    'alt' => '3 Column Left',
-                                    'img' => ReduxFramework::$_url . 'assets/img/3cl.png'
-                                ),
-                                '6' => array(
-                                    'alt' => '3 Column Right',
-                                    'img' => ReduxFramework::$_url . 'assets/img/3cr.png'
-                                )
                             ),
                             'default'  => '2'
                         ),

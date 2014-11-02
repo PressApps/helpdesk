@@ -41,3 +41,38 @@ function soil_nice_search_redirect() {
   }
 }
 add_action('template_redirect', 'soil_nice_search_redirect');
+
+/**
+ * Hide sidebar on one column layout
+ */
+add_filter('roots/display_sidebar', 'pa_sidebars');
+
+function pa_sidebars($sidebar) {
+  global $helpdesk;
+
+  if ($helpdesk['layout'] == '1') {
+    return false;
+  }
+  return $sidebar;
+}
+
+/**
+ * Output dynamic CSS at bottom of HEAD
+ */
+add_action('wp_head','pa_output_css');
+
+function pa_output_css() {
+  global $helpdesk;
+
+  $output = '';
+
+  if ($helpdesk['layout'] == '2') {
+    $output .= '@media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
+  }
+
+  if ( ! empty( $output ) ) {
+      echo '<style type="text/css" title="helpdesk-css">' . $output . '</style>';
+  }
+
+}
+
