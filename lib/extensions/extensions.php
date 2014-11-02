@@ -147,82 +147,6 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'desc' => __('This field will store all slides values into a multidimensional array to use into a foreach loop.', 'redux-framework-demo')
             ),        
             array(
-                'id'=>'slides',
-                'type' => 'slides',
-                'title' => __('Slides Options', 'redux-framework-demo'),
-                'subtitle'=> __('Unlimited slides with drag and drop sortings.', 'redux-framework-demo'),
-                'options'=>array(
-                    'flash' => 'flash',
-                    'bounce' => 'bounce',
-                    'shake' => 'shake',
-                    'tada' => 'tada',
-                    'wobble' => 'wobble',
-                    'pulse' => 'pulse',
-                    'flip' => 'flip',
-                    'flipInX' => 'flipInX',
-                    'flipOutX' => 'flipOutX',
-                    'flipInY' => 'flipInY',
-                    'flipOutY' => 'flipOutY',
-                    'fadeIn' => 'fadeIn',
-                    'fadeInUp' => 'fadeInUp',
-                    'fadeInDown' => 'fadeInDown',
-                    'fadeInLeft' => 'fadeInLeft',
-                    'fadeInRight' => 'fadeInRight',
-                    'fadeInUpBig' => 'fadeInUpBig',
-                    'fadeInDownBig' => 'fadeInDownBig',
-                    'fadeInLeftBig' => 'fadeInLeftBig',
-                    'fadeInRightBig' => 'fadeInRightBig',
-                    'fadeOut' => 'fadeOut',
-                    'fadeOutUp' => 'fadeOutUp',
-                    'fadeOutDown' => 'fadeOutDown',
-                    'fadeOutLeft' => 'fadeOutLeft',
-                    'fadeOutRight' => 'fadeOutRight',
-                    'fadeOutUpBig' => 'fadeOutUpBig',
-                    'fadeOutDownBig' => 'fadeOutDownBig',
-                    'fadeOutLeftBig' => 'fadeOutLeftBig',
-                    'fadeOutRightBig' => 'fadeOutRightBig',
-                    'slideInDown' => 'slideInDown',
-                    'slideInLeft' => 'slideInLeft',
-                    'slideInRight' => 'slideInRight',
-                    'slideOutUp' => 'slideOutUp',
-                    'slideOutLeft' => 'slideOutLeft',
-                    'slideOutRight' => 'slideOutRight',
-                    'bounceIn' => 'bounceIn',
-                    'bounceInDown' => 'bounceInDown',
-                    'bounceInUp' => 'bounceInUp',
-                    'bounceInLeft' => 'bounceInLeft',
-                    'bounceInRight' => 'bounceInRight',
-                    'bounceOut' => 'bounceOut',
-                    'bounceOutDown' => 'bounceOutDown',
-                    'bounceOutUp' => 'bounceOutUp',
-                    'bounceOutLeft' => 'bounceOutLeft',
-                    'bounceOutRight' => 'bounceOutRight',
-                    'rotateIn' => 'rotateIn',
-                    'rotateInDownLeft' => 'rotateInDownLeft',
-                    'rotateInDownRight' => 'rotateInDownRight',
-                    'rotateInUpLeft' => 'rotateInUpLeft',
-                    'rotateInUpRight' => 'rotateInUpRight',
-                    'rotateOut' => 'rotateOut',
-                    'rotateOutDownLeft' => 'rotateOutDownLeft',
-                    'rotateOutDownRight' => 'rotateOutDownRight',
-                    'rotateOutUpLeft' => 'rotateOutUpLeft',
-                    'rotateOutUpRight' => 'rotateOutUpRight',
-                    'lightSpeedIn' => 'lightSpeedIn',
-                    'lightSpeedOut' => 'lightSpeedOut',
-                    'hinge' => 'hinge',
-                    'rollIn' => 'rollIn',
-                    'rollOut' => 'rollOut'
-                ),
-                'placeholder' => array(
-                    'title'=>"This is the title",
-                    'description'=>"Description here",
-                    'url'=>"Link",
-                    'select'=>"Select an Animation",
-                ),
-                // 'select2' => array() // Select 2 options
-                'desc' => __('This field will store all slides values into a multidimensional array to use into a foreach loop.', 'redux-framework-demo')
-            ),
-            array(
                 'id'=>'presets',
                 'type' => 'image_select', 
                 'presets' => true,
@@ -251,18 +175,16 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         //'sidebar' => false, // enable/disable the sidebar in the normal/advanced positions
         'sections' => $boxSections
     );
-    $boxSections = array();
-    $boxSections[] = array(
-        //'title' => __('Home Settings', 'redux-framework-demo'),
-        //'desc' => __('Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'redux-framework-demo'),
+
+
+    $boxLayout = array();
+    $boxLayout[] = array(
         'icon_class' => 'icon-large',
         'icon' => 'el-icon-home',
         'fields' => array(
             array(
-                'title'     => __( 'Layout', 'redux-framework-demo' ),
-                'desc'      => __( 'Select main content and sidebar arrangement. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
+                'desc'      => __( 'Select main content and sidebar arrangement.', 'redux-framework-demo' ),
                 'id'        => 'layout',
-                //'default'   => 1,
                 'type'      => 'image_select',
                 'customizer'=> array(),
                 'options'   => array( 
@@ -271,18 +193,24 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 3           => ReduxFramework::$_url . 'assets/img/2cr.png',
                 )
             ),
+            array(
+                'id' => 'sidebar',
+                'title' => __( 'Sidebar', 'fusion-framework' ),
+                'desc' => 'Please select the sidebar you would like to display on this page. Note: You must first create the sidebar under Appearance > Widgets.',
+                'type' => 'select',
+                'required' => array('layout','>','1'),       
+                'data' => 'sidebars',
+                'default' => 'None',
+            ),
         )
     );
   
     $metaboxes[] = array(
         'id' => 'demo-layout2',
-        //'title' => __('Cool Options', 'redux-framework-demo'),
-        'post_types' => array('page','post', 'acme_product'),
-        //'page_template' => array('page-test.php'),
-        //'post_format' => array('image'),
+        'post_types' => array('page'),
         'position' => 'side', // normal, advanced, side
         'priority' => 'high', // high, core, default, low
-        'sections' => $boxSections
+        'sections' => $boxLayout
     );
 
 
@@ -293,7 +221,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'icon'          => 'el-icon-home',
         'fields'        => array(
             array(
-                'id' => 'sidebar',
+                'id' => 'sidebar55',
                 'title' => __( 'Sidebar', 'fusion-framework' ),
                 'desc' => 'Please select the sidebar you would like to display on this page. Note: You must first create the sidebar under Appearance > Widgets.',
                 'type' => 'select',
