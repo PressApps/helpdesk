@@ -520,7 +520,7 @@
                             //'preview'       => false, // Disable the previewer
                             'all_styles'  => true,
                             // Enable all Google Font style/weight variations to be added to the page
-                            'output'      => array( 'h2.site-description, .entry-title' ),
+                            'output'      => array( '' ),
                             // An array of CSS selectors to apply this font style to dynamically
                             'compiler'    => array( 'h2.site-description-compiler' ),
                             // An array of CSS selectors to apply this font style to dynamically

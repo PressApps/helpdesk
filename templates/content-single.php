@@ -7,8 +7,9 @@
     <div class="entry-content">
       <?php the_content(); ?>
     </div>
-    <footer>
+    <footer class="vote">
       <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
+      <?php pado_docs_votes(); ?>
     </footer>
     <?php comments_template('/templates/comments.php'); ?>
   </article>

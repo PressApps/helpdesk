@@ -23,6 +23,9 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
+      
+
+
     }
   },
   // Home page
@@ -61,3 +64,48 @@ var UTIL = {
 $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
+
+
+
+/***************************************************
+      Docs Voting
+***************************************************/
+jQuery().ready(function(){
+  jQuery('a.pado-like-btn').click(function(){
+    response_div = jQuery(this).parent().parent();
+    jQuery.ajax({
+      url         : PADO.base_url,
+      data        : {'vote_like':jQuery(this).attr('post_id')},
+      beforeSend  : function(){},
+      success     : function(data){
+        response_div.hide().html(data).fadeIn(400);
+      },
+      complete    : function(){}
+    });
+  });
+  
+  jQuery('a.pado-dislike-btn').click(function(){
+    response_div = jQuery(this).parent().parent();
+    jQuery.ajax({
+      url         : PADO.base_url,
+      data        : {'vote_dislike':jQuery(this).attr('post_id')},
+      beforeSend  : function(){},
+      success     : function(data){
+        response_div.hide().html(data).fadeIn(400);
+      },
+      complete    : function(){}
+    });
+  });
+});
+/*
+jQuery(document).ready(function ($) {
+  $('p.pado-likes').tooltip({
+    'placement' : 'top'
+  });
+  
+  $('p.pado-dislikes').tooltip({
+    'placement' : 'top'
+  });
+});
+*/
+

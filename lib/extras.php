@@ -145,8 +145,183 @@ function pa_post_format_icon() {
     }
 }
 
+/**
+ * Article voting
+ */
+function pado_docs_votes($is_ajax = FALSE) {
 
+        global $pado_options;        
+        global $post;
+        $votes_like = (int) get_post_meta($post->ID, '_votes_likes', true);
+        $votes_dislike = (int) get_post_meta($post->ID, '_votes_dislikes', true);
+        $voted_like             = sprintf(_n('%s person found this helpful', '%s people found this helpful', $votes_like, 'pressapps'), $votes_like);
+        $voted_dislike  = sprintf(_n('%s person did not find this helpful', '%s people did not find this helpful', $votes_dislike, 'pressapps'), $votes_dislike);
+        //$vote_like_link                 = __("I found this helpful", 'pressapps');
+        //$vote_dislike_link      = __("I did not find this helpful", 'pressapps');
+        $cookie_vote_count      = '';
 
+        //if ($pado_options['icon'] == 'thumbs') {
+            $like_icon = '<span class="icon icon-Yes"></span> ';
+            $dislike_icon = '<span class="icon icon-Close"></span> ';
+        //} else {
+        //    $like_icon = 'icon-Smile';
+        //    $dislike_icon = 'icon-Depression';
+        //}
 
+        if(isset($_COOKIE['vote_count'])){
+            $cookie_vote_count = @unserialize(base64_decode($_COOKIE['vote_count']));
+        }
+        
+        if(!is_array($cookie_vote_count) && isset($cookie_vote_count)){
+            $cookie_vote_count = array();
+        }
+       
+        echo (($is_ajax)?'':'<div class="pado-votes">');
+                                
+        if (is_user_logged_in() || $pado_options['voting'] == 1) :
+            
+                if(is_user_logged_in())
+                    $vote_count = (array) get_user_meta(get_current_user_id(), 'vote_count', true);
+                else
+                    $vote_count = $cookie_vote_count;
+                
+                if (!in_array( $post->ID, $vote_count )) :
+                        echo '<h3>' . __('Was this article helpful to you?', 'pressapps') . '</h3>';
+                        echo '<p><a class="pado-like-btn" href="javascript:" post_id="'  . $post->ID . '">' . $like_icon .'</a>';
+                        echo '<a class="pado-dislike-btn" href="javascript:" post_id="' . $post->ID . '">' . $dislike_icon . '</a></p>';
+
+                else :
+                        // already voted
+                        echo '<h3>' . __('Thank you for your feedback!', 'pressapps') . '</h3>';
+                        //echo '<p data-toggle="tooltip" title="' . $voted_like . '" class="pado-likes">' . $like_icon .'<span class="count">' . $votes_like . '</span></p> ';
+                        //echo '<p data-toggle="tooltip" title="' . $voted_dislike . '" class="pado-dislikes">' . $dislike_icon . '<span class="count">' . $votes_dislike . '</span></p> ';
+                endif;
+        
+        else :
+                // not logged in
+                echo '<h3>' . __('Was this article helpful to you?', 'pressapps') . '</h3>';
+                echo '<p data-toggle="tooltip" title="' . $voted_like . '" class="pado-likes">' . $like_icon .'<span class="count">' . $votes_like . '</span></p> ';
+                echo '<p data-toggle="tooltip" title="' . $voted_dislike . '" class="pado-dislikes">' . $dislike_icon . '<span class="count">' . $votes_dislike . '</span></p> ';
+        endif;
+        
+        echo (($is_ajax)?'':'</div>');
+
+}
+
+function pado_docs_vote() {
+    global $post;
+    global $pado_options;    
+
+    if (is_user_logged_in()) {
+        
+        $vote_count = (array) get_user_meta(get_current_user_id(), 'vote_count', true);
+        
+        if (isset( $_GET['vote_like'] ) && $_GET['vote_like']>0) :
+                
+                $post_id = (int) $_GET['vote_like'];
+                $the_post = get_post($post_id);
+                
+                if ($the_post && !in_array( $post_id, $vote_count )) :
+                        $vote_count[] = $post_id;
+                        update_user_meta(get_current_user_id(), 'vote_count', $vote_count);
+                        $post_votes = (int) get_post_meta($post_id, '_votes_likes', true);
+                        $post_votes++;
+                        update_post_meta($post_id, '_votes_likes', $post_votes);
+                        $post = get_post($post_id);
+                        pado_docs_votes(true);
+                        die('');
+                endif;
+                
+        elseif (isset( $_GET['vote_dislike'] ) && $_GET['vote_dislike']>0) :
+                
+                $post_id = (int) $_GET['vote_dislike'];
+                $the_post = get_post($post_id);
+                
+                if ($the_post && !in_array( $post_id, $vote_count )) :
+                        $vote_count[] = $post_id;
+                        update_user_meta(get_current_user_id(), 'vote_count', $vote_count);
+                        $post_votes = (int) get_post_meta($post_id, '_votes_dislikes', true);
+                        $post_votes++;
+                        update_post_meta($post_id, '_votes_dislikes', $post_votes);
+                        $post = get_post($post_id);
+                        pado_docs_votes(true);
+                        die('');
+                        
+                endif;
+                
+        endif;
+
+    } elseif (!is_user_logged_in() && $pado_options['voting'] == 1) {
+
+        // ADD VOTING FOR NON LOGGED IN USERS USING COOKIE TO STOP REPEAT VOTING ON AN ARTICLE
+        $vote_count = '';
+        
+        if(isset($_COOKIE['vote_count'])){
+            $vote_count = @unserialize(base64_decode($_COOKIE['vote_count']));
+        }
+        
+        if(!is_array($vote_count) && isset($vote_count)){
+            $vote_count = array();
+        }
+        
+        if (isset( $_GET['vote_like'] ) && $_GET['vote_like']>0) :
+                
+                $post_id = (int) $_GET['vote_like'];
+                $the_post = get_post($post_id);
+                
+                if ($the_post && !in_array( $post_id, $vote_count )) :
+                        $vote_count[] = $post_id;
+                        $_COOKIE['vote_count']  = base64_encode(serialize($vote_count));
+                        setcookie('vote_count', $_COOKIE['vote_count'] , time()+(10*365*24*60*60),'/');
+                        $post_votes = (int) get_post_meta($post_id, '_votes_likes', true);
+                        $post_votes++;
+                        update_post_meta($post_id, '_votes_likes', $post_votes);
+                        $post = get_post($post_id);
+                        pado_docs_votes(true);
+                        die('');
+                endif;
+                
+        elseif (isset( $_GET['vote_dislike'] ) && $_GET['vote_dislike']>0) :
+                
+                $post_id = (int) $_GET['vote_dislike'];
+                $the_post = get_post($post_id);
+                
+                if ($the_post && !in_array( $post_id, $vote_count )) :
+                        $vote_count[] = $post_id;
+                        $_COOKIE['vote_count']  = base64_encode(serialize($vote_count));
+                        setcookie('vote_count', $_COOKIE['vote_count'] , time()+(10*365*24*60*60),'/');
+                        $post_votes = (int) get_post_meta($post_id, '_votes_dislikes', true);
+                        $post_votes++;
+                        update_post_meta($post_id, '_votes_dislikes', $post_votes);
+                        $post = get_post($post_id);
+                        pado_docs_votes(true);
+                        die('');
+                        
+                endif;
+                
+        endif;
+
+    } elseif (!is_user_logged_in() && $pado_options['voting'] == 2) {
+
+        return;
+        
+    }
+        
+}
+
+add_action('init', 'pado_docs_vote');
+
+add_action('wp_head','pado_common_js');
+
+function pado_common_js(){
+    $pado = array(
+        'base_url'  => esc_url(home_url()),
+    );
+    ?>
+<script type="text/javascript">
+    PADO = <?php echo json_encode($pado); ?>;
+</script>
+    <?php
+}
 
 
