@@ -641,7 +641,7 @@
                     'subsection' => true,
                     'fields'     => array(
                         array(
-                            'id'       => 'opt-color-background',
+                            'id'       => 'heading_color',
                             'type'     => 'color',
                             'title'    => __( 'Title Colors', 'redux-framework-demo' ),
                             'subtitle' => __( 'Pick a header color.', 'redux-framework-demo' ),
@@ -651,12 +651,42 @@
                             'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
                         ),
                         array(
-                            'id'       => 'opt-background',
+                            'id'       => 'page_nav_bg',
                             'type'     => 'background',
-                            'output'   => array( 'body' ),
+                            'output'   => array( '.page-nav' ),
                             'title'    => __( 'Body Background', 'redux-framework-demo' ),
                             'subtitle' => __( 'Body background with image, color, etc.', 'redux-framework-demo' ),
-                            //'default'   => '#FFFFFF',
+                            'default'  => array(
+                                'background-color' => '#f3f3f3',
+                            )
+                        ),
+                        array(
+                            'id'       => 'page_nav_padding',
+                            'type'     => 'spacing',
+                            'output'   => array( '.page-nav' ),
+                            'mode'     => 'padding',
+                            //'all'      => false,
+                            'right'         => false,
+                            'left'          => false,
+                            'units'         => 'px',
+                            'title'    => __( 'Padding', 'redux-framework-demo' ),
+                            'desc'     => __( 'Set page navigation top and bottom padding in px.', 'redux-framework-demo' ),
+                            'default'  => array(
+                                'padding-top'    => '30px',
+                                'padding-bottom' => '30px',
+                            )
+                        ),
+                        array(
+                            'id'       => 'page_nav_text',
+                            'type'     => 'color',
+                            'title'    => __( 'Text Color', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Pick a page navigation text color.', 'redux-framework-demo' ),
+                            'default'  => '#aaaaaa',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'    => array(
+                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before'
+                            )
                         ),
                         array(
                             'id'       => 'opt-color-footer',
@@ -672,7 +702,7 @@
                             'title'    => __( 'Color RGBA - BETA', 'redux-framework-demo' ),
                             'subtitle' => __( 'Gives you the RGBA color. Still quite experimental. Use at your own risk.', 'redux-framework-demo' ),
                             'default'  => array( 'color' => '#dd9933', 'alpha' => '1.0' ),
-                            'output'   => array( 'body' ),
+                            'output'   => array( 'headed' ),
                             'mode'     => 'background',
                             'validate' => 'colorrgba',
                         ),
@@ -718,7 +748,7 @@
                                 'hover'   => '#bbb',
                                 'active'  => '#ccc',
                             ),
-                            'output'   => array( '.page-nav a', '.wrap a' ),
+                            'output'   => array( '.wrap a' ),
                         ),
                         array(
                             'id'       => 'opt-header-border',

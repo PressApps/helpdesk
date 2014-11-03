@@ -68,18 +68,15 @@ function pa_output_css() {
                           
   if ($helpdesk['navbar_link_color']) {
     $output .= '.navbar-default .navbar-nav > li > a, .dropdown-menu > li > a { color: ' . $helpdesk['navbar_link_color']['regular'] . '; }';
-    $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover,
-    .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
-  
-
+    $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
   }
 
   if ($helpdesk['layout'] == '2') {
-    $output .= '@media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
+    $output .= ' @media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
   }
 
   if ( ! empty( $output ) ) {
-      echo '<style type="text/css" title="helpdesk-css">' . $output . '</style>';
+      echo '<style type="text/css" id="helpdesk-css">' . $output . '</style>';
   }
 
 }
@@ -130,3 +127,26 @@ function pa_add_favicon(){
   <link rel="shortcut icon" href="<?php echo $helpdesk['favicon']['url']; ?>"/>
   <?php }
 add_action('wp_head','pa_add_favicon');
+
+/**
+ * Post format icons 
+ */
+function pa_post_format_icon() {
+    if (get_post_format() == 'video') {
+        return '<span class="icon-Video-4"></span>';
+    } elseif (get_post_format() == 'image') {
+        return '<span class="icon-Photo"></span>';
+    } elseif (get_post_format() == 'gallery') {
+        return '<span class="icon-Photos"></span>';
+    } elseif (get_post_format() == 'audio') {
+        return '<span class="icon-Music-Note2"></span>';
+    } else {
+        return '<span class="icon-File"></span>';
+    }
+}
+
+
+
+
+
+
