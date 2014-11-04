@@ -7,10 +7,8 @@
     <div class="entry-content">
       <?php the_content(); ?>
     </div>
-    <footer class="vote">
-      <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
-      <?php pado_docs_votes(); ?>
-    </footer>
+    <footer><?php pa_article_voting(); ?></footer>
+    <?php get_template_part('templates/related'); ?>
     <?php comments_template('/templates/comments.php'); ?>
   </article>
 <?php endwhile; ?>

@@ -71,10 +71,10 @@ $(document).ready(UTIL.loadEvents);
       Docs Voting
 ***************************************************/
 jQuery().ready(function(){
-  jQuery('a.pado-like-btn').click(function(){
+  jQuery('a.like-btn').click(function(){
     response_div = jQuery(this).parent().parent();
     jQuery.ajax({
-      url         : PADO.base_url,
+      url         : PAAV.base_url,
       data        : {'vote_like':jQuery(this).attr('post_id')},
       beforeSend  : function(){},
       success     : function(data){
@@ -84,10 +84,10 @@ jQuery().ready(function(){
     });
   });
   
-  jQuery('a.pado-dislike-btn').click(function(){
+  jQuery('a.dislike-btn').click(function(){
     response_div = jQuery(this).parent().parent();
     jQuery.ajax({
-      url         : PADO.base_url,
+      url         : PAAV.base_url,
       data        : {'vote_dislike':jQuery(this).attr('post_id')},
       beforeSend  : function(){},
       success     : function(data){
@@ -97,15 +97,5 @@ jQuery().ready(function(){
     });
   });
 });
-/*
-jQuery(document).ready(function ($) {
-  $('p.pado-likes').tooltip({
-    'placement' : 'top'
-  });
-  
-  $('p.pado-dislikes').tooltip({
-    'placement' : 'top'
-  });
-});
-*/
+
 

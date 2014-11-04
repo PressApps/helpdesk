@@ -600,6 +600,36 @@
                             'desc'     => 'Possible modes can be found at <a href="http://ace.c9.io" target="_blank">http://ace.c9.io/</a>.',
                             'default'  => "#header{\nmargin: 0 auto;\n}"
                         ),
+                        array(
+                            'id'       => 'article_voting',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
+                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '0' => 'Disabled',
+                                '1' => 'Public Voting',
+                                '2' => 'Logged In Users Only'
+                            ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'related_articles',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
+                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '0' => 'Disabled',
+                                '1' => 'Related by Tag',
+                                '2' => 'Related by Category'
+                            ),
+                            'default'  => '2'
+                        ),
+
+
+
+
+
+
                         /*
                     array(
                         'id'        => 'opt-ace-editor-js',
