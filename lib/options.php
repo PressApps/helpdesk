@@ -600,30 +600,6 @@
                             'desc'     => 'Possible modes can be found at <a href="http://ace.c9.io" target="_blank">http://ace.c9.io/</a>.',
                             'default'  => "#header{\nmargin: 0 auto;\n}"
                         ),
-                        array(
-                            'id'       => 'article_voting',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
-                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '0' => 'Disabled',
-                                '1' => 'Public Voting',
-                                '2' => 'Logged In Users Only'
-                            ),
-                            'default'  => '1'
-                        ),
-                        array(
-                            'id'       => 'related_articles',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
-                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '0' => 'Disabled',
-                                '1' => 'Related by Tag',
-                                '2' => 'Related by Category'
-                            ),
-                            'default'  => '2'
-                        ),
 
 
 
@@ -868,6 +844,65 @@
                         ),
                     )
                 );
+
+
+                $this->sections[] = array(
+                    'icon'       => 'el-icon-file',
+                    'title'      => __( 'Knowledge Base', 'redux-framework-demo' ),
+                    'fields'     => array(
+                        array(
+                            'id'       => 'article_voting',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
+                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '0' => 'Disabled',
+                                '1' => 'Public Voting',
+                                '2' => 'Logged In Users Only'
+                            ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'related_articles',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
+                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '0' => 'Disabled',
+                                '1' => 'Related by Tag',
+                                '2' => 'Related by Category'
+                            ),
+                            'default'  => '2'
+                        ),
+                        array(
+                            'id'       => 'article_meta',
+                            'type'     => 'checkbox',
+                            'title'    => __( 'Display Article Meta', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select which aticle meta info to display.', 'redux-framework-demo' ),
+                            //Must provide key => value pairs for multi checkbox options
+                            'options'  => array(
+                                '1' => 'Updated',
+                                '2' => 'Author',
+                                '3' => 'Category',
+                                '4' => 'Tags',
+                            ),
+                            //See how std has changed? you also don't need to specify opts that are 0.
+                            'default'  => array(
+                                '1' => '1',
+                                '2' => '0',
+                                '3' => '0',
+                                '4' => '1',
+                            )
+                        ),
+                        array(
+                            'id'       => 'contact_text',
+                            'type'     => 'editor',
+                            'title'    => __( 'Contact Info', 'redux-framework-demo' ),
+                            'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
+                        ),
+                    )
+                );
+
 
                 /**
                  *  Note here I used a 'heading' in the sections array construct
