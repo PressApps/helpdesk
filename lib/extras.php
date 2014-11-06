@@ -122,7 +122,7 @@ function pa_breadcrumbs() {
   if (!is_home()) {
     echo '<ol class="navbar-text breadcrumb">';
     global $post;
-    echo '<li><a href="' . get_home_url() . '"><span class="icon-Home"></span></a> </li>';
+    echo '<li><a href="' . get_home_url() . '">' . __('Home', 'roots') . '</a> </li>';
     if ( is_page() && $post->post_parent ) {
       // get the parent page breadcrumb
       $parent_title = get_the_title($post->post_parent);
@@ -209,7 +209,7 @@ function pa_article_voting($is_ajax = FALSE) {
       $cookie_vote_count = array();
   }
  
-  echo (($is_ajax)?'':'<div class="vote">');
+  echo (($is_ajax)?'':'<div class="vote section">');
                           
   if (is_user_logged_in() || $helpdesk['article_voting'] == 1) :
       

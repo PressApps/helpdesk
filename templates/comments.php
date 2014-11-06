@@ -1,20 +1,20 @@
 <?php
-  if (post_password_required()) {
-    return;
-  }
-?>
-<?php
+if (post_password_required()) {
+  return;
+}
+
 $reply = false;
 if(comments_open()) {
   $reply = true;
 } 
 ?>
-<section id="comments" class="comments">
+
+<section id="comments" class="comments section">
   <?php if (have_comments()) : ?>
     <h2><?php printf(_nx('One response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'roots'), number_format_i18n(get_comments_number()), '<span>' . get_the_title() . '</span>'); ?></h2>
 
     <ol class="comment-list">
-      <?php wp_list_comments(array('style' => 'ol', 'short_ping' => true)); ?>
+      <?php wp_list_comments(array('style' => 'ol', 'short_ping' => true, 'reply_text' => __('Reply', 'roots'), 'avatar_size' => 38)); ?>
     </ol>
 
     <?php if (get_comment_pages_count() > 1 && get_option('page_comments')) : ?>
@@ -41,7 +41,7 @@ if(comments_open()) {
 </section>
 
 <?php if($reply) : ?>
-  <section id="respond">
+  <section id="respond" class="section">
     <h3><?php comment_form_title(__('Leave a Reply', 'roots'), __('Leave a Reply to %s', 'roots')); ?></h3>
     <p class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></p>
     <?php if (get_option('comment_registration') && !is_user_logged_in()) : ?>

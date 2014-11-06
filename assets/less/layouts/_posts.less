@@ -41,11 +41,10 @@
  */
 .vote {
 	text-align: center;
-	background-color: #f3f3f3;
-	margin-top: 50px;
+	background-color: @element-bg;
 	padding-top: 25px;
 	padding-bottom: 25px;
-	border: 1px solid #eee;
+	border: 1px solid @element-border-color;
 }
 .vote h3 {
 	text-align: center;
@@ -73,9 +72,36 @@
  * Related articles
  */
 .related {
-  margin-top: 50px;
+  
 }
 .related h2 {
   margin: 0 0 25px;
 }
 
+/**
+ * Comments
+ */
+.comment-list, .comment-list .children {
+  list-style: none;
+}
+.comments > .comment-list {
+  padding: 0;
+}
+.comment article {
+  margin-bottom: 20px;
+  padding: 20px 20px 15px;
+  border-bottom: 1px solid @element-border-color;
+}
+.comments .avatar {
+  border-radius: 50px;
+}
+.comment-meta {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.comment-metadata {
+  float: right;
+}
+.comment-author {
+  float: left;
+}

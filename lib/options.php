@@ -540,10 +540,6 @@
                 );
 
                 $this->sections[] = array(
-                    'type' => 'divide',
-                );
-
-                $this->sections[] = array(
                     'icon'   => 'el-icon-cogs',
                     'title'  => __( 'General Settings', 'redux-framework-demo' ),
                     'fields' => array(
@@ -825,6 +821,16 @@
                                 'font-weight' => 'Normal',
                             ),
                             'output'   => array( 'body' ),
+                        ),
+                        array(
+                            'id'       => 'secondary_content_color',
+                            'type'     => 'color',
+                            'title'    => __( 'Secondary Content Colors', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Pick a header color.', 'redux-framework-demo' ),
+                            'default'  => '#84949f',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'   => array( '.related, .comments, #respond' ),
                         ),
                         array(
                             'id'       => 'opt-custom-css',

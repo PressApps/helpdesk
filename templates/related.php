@@ -36,7 +36,7 @@ if ($related_articles == 1) {
 if ($related) {
   $related_query = new wp_query( $args );
   if( $related_query->have_posts() ) {
-    echo '<div class="row related">';
+    echo '<div class="row related section">';
     echo '<div class="col-md-12"><h2>' . __('Related Articles', 'pressapps') . '</h2></div>';
     while( $related_query->have_posts() ) {
       $related_query->the_post();
