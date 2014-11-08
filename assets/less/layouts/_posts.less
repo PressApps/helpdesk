@@ -1,7 +1,34 @@
 .hentry header { }
+.post.hentry {
+  margin-bottom: 30px;
+}
+.single .post.hentry {
+  margin-bottom: 0;
+}
+.entry-title {
+  margin-bottom:10px;
+}
+.single .entry-title {
+  margin-bottom: 15px;
+  border-bottom: 1px solid @element-border-color;
+  padding-bottom: 15px;
+}
+.entry-title .post-format, a .post-format {
+  color: #999;
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+.entry-title .icon {
+  color: #bbb;
+  font-size: 0.85em;
+  float: right;
+  margin: 4px 0 0 10px;
+}
 .meta {
 	font-size: 0.9em;
 	color: #aaa;
+  border-top: 1px solid @element-border-color;
+  padding-top: 10px;
 }
 .meta p, .meta time {
   display: inline-block;
@@ -30,11 +57,7 @@
 
 .hentry .byline { }
 .hentry .entry-content { }
-.entry-title .icon {
-	float: right;
-	margin: 9px 0 0 10px;
-	font-size: 22px;
-}
+
 
 /**
  * Article voting
@@ -74,9 +97,7 @@
 .related {
   
 }
-.related h2 {
-  margin: 0 0 25px;
-}
+
 
 /**
  * Comments
@@ -89,7 +110,7 @@
 }
 .comment article {
   margin-bottom: 20px;
-  padding: 20px 20px 15px;
+  padding-bottom: 15px;
   border-bottom: 1px solid @element-border-color;
 }
 .comments .avatar {

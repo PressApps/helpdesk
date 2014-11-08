@@ -243,6 +243,72 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'sections'      => $page_options,
     );
 
+      $knowledgebaseTemplate = array();
+      $knowledgebaseTemplate[] = array(
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'id'        => 'kb_categories',
+                'type'      => 'select',
+                'data'      => 'categories',
+                'multi'     => true,
+                'title'     => __('Categories', 'redux-framework-demo'),
+                'desc'      => __('Select categories to display on Knowledge Base page template (If none selected all categories will be displayed).', 'redux-framework-demo'),
+            ),
+            array(
+                'id' => 'kb_columns',
+                'type' => 'select',
+                'title' => __('Columns Per Page', 'pressapps' ), 
+                'desc' => __('Select number of knowledge base columns displayed on page.', 'pressapps' ),
+                'options' => array(
+                    2 => '2 Columns',
+                    3 => '3 Columns',
+                    4 => '4 Columns',
+                ),
+                'default'   => '3', 
+            ),
+            array(
+                'id' => 'kb_aticles_per_cat',
+                'type' => 'select',
+                'title' => __('Articles Per Category', 'pressapps' ), 
+                'desc' => __('Select number of knowledge base articles displayed per category.', 'pressapps' ),
+                'options' => array(
+                    '3' => '3 Articles',
+                    '4' => '4 Articles',
+                    '5' => '5 Articles',
+                    '6' => '6 Articles',
+                    '7' => '7 Articles',
+                    '8' => '8 Articles',
+                    '10' => '10 Articles',
+                    '12' => '12 Articles',
+                    '14' => '14 Articles',
+                    '18' => '18 Articles',
+                    '20' => '20 Articles',
+                    '30' => '30 Articles',
+                ),
+                'default'   => '7', 
+            ),
+            array(
+                'id'        => '3rd_level_cat',
+                'type'      => 'switch',
+                'title'     => __('3rd level categories', 'redux-framework-demo'),
+                'desc'  => __('Display 3rd level child categories.', 'redux-framework-demo'),
+                'default'   => true,
+            ),
+        )
+      );
+      
+      $metaboxes[] = array(
+        'id' => 'kb-metabox',
+        'title' => __('Knowledge Base Options', 'pressapps'),
+        'post_types' => array('page'),
+        'page_template' => array('template-knowledgebase.php'),
+        'position' => 'normal', // normal, advanced, side
+        'priority' => 'core', // high, core, default, low
+        'sections' => $knowledgebaseTemplate
+      );
+
 
     // Kind of overkill, but ahh well.  ;)
     //$metaboxes = apply_filters( 'your_custom_redux_metabox_filter_here', $metaboxes );

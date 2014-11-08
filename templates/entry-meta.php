@@ -10,7 +10,7 @@
 		<?php echo get_the_category_list(', '); ?>
 	<?php } ?>
 </div>
-<?php if ($helpdesk['article_meta']['4']) { ?>
+<?php if ($helpdesk['article_meta']['4'] && the_tags()) { ?>
 	<p class="tags"><?php the_tags('<span class="icon-Tag"></span> ',' ',''); ?></p>
 <?php } ?>	
 

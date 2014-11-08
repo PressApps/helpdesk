@@ -22,7 +22,7 @@ function roots_scripts() {
   if (WP_ENV === 'development') {
     $assets = array(
       'css'       => '/assets/css/main.css',
-      //'compiler'  => '/assets/css/compiler.css',
+      'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
       'js'        => '/assets/js/scripts.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
@@ -32,7 +32,7 @@ function roots_scripts() {
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
-      //'compiler'  => '/assets/css/compiler.css',
+      'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
@@ -40,7 +40,7 @@ function roots_scripts() {
   }
 
   wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
-  //wp_enqueue_style('compiler_css', get_template_directory_uri() . $assets['compiler'], false, null);
+  wp_enqueue_style('ionicons_css', $assets['ionicons'], false, null);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
@@ -51,6 +51,17 @@ function roots_scripts() {
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
+
+/**
+ * Admin scripts
+ */
+function load_custom_wp_admin_style() {
+  wp_enqueue_style('iconpicker_css', get_template_directory_uri() . '/assets/css/bootstrap-iconpicker.min.css', false, null);
+  wp_enqueue_style( 'iconpicker_css' );
+  wp_enqueue_script('iconpicker', get_template_directory_uri() . '/assets/js/bootstrap-iconpicker.min.js', array(), null, true);
+  wp_enqueue_script('glyphicon', get_template_directory_uri() . '/assets/js/iconset/iconset-glyphicon.min.js', array(), null, true);
+}
+//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
 // http://wordpress.stackexchange.com/a/12450
 function roots_jquery_local_fallback($src, $handle = null) {

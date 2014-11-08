@@ -9,9 +9,9 @@ if(comments_open()) {
 } 
 ?>
 
-<section id="comments" class="comments section">
-  <?php if (have_comments()) : ?>
-    <h2><?php printf(_nx('One response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'roots'), number_format_i18n(get_comments_number()), '<span>' . get_the_title() . '</span>'); ?></h2>
+<?php if (have_comments()) : ?>
+  <section id="comments" class="comments section">
+    <h2><?php printf(__('Comments on %s', 'roots'), get_the_title()); ?></h2>
 
     <ol class="comment-list">
       <?php wp_list_comments(array('style' => 'ol', 'short_ping' => true, 'reply_text' => __('Reply', 'roots'), 'avatar_size' => 38)); ?>
@@ -37,8 +37,8 @@ if(comments_open()) {
     </div>
   <?php endif; ?>
 
-  <?php //comment_form(); ?>
-</section>
+  </section>
+<?php //comment_form(); ?>
 
 <?php if($reply) : ?>
   <section id="respond" class="section">

@@ -2,13 +2,16 @@
   <article <?php post_class(); ?>>
     <header>
       <h1 class="entry-title"><?php echo pa_post_format_icon(); ?> <?php the_title(); ?><a href="javascript:print();" class="icon icon-Printer" title="<?php _e('Print this Article', 'roots'); ?>"></a><a href="javascript:pdf();" class="icon icon-File-Download" title="<?php _e('Download as PDF', 'roots'); ?>"></a></h1>
-      <?php get_template_part('templates/entry-meta'); ?>
     </header>
     <div class="entry-content">
       <?php the_content(); ?>
     </div>
-    <footer><?php pa_article_voting(); ?></footer>
+    <footer>
+      <?php get_template_part('templates/entry-meta'); ?>
+    </footer>
+    <?php pa_article_voting(); ?>
     <?php get_template_part('templates/related'); ?>
     <?php comments_template('/templates/comments.php'); ?>
+    <?php get_template_part('templates/section', 'contact'); ?>
   </article>
 <?php endwhile; ?>

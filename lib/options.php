@@ -809,7 +809,23 @@
                             )
                         ),
                         array(
-                            'id'       => 'opt-typography-body',
+                            'id'       => 'font_header',
+                            'type'     => 'typography',
+                            'title'    => __( 'Title Font', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Specify the body font properties.', 'redux-framework-demo' ),
+                            'google'   => true,
+                            'font-size'   => false,
+                            'line-height'   => false,
+                            'text-align'   => false,
+                            'default'  => array(
+                                'color'       => '#dd9933',
+                                'font-family' => 'Arial,Helvetica,sans-serif',
+                                'font-weight' => 'Normal',
+                            ),
+                            'output'   => array( '.entry-title, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a' ),
+                        ),
+                        array(
+                            'id'       => 'font_body',
                             'type'     => 'typography',
                             'title'    => __( 'Body Font', 'redux-framework-demo' ),
                             'subtitle' => __( 'Specify the body font properties.', 'redux-framework-demo' ),
@@ -830,7 +846,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond' ),
+                            'output'   => array( '.related, .comments, #respond, .entry-summary' ),
                         ),
                         array(
                             'id'       => 'opt-custom-css',
