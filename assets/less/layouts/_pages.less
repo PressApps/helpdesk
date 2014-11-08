@@ -2,3 +2,39 @@
 	padding: 0;
 	list-style: none;
 }
+
+/**
+ * Home page template
+ */
+.category-list .category {
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	border: 1px solid @element-border-color;
+	padding: 1.5em 1em;
+	cursor: pointer;
+	-webkit-transition: background .10s;
+	-moz-transition: background .10s;
+	-o-transition: background .10s;
+	transition: background .10s;
+	vertical-align: top;
+}
+.category-list .category:hover {
+	background-color: @element-bg;
+}
+.category-list .category span {
+	font-size: 60px;
+	margin-bottom: 20px;
+}
+
+
+@media (min-width: @screen-sm-min) {
+	.half-gutter-row {
+		margin-left:  -(@grid-gutter-width / 4);
+		margin-right: -(@grid-gutter-width / 4);
+	}
+  	.half-gutter-col {
+		padding-left:  (@grid-gutter-width / 4);
+		padding-right: (@grid-gutter-width / 4);
+  	}
+}

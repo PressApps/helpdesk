@@ -4,6 +4,8 @@ $redux_opt_name = "helpdesk";
 
 if ( !function_exists( "redux_add_metaboxes" ) ):
     function redux_add_metaboxes($metaboxes) {
+
+    /*
     $boxSections[] = array(
         'title' => __('Home Settings', 'redux-framework-demo'),
         //'desc' => __('Redux Framework was created with the developer in mind. It allows for any theme developer to have an advanced theme panel with most of the features a developer would need. For more information check out the Github repo at: <a href="https://github.com/ReduxFramework/Redux-Framework">https://github.com/ReduxFramework/Redux-Framework</a>', 'redux-framework-demo'),
@@ -175,7 +177,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         //'sidebar' => false, // enable/disable the sidebar in the normal/advanced positions
         'sections' => $boxSections
     );
-
+    */
 
     $boxLayout = array();
     $boxLayout[] = array(
@@ -208,12 +210,13 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
     $metaboxes[] = array(
         'id' => 'demo-layout2',
         'post_types' => array('page'),
+        'page_template' => array('template-custom.php'),
         'position' => 'side', // normal, advanced, side
         'priority' => 'high', // high, core, default, low
         'sections' => $boxLayout
     );
 
-
+    /*
     $page_options = array();
     $page_options[] = array(
         //'title'         => __('General Settings', 'redux-framework-demo'),
@@ -242,7 +245,8 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'sidebar'       => false, // enable/disable the sidebar in the normal/advanced positions
         'sections'      => $page_options,
     );
-
+    */
+   
       $knowledgebaseTemplate = array();
       $knowledgebaseTemplate[] = array(
         'icon_class' => 'icon-large',
@@ -308,6 +312,107 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'priority' => 'core', // high, core, default, low
         'sections' => $knowledgebaseTemplate
       );
+
+
+
+
+      $homeTemplate = array();
+      $homeTemplate[] = array(
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'id'       => 'home_sections',
+                'type'     => 'sorter',
+                'title'    => 'Layout Manager Advanced',
+                'subtitle' => 'You can add multiple drop areas or columns.',
+                'compiler' => 'true',
+                'options'  => array(
+                    'Enabled'  => array(
+                        'header' => 'Header',
+                        'categories'     => 'Categories',
+                        'content' => 'Content',
+                        'sidebar' => 'Sidebar',
+                        'contact'   => 'Contact'
+                    ),
+                    'Disabled' => array(),
+                ),
+                'limits'   => array(
+                    'Disabled' => 4,
+                ),
+            ),
+            array(
+                'id' => 'home_sidebar',
+                'title' => __( 'Sidebar', 'fusion-framework' ),
+                'desc' => 'Select custom sidebar, if left blank default "Primary" sidebar is used. You can create custom sidebars under Appearance > Widgets.',
+                'type' => 'select',
+                //'required' => array('layout','>','1'),       
+                'data' => 'sidebars',
+                'default' => 'None',
+            ),
+            array(
+                'id'        => 'home_categories',
+                'type'      => 'select',
+                'data'      => 'categories',
+                'multi'     => true,
+                'title'     => __('Categories', 'redux-framework-demo'),
+                'desc'      => __('Select categories to display on Knowledge Base page template (If none selected all categories will be displayed).', 'redux-framework-demo'),
+            ),
+            array(
+                'id' => 'home_columns',
+                'type' => 'select',
+                'title' => __('Columns Per Page', 'pressapps' ), 
+                'desc' => __('Select number of knowledge base columns displayed on page.', 'pressapps' ),
+                'options' => array(
+                    2 => '2 Columns',
+                    3 => '3 Columns',
+                    4 => '4 Columns',
+                    6 => '6 Columns',
+                ),
+                'default'   => '4', 
+            ),
+            array(
+                'id' => 'home_aticles_per_cat',
+                'type' => 'select',
+                'title' => __('Articles Per Category', 'pressapps' ), 
+                'desc' => __('Select number of knowledge base articles displayed per category.', 'pressapps' ),
+                'options' => array(
+                    '3' => '3 Articles',
+                    '4' => '4 Articles',
+                    '5' => '5 Articles',
+                    '6' => '6 Articles',
+                    '7' => '7 Articles',
+                    '8' => '8 Articles',
+                    '10' => '10 Articles',
+                    '12' => '12 Articles',
+                    '14' => '14 Articles',
+                    '18' => '18 Articles',
+                    '20' => '20 Articles',
+                    '30' => '30 Articles',
+                ),
+                'default'   => '7', 
+            ),
+            array(
+                'id'        => '3rd_level_cat',
+                'type'      => 'switch',
+                'title'     => __('3rd level categories', 'redux-framework-demo'),
+                'desc'  => __('Display 3rd level child categories.', 'redux-framework-demo'),
+                'default'   => true,
+            ),
+        )
+      );
+      
+      $metaboxes[] = array(
+        'id' => 'home-metabox',
+        'title' => __('Home Page Options', 'pressapps'),
+        'post_types' => array('page'),
+        'page_template' => array('template-home.php'),
+        'position' => 'normal', // normal, advanced, side
+        'priority' => 'core', // high, core, default, low
+        'sections' => $homeTemplate
+      );
+
+
 
 
     // Kind of overkill, but ahh well.  ;)

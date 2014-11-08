@@ -88,14 +88,6 @@ foreach($categories as $category) {
         }
     }
     */
-    $icon_value = pa_category_icon_url($category->term_id);
-    if ($icon_value != '') { 
-        $icon = explode('|',$icon_value); 
-    } else { 
-        $icon = array('','');
-    };
-
-
 
     $cat_posts = get_posts(array(
         'numberposts'   => -1,

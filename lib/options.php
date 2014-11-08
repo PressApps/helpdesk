@@ -846,7 +846,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond, .entry-summary' ),
+                            'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc' ),
                         ),
                         array(
                             'id'       => 'opt-custom-css',
@@ -922,6 +922,8 @@
                             'title'    => __( 'Contact Info', 'redux-framework-demo' ),
                             'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
                         ),
+
+
                     )
                 );
 
