@@ -56,12 +56,17 @@ add_action('wp_enqueue_scripts', 'roots_scripts', 100);
  * Admin scripts
  */
 function load_custom_wp_admin_style() {
-  wp_enqueue_style('iconpicker_css', get_template_directory_uri() . '/assets/css/bootstrap-iconpicker.min.css', false, null);
-  wp_enqueue_style( 'iconpicker_css' );
-  wp_enqueue_script('iconpicker', get_template_directory_uri() . '/assets/js/bootstrap-iconpicker.min.js', array(), null, true);
-  wp_enqueue_script('glyphicon', get_template_directory_uri() . '/assets/js/iconset/iconset-glyphicon.min.js', array(), null, true);
+  wp_enqueue_style('admin_css', get_template_directory_uri() . '/assets/css/admin.css', false, null);
+  wp_enqueue_style('icons_css', get_template_directory_uri() . '/assets/css/icons.min.css', false, null);
+
+  $js = get_template_directory_uri() . '/assets/js/icon-picker.js';
+  wp_enqueue_script( 'dashicons-picker', $js, array( 'jquery' ), '1.0' );
 }
-//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+global $pagenow;
+if ($pagenow=="edit-tags.php" && isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] == 'category'  ) {
+  add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+}
+
 
 // http://wordpress.stackexchange.com/a/12450
 function roots_jquery_local_fallback($src, $handle = null) {

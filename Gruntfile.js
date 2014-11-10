@@ -31,7 +31,8 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'assets/js/*.js',
         '!assets/js/scripts.js',
-        '!assets/**/*.min.*'
+        '!assets/**/*.min.*',
+        //'!assets/js/icon-picker.js',
       ]
     },
     less: {
