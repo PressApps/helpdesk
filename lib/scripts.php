@@ -22,8 +22,9 @@ function roots_scripts() {
   if (WP_ENV === 'development') {
     $assets = array(
       'css'       => '/assets/css/main.css',
-      'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
+      //'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
       'js'        => '/assets/js/scripts.js',
+      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
     );
@@ -32,15 +33,16 @@ function roots_scripts() {
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
-      'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
+      //'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
+      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
     );
   }
 
   wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
-  wp_enqueue_style('ionicons_css', $assets['ionicons'], false, null);
+  //wp_enqueue_style('ionicons_css', $assets['ionicons'], false, null);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
@@ -49,6 +51,7 @@ function roots_scripts() {
   wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, true);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
+  wp_enqueue_script('autocomplete_js', get_template_directory_uri() . $assets['autocomplete'], array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 

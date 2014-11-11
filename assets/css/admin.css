@@ -1,8 +1,16 @@
 /* Edit category */
-th.column-thumb {width:50px;}
-.form-field div.button.icon-picker {margin-bottom: 30px;}
-.column-thumb {text-align:center;}
-.column-thumb span {font-size:26px;}
+th.column-thumb {
+	width:50px;
+}
+.form-field div.button.icon-picker {
+	margin-bottom: 30px;
+}
+.column-thumb {
+	text-align:center;
+}
+.column-thumb i {
+	font-size: 20px;
+}
 
 /* Icon Picker */
 .icon-picker-container {

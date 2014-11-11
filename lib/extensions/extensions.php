@@ -322,6 +322,54 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'icon' => 'el-icon-home',
         'fields' => array(
             array(
+                'id'       => 'headline_bg',
+                'type'     => 'background',
+                'output'   => array( '.headline' ),
+                'title'    => __( 'Body Background', 'redux-framework-demo' ),
+                'subtitle' => __( 'Body background with image, color, etc.', 'redux-framework-demo' ),
+            ),
+            array(
+                'id'       => 'headline_padding',
+                'type'     => 'spacing',
+                'output'   => array( '.headline' ),
+                'mode'     => 'padding',
+                //'all'      => false,
+                'right'         => false,
+                'left'          => false,
+                'units'         => 'px',
+                'title'    => __( 'Padding', 'redux-framework-demo' ),
+                'desc'     => __( 'Set page navigation top and bottom padding in px.', 'redux-framework-demo' ),
+            ),
+            array(
+                'id'       => 'headline_text',
+                'type'     => 'color',
+                'title'    => __( 'Text Color', 'redux-framework-demo' ),
+                'subtitle' => __( 'Pick a page navigation text color.', 'redux-framework-demo' ),
+                //'default'  => '#aaaaaa',
+                'transparent' => false,
+                'validate' => 'color',
+                //'output'    => array(
+                //    'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before, .headline h1, .headline h4'
+                //)
+            ),
+            array(
+                'id'       => 'subtitle',
+                'type'     => 'text',
+                'title'    => __( 'Subtitle', 'redux-framework-demo' ),
+                'desc'     => __( 'Enter page subtitle.', 'redux-framework-demo' ),
+            ),
+            array(
+                'id' => 'headline_search',
+                'type' => 'button_set',
+                'title'       => __( 'Search', 'shoestrap' ),
+                'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
+                'options'   => array(
+                    '0' => 'Disabled',
+                    '1' => 'WP Search',
+                    '2' => 'Live Search',
+                ),
+            ),
+            array(
                 'id'       => 'home_sections',
                 'type'     => 'sorter',
                 'title'    => 'Layout Manager Advanced',

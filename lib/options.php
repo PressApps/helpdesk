@@ -653,9 +653,9 @@
                             'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
                         ),
                         array(
-                            'id'       => 'page_nav_bg',
+                            'id'       => 'headline_bg',
                             'type'     => 'background',
-                            'output'   => array( '.page-nav' ),
+                            'output'   => array( '.headline' ),
                             'title'    => __( 'Body Background', 'redux-framework-demo' ),
                             'subtitle' => __( 'Body background with image, color, etc.', 'redux-framework-demo' ),
                             'default'  => array(
@@ -663,9 +663,9 @@
                             )
                         ),
                         array(
-                            'id'       => 'page_nav_padding',
+                            'id'       => 'headline_padding',
                             'type'     => 'spacing',
-                            'output'   => array( '.page-nav' ),
+                            'output'   => array( '.headline' ),
                             'mode'     => 'padding',
                             //'all'      => false,
                             'right'         => false,
@@ -679,7 +679,7 @@
                             )
                         ),
                         array(
-                            'id'       => 'page_nav_text',
+                            'id'       => 'headline_text',
                             'type'     => 'color',
                             'title'    => __( 'Text Color', 'redux-framework-demo' ),
                             'subtitle' => __( 'Pick a page navigation text color.', 'redux-framework-demo' ),
@@ -687,7 +687,7 @@
                             'transparent' => false,
                             'validate' => 'color',
                             'output'    => array(
-                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before'
+                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before, .headline h1, .headline h4'
                             )
                         ),
                         array(
@@ -872,6 +872,33 @@
                     'icon'       => 'el-icon-file',
                     'title'      => __( 'Knowledge Base', 'redux-framework-demo' ),
                     'fields'     => array(
+                        array(
+                            'id' => 'headline_search',
+                            'type' => 'button_set',
+                            'title'       => __( 'Search', 'shoestrap' ),
+                            'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
+                            'options'   => array(
+                                '0' => 'Disabled',
+                                '1' => 'WP Search',
+                                '2' => 'Live Search',
+                            ),
+                            'default'     => 0,
+                        ),
+                        array(
+                            'id' => 'live_search_in',
+                            'type' => 'select',
+                            'title' => __('Search Titles / Content', 'pressapps' ), 
+                            'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
+                            'required'    => array('headline_search','=',array('2')),
+                            'options' => array(
+                                '1' => 'Titles Only',
+                                '2' => 'Titles and Content'
+                            ), 
+                            'default' => '2',
+                        ),
+
+
+
                         array(
                             'id'       => 'article_voting',
                             'type'     => 'button_set',

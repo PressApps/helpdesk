@@ -12,7 +12,13 @@
     get_template_part('templates/header');
   ?>
 
-  <?php get_template_part('templates/page', 'nav'); ?>
+  <?php
+    if (is_page_template('template-home.php')) {
+      get_template_part('templates/section-headline', 'home');
+    } else {
+      get_template_part('templates/section-headline');
+    }
+  ?>
 
   <div class="wrap container" role="document">
     <div class="content row">

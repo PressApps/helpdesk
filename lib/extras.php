@@ -103,7 +103,7 @@ function pa_output_css() {
   if ($helpdesk['navbar_link_color']) {
     $output .= '.navbar-default .navbar-nav > li > a, .dropdown-menu > li > a { color: ' . $helpdesk['navbar_link_color']['regular'] . '; }';
     $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
-    $output .= '.category-list .category span, .category-list .category h2, .article-count { color: ' . $helpdesk['link_color']['regular'] . '; }';
+    $output .= '.category-list .category i, .category-list .category h2, .article-count { color: ' . $helpdesk['link_color']['regular'] . '; }';
   }
 
   if ($helpdesk['layout'] == '2') {
@@ -166,11 +166,11 @@ add_action('wp_head','pa_add_favicon');
 /**
  * Post format icons 
  */
-function pa_post_format_icon() {
+function pa_post_format_icon($post_id = '') {
 
-  switch(get_post_format()){
+  switch(get_post_format($post_id)){
       case 'gallery':
-          $post_icon = 'icon-Photos';
+          $post_icon = 'icon-Picture';
           break;
       case 'link':
           $post_icon = 'icon-File';
@@ -198,7 +198,7 @@ function pa_post_format_icon() {
           break;
   }
 
-  return '<span class="post-format ' . $post_icon . '"></span>';
+  return '<i class="post-format ' . $post_icon . '"></i>';
 
 }
 
@@ -535,7 +535,7 @@ function pa_category_icon_url($term_id = NULL, $explode_icon = FALSE) {
 
   if ($explode_icon) {
     $icon_css = explode('|', $category_icon_url);
-    return '<span class="' . $icon_css[0] . ' ' . $icon_css[1] . '"></span>';
+    return '<i class="' . $icon_css[0] . ' ' . $icon_css[1] . '"></i>';
   } else {
     return $category_icon_url;
   }
@@ -588,7 +588,7 @@ function pa_taxonomy_column( $columns, $column, $id ) {
     $value = pa_category_icon_url($id, NULL, TRUE);
 
         if ($value != '') { $preview = explode('|',$value); } else { $preview = array('','');};
-    $columns = '<span class="' .$preview[0].' '.$preview[1]. '"></span>';
+    $columns = '<i class="' .$preview[0].' '.$preview[1]. '"></i>';
   }
   return $columns;
 }
@@ -600,4 +600,46 @@ if ( strpos( $_SERVER['SCRIPT_NAME'], 'edit-tags.php' ) > 0 ) {
 }
 
 
+/*
+ * Live Search
+ */
+add_action('wp_ajax_search_title', 'pa_live_search');  // hook for login users
+add_action('wp_ajax_nopriv_search_title', 'pa_live_search'); // hook for not login users
+
+function pa_live_search() {
+    global $wpdb, $helpdesk;
+    
+    $post_status  = 'publish';
+    $search_term  = "%".$_REQUEST['query']."%";
+
+    //if ($helpdesk['search_post_types']) {
+    //  $post_type = "'" . implode("','", $helpdesk['search_post_types']) . "'";
+    //} else {
+      $post_type = "'post'";
+    //}
+
+    if ($helpdesk['live_search_in'] == '2') {
+      $sql_query = $wpdb->prepare( "SELECT ID, post_title, post_type, post_content as post_content, post_name from $wpdb->posts where post_status = %s and post_type in ( $post_type )and (post_title like %s or post_content like %s)", $post_status, $search_term, $search_term );
+    } else {
+      $sql_query = $wpdb->prepare( "SELECT ID, post_title, post_type, post_content as post_content, post_name from $wpdb->posts where post_status = %s and post_type in ( $post_type )and post_title like %s", $post_status, $search_term );
+    }
+  
+  $results = $wpdb->get_results($sql_query);
+  
+  $search_json = array( "query" => "Unit", "suggestions" => array() );   // create a json array
+  
+  foreach ( $results as $result ) {
+
+    $link = get_permalink( $result->ID ); // get post url
+    $icon = pa_post_format_icon($result->ID);
+
+    $search_json["suggestions"][] = array(
+                      "value" => $result->post_title,
+                      "data"  => array( "content" => $result->post_content, "url" => $link ),
+                      "icon" => $icon,
+                    );
+  }
+  echo json_encode($search_json); // convert array to joson string
+  die();
+}
 
