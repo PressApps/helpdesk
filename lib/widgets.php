@@ -4,11 +4,161 @@
  */
 
 function pa_widgets_init() {
+  register_widget( 'Roots_Vcard_Widget' );
   register_widget( 'Most_Popular_Widget' );
   register_widget( 'Custom_Recent_Posts_Widget' );
 }
 
 add_action( 'widgets_init', 'pa_widgets_init' );
+
+/* ==========================================================================
+   Contact widget (Vcard) 
+   ========================================================================== */
+
+class Roots_Vcard_Widget extends WP_Widget {
+  private $fields = array(
+    'title'          => 'Title',
+    'icon'           => 'Icon',
+    'text'           => 'Text',
+    'street_address' => 'Street Address',
+    'locality'       => 'City/Locality',
+    'region'         => 'State/Region',
+    'postal_code'    => 'Zipcode/Postal Code',
+    'tel_label'      => 'Telephone Label',
+    'tel'            => 'Telephone Number',
+    'email_label'    => 'Email Label',
+    'email'          => 'Email Address'
+  );
+
+  function __construct() {
+    $widget_ops = array('classname' => 'widget_pa_contact', 'description' => __('Use this widget to add contact details', 'pressapps'));
+
+    $this->WP_Widget('widget_pa_contact', __('Helpdesk Contact', 'pressapps'), $widget_ops);
+    $this->alt_option_name = 'widget_pa_contact';
+
+    add_action('save_post', array(&$this, 'flush_widget_cache'));
+    add_action('deleted_post', array(&$this, 'flush_widget_cache'));
+    add_action('switch_theme', array(&$this, 'flush_widget_cache'));
+  }
+
+  function widget($args, $instance) {
+    $cache = wp_cache_get('widget_pa_contact', 'widget');
+
+    if (!is_array($cache)) {
+      $cache = array();
+    }
+
+    if (!isset($args['widget_id'])) {
+      $args['widget_id'] = null;
+    }
+
+    if (isset($cache[$args['widget_id']])) {
+      echo $cache[$args['widget_id']];
+      return;
+    }
+
+    ob_start();
+    extract($args, EXTR_SKIP);
+
+    $title = apply_filters('widget_title', empty($instance['title']) ? __('Contact', 'pressapps') : $instance['title'], $instance, $this->id_base);
+
+    foreach($this->fields as $name => $label) {
+      if (!isset($instance[$name])) { $instance[$name] = ''; }
+    }
+
+    echo $before_widget;
+    $before_title = '<h3>';
+    if ($instance['icon']) {
+    $before_title .= '<i class="icon-' . $instance['icon'] . '"></i> ';
+    }
+    $after_title = '</h3>';
+
+    if ($title) {
+      echo $before_title, $title, $after_title;
+    }
+  ?>
+    <?php if ($instance['text']) { ?>
+      <p class="text"><?php echo $instance['text']; ?></p>
+    <?php } ?>
+    <?php if ($instance['street_address']) { ?>
+      <p class="adr"><strong>
+        <span class="street-address"><?php echo $instance['street_address']; ?></span><br>
+        <span class="locality"><?php echo $instance['locality']; ?></span>,
+        <span class="region"><?php echo $instance['region']; ?></span>
+        <span class="postal-code"><?php echo $instance['postal_code']; ?></span><br>
+      </strong></p>
+    <?php } ?>
+    <?php if ($instance['tel_label']) { ?>
+      <p class="contact-label"><?php echo $instance['tel_label']; ?></p>
+    <?php } ?>
+    <?php if ($instance['tel']) { ?>
+      <p class="tel"><strong><?php echo $instance['tel']; ?></strong></p>
+    <?php } ?>
+    <?php if ($instance['email_label']) { ?>
+      <p class="contact-label"><?php echo $instance['email_label']; ?></p>
+    <?php } ?>
+    <?php if ($instance['email']) { ?>
+      <p class="email"><strong><a href="mailto:<?php echo $instance['email']; ?>"><?php echo $instance['email']; ?></a></strong></p>
+    <?php } ?>
+  <?php
+    echo $after_widget;
+
+    $cache[$args['widget_id']] = ob_get_flush();
+    wp_cache_set('widget_pa_contact', $cache, 'widget');
+  }
+
+  function update($new_instance, $old_instance) {
+    $instance = array_map('strip_tags', $new_instance);
+
+    $this->flush_widget_cache();
+
+    $alloptions = wp_cache_get('alloptions', 'options');
+
+    if (isset($alloptions['widget_pa_contact'])) {
+      delete_option('widget_pa_contact');
+    }
+
+    return $instance;
+  }
+
+  function flush_widget_cache() {
+    wp_cache_delete('widget_pa_contact', 'widget');
+  }
+
+  function form($instance) {
+    foreach($this->fields as $name => $label) {
+      ${$name} = isset($instance[$name]) ? esc_attr($instance[$name]) : '';
+      ?>
+
+      <?php if ($label == 'Text') { ?>
+        <p>
+          <label for="<?php echo esc_attr($this->get_field_id($name)); ?>"><?php _e("{$label}:", 'pressapps'); ?></label>
+          <textarea rows="4" class="widefat" id="<?php echo esc_attr($this->get_field_id($name)); ?>" name="<?php echo esc_attr($this->get_field_name($name)); ?>"><?php echo ${$name}; ?></textarea>
+        </p>
+      <?php } elseif ($label == 'Icon') { ?>
+        <p>
+          <label for="<?php echo esc_attr($this->get_field_id($name)); ?>"><?php _e("{$label}:", 'pressapps'); ?></label>
+          <select class="widefat" id="<?php echo esc_attr($this->get_field_id($name)); ?>" name="<?php echo esc_attr($this->get_field_name($name)); ?>">
+            <option value=""<?php if ( empty($instance['icon']) || $instance['icon'] == '' ) echo "selected"; ?>>None</option>
+            <option value="Email"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Email' ) echo "selected"; ?>>Email</option>
+            <option value="Phone"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Phone' ) echo "selected"; ?>>Phone</option>
+            <option value="Geo2-"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Geo2-' ) echo "selected"; ?>>Marker</option>
+            <option value="Skype"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Skype' ) echo "selected"; ?>>Skype</option>
+            <option value="Paper-Plane"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Paper-Plane' ) echo "selected"; ?>>Paper Plane</option>
+            <option value="At-Sign"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'At-Sign' ) echo "selected"; ?>>At Sign</option>
+          </select>
+        </p>
+      <?php } else { ?>
+        <p>
+          <label for="<?php echo esc_attr($this->get_field_id($name)); ?>"><?php _e("{$label}:", 'pressapps'); ?></label>
+          <input class="widefat" id="<?php echo esc_attr($this->get_field_id($name)); ?>" name="<?php echo esc_attr($this->get_field_name($name)); ?>" type="text" value="<?php echo ${$name}; ?>">
+        </p>
+      <?php
+      }
+    }
+  }
+}
+
 
 /**
  * Most popular widget

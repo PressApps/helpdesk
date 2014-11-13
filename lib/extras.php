@@ -103,7 +103,7 @@ function pa_output_css() {
   if ($helpdesk['navbar_link_color']) {
     $output .= '.navbar-default .navbar-nav > li > a, .dropdown-menu > li > a { color: ' . $helpdesk['navbar_link_color']['regular'] . '; }';
     $output .= '.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav li > a:hover, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .dropdown-menu > li > a:hover { color: ' . $helpdesk['navbar_link_color']['hover'] . '; }';
-    $output .= '.category-list .category i, .category-list .category h2, .article-count { color: ' . $helpdesk['link_color']['regular'] . '; }';
+    $output .= '.category-list .category i, .category-list .category h2, .article-count, .sidebar h3 { color: ' . $helpdesk['link_color']['regular'] . '; }';
   }
 
   if ($helpdesk['layout'] == '2') {

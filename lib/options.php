@@ -846,7 +846,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc' ),
+                            'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc, .sidebar' ),
                         ),
                         array(
                             'id'       => 'opt-custom-css',
