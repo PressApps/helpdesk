@@ -50,10 +50,33 @@ function roots_widgets_init() {
   register_sidebar(array(
     'name'          => __('Footer', 'roots'),
     'id'            => 'sidebar-footer',
-    'before_widget' => '<section class="widget %1$s %2$s">',
+    'before_widget' => '<section class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-footer' ) .'">',
     'after_widget'  => '</section>',
     'before_title'  => '<h3>',
     'after_title'   => '</h3>',
   ));
 }
 add_action('widgets_init', 'roots_widgets_init');
+
+
+
+/**
+ * Count number of widgets in a sidebar
+ */
+function pa_count_widgets( $sidebar_id ) {
+  // If loading from front page, consult $_wp_sidebars_widgets rather than options
+  // to see if wp_convert_widget_settings() has made manipulations in memory.
+  global $_wp_sidebars_widgets;
+  if ( empty( $_wp_sidebars_widgets ) ) :
+    $_wp_sidebars_widgets = get_option( 'sidebars_widgets', array() );
+  endif;
+  
+  $sidebars_widgets_count = $_wp_sidebars_widgets;
+  
+  if ( isset( $sidebars_widgets_count[ $sidebar_id ] ) ) :
+    $widget_count = count( $sidebars_widgets_count[ $sidebar_id ] );
+    $col = ceil(12 / $widget_count); 
+    $widget_classes = ' col-sm-' . $col;
+    return $widget_classes;
+  endif;
+}

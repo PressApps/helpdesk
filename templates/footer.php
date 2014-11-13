@@ -1,7 +1,16 @@
 <?php global $helpdesk; ?>
 <footer class="content-info" role="contentinfo">
-  <div class="container">
-    <div class="footer-bottom">
+  <?php if ( is_active_sidebar('sidebar-footer') ) { ?>
+    <div class="sidebar-footer">
+      <div class="container">
+        <div class="row">
+          <?php dynamic_sidebar('sidebar-footer'); ?>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+  <div class="footer-bottom">
+    <div class="container">
       <div class="row">
     		<div class="col-md-6 copyright"><?php echo $helpdesk['footer_text']; ?></div>
         <div class="col-md-6">
@@ -12,9 +21,6 @@
           ?>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <?php //dynamic_sidebar('sidebar-footer'); ?>
     </div>
   </div>
 </footer>

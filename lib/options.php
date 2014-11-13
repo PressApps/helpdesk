@@ -429,13 +429,15 @@
                             'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc, .sidebar' ),
                         ),
                         array(
-                            'id'       => 'opt-color-footer',
+                            'id'       => 'sidebar_footer_bg',
                             'type'     => 'color',
                             'title'    => __( 'Footer Background Color', 'redux-framework-demo' ),
                             'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
                             'transparent' => false,
                             'default'  => '#f3f3f3',
                             'validate' => 'color',
+                            'mode'     => 'background',
+                            'output'   => '.sidebar-footer, .footer-bottom',
                         ),
                     )
                 );

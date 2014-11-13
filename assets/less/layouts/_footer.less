@@ -2,22 +2,33 @@
  * Contact
  */
 .pre-footer {
-  border-top: 1px solid #eee;
-  padding: 40px 0 0;
+	border-top: 1px solid @element-border-color;
+	padding-top: @section-spacing;
 }
  
 /**
  * Footer
  */
 .content-info {
-	margin-top: @element-margin-top;
+	margin-top: @section-spacing;
 }
+.sidebar-footer {
+	padding-top: @section-spacing;
+	padding-bottom: @section-spacing;
+	border-top: 1px solid @element-border-color;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+
 .content-info p {
 	margin: 0;
 }
 .footer-bottom {
 	padding: 20px 0;
-	border-top: 1px solid #eee;
+	border-top: 1px solid @element-border-color;
 	letter-spacing: 0.04em;
 	word-spacing: 2px;
 	color: #999;
@@ -42,5 +53,8 @@
 	.navbar-footer {
 		text-align: right;
 		margin-top: 0;
+	}
+	.copyright {
+		text-align: left;
 	}
 }
