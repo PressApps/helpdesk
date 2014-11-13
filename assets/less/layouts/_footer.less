@@ -10,15 +10,29 @@
  * Footer
  */
 .content-info {
-	padding: 50px 0 50px;
+	margin-top: @element-margin-top;
 }
 .content-info p {
 	margin: 0;
 }
-.footer-text {
-	padding-top: 20px;
+.footer-bottom {
+	padding: 20px 0;
 	border-top: 1px solid #eee;
 	letter-spacing: 0.04em;
 	word-spacing: 2px;
 	color: #999;
+	font-size: 0.9em;
+}
+.navbar-footer {
+	list-style: none;
+	margin: 0;
+}
+.navbar-footer li {
+	display: inline-block;
+	padding: 0 10px 0;
+}
+@media (min-width: @screen-md-min) {
+	.navbar-footer {
+		text-align: right;
+	}
 }
