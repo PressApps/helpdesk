@@ -896,7 +896,13 @@
                             ), 
                             'default' => '2',
                         ),
-
+                        array(
+                            'id'       => 'print',
+                            'type'     => 'switch',
+                            'title'    => __( 'Print Button', 'redux-framework-demo' ),
+                            'desc'     => __( 'Display print button on article page.', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
 
 
                         array(
@@ -949,7 +955,17 @@
                             'title'    => __( 'Contact Info', 'redux-framework-demo' ),
                             'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
                         ),
-
+                        array(
+                            'id'       => 'reset_all_votes',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Reset All Article Votes', 'redux-framework-demo' ),
+                            'desc'     => __( 'Reset votes on all articles!.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => 'Reset All Votes'
+                            ),
+                            'multi'    => true,
+                            'default'  => '0'
+                        ),
 
                     )
                 );

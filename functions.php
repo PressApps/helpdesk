@@ -13,6 +13,7 @@ $pa_includes = array(
   'lib/options.php',         // Theme Options
   'lib/utils.php',           // Utility functions
   'lib/init.php',            // Initial theme setup and constants
+  'lib/widgets.php',         // Widgets
   'lib/wrapper.php',         // Theme wrapper class
   'lib/sidebar.php',         // Sidebar class
   'lib/config.php',          // Configuration

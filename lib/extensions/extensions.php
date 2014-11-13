@@ -216,6 +216,34 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'sections' => $boxLayout
     );
 
+    $boxPost = array();
+    $boxPost[] = array(
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'id'       => 'reset_post_votes',
+                'type'     => 'button_set',
+                'title'    => __( 'Reset Article Votes', 'redux-framework-demo' ),
+                'desc'     => __( 'Reset votes on this article!.', 'redux-framework-demo' ),
+                'options'  => array(
+                    '1' => 'Reset Votes'
+                ),
+                'multi'    => true,
+                'default'  => '0'
+            ),
+        )
+    );
+  
+    $metaboxes[] = array(
+        'id' => 'demo-layout2',
+        'title' => __('Article Options', 'pressapps'),
+        'post_types' => array('post'),
+        'position' => 'normal', // normal, advanced, side
+        'priority' => 'core', // high, core, default, low
+        'sections' => $boxPost
+    );
+
     /*
     $page_options = array();
     $page_options[] = array(

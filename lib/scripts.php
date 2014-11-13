@@ -19,10 +19,12 @@ function roots_scripts() {
    * The build task in Grunt renames production assets with a hash
    * Read the asset names from assets-manifest.json
    */
+  global $helpdesk;
+
   if (WP_ENV === 'development') {
     $assets = array(
       'css'       => '/assets/css/main.css',
-      //'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
+      'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.js',
       'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
@@ -42,8 +44,9 @@ function roots_scripts() {
   }
 
   wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
-  //wp_enqueue_style('ionicons_css', $assets['ionicons'], false, null);
-
+  if (is_single() && $helpdesk['print']) {
+    wp_enqueue_style('print_css', get_template_directory_uri() . $assets['print'], false, null, 'print');
+  }
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }

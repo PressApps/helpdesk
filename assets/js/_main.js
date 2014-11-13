@@ -123,7 +123,7 @@ jQuery(function ($) {
         // Build suggestions inner HTML
         $.each(that.suggestions, function (i, suggestion) {
             //html += '<div class="' + className + suggestion.css + '" data-index="' + i + '"><p class="ls-'+suggestion.type_color+'">'+suggestion.type_label+'</p> <h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
-            html += '<div class="' + className + suggestion.css + '" data-index="' + i + '"><h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
+            html += '<div class="' + className + '" data-index="' + i + '"><h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
         });
 
         container.html(html).show();
