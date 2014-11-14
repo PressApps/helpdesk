@@ -564,7 +564,7 @@
                             )
                         ),
                         array(
-                            'id'       => 'contact_text',
+                            'id'       => 'call_to_action',
                             'type'     => 'editor',
                             'title'    => __( 'Contact Info', 'redux-framework-demo' ),
                             'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
