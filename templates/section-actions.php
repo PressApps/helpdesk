@@ -3,9 +3,9 @@
 global $post, $helpdesk, $meta;
 $meta = redux_post_meta( 'helpdesk', get_the_ID() );
 
-//$show_3rd_level_cat = $meta['3rd_level_cat'];
+
 $kb_aticles_per_cat = $meta['home_aticles_per_cat'];
-$title = $meta['home_categories_title'];
+$title = $meta['home_actions_title'];
 $kb_categories = 'list';
 if (isset($meta['home_categories']) && $meta['home_categories'] != '') {
     $kb_categories = implode(",", $meta['home_categories']);
@@ -31,10 +31,11 @@ $skip = TRUE;
 $categories = get_categories(array(
     'orderby'         => 'slug',
     'order'           => 'ASC',
+    'taxonomy'        => 'action',
     //'hierarchical'    => true,
     //'parent'          => 0,
     //'hide_empty'      => false,
-    'include'         => $kb_categories,
+    //'include'         => $kb_categories,
     'pad_counts'  => 1,
 )); 
 
@@ -65,7 +66,7 @@ foreach($categories as $category) {
     $skip = TRUE;
     ?>
     <div class="col-sm-<?php echo $col_class; ?> half-gutter-col">
-	    <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>" class="category">
+	    <a href="<?php echo get_term_link($category); ?>" title="<?php echo $category->name; ?>" class="category">
 	    	<?php echo pa_category_icon_url($category->term_id, TRUE); ?>
 	        <h2><?php echo $category->name; ?></h2>
 	        <p class="article-desc"><?php echo $category->description; ?></p>

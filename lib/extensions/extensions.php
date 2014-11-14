@@ -34,7 +34,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
     );
   
     $metaboxes[] = array(
-        'id' => 'demo-layout2',
+        'id' => 'demo-layout',
         'post_types' => array('page'),
         'page_template' => array('template-custom.php'),
         'position' => 'side', // normal, advanced, side
@@ -49,20 +49,16 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'fields' => array(
             array(
                 'id'       => 'reset_post_votes',
-                'type'     => 'button_set',
+                'type'     => 'switch',
                 'title'    => __( 'Reset Article Votes', 'redux-framework-demo' ),
                 'desc'     => __( 'Reset votes on this article!.', 'redux-framework-demo' ),
-                'options'  => array(
-                    '1' => 'Reset Votes'
-                ),
-                'multi'    => true,
                 'default'  => '0'
             ),
         )
     );
   
     $metaboxes[] = array(
-        'id' => 'demo-layout2',
+        'id' => 'post-reset',
         'title' => __('Article Options', 'pressapps'),
         'post_types' => array('post'),
         'position' => 'normal', // normal, advanced, side
@@ -199,6 +195,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                     'Enabled'  => array(
                         'header' => 'Header',
                         'categories'     => 'Categories',
+                        'actions'     => 'Actions',
                         'content' => 'Content',
                         'sidebar' => 'Sidebar',
                         'contact'   => 'Contact'
@@ -219,11 +216,17 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'default' => 'None',
             ),
             array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'home_categories_title',
+                'default'   => 'Browse Help Topics',
+                'type'      => 'text'
+            ),
+            array(
                 'id'        => 'home_categories',
+                'title'     => __('Categories', 'redux-framework-demo'),
                 'type'      => 'select',
                 'data'      => 'categories',
                 'multi'     => true,
-                'title'     => __('Categories', 'redux-framework-demo'),
                 'desc'      => __('Select categories to display on Knowledge Base page template (If none selected all categories will be displayed).', 'redux-framework-demo'),
             ),
             array(
@@ -266,6 +269,12 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'title'     => __('3rd level categories', 'redux-framework-demo'),
                 'desc'  => __('Display 3rd level child categories.', 'redux-framework-demo'),
                 'default'   => true,
+            ),
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'home_actions_title',
+                'default'   => 'I want to...',
+                'type'      => 'text'
             ),
         )
       );

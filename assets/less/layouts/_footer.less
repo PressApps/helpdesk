@@ -43,18 +43,24 @@
 	display: inline-block;
 	padding: 0 7px;
 }
-.navbar-footer {
+.navbar-footer, .footer-social {
 	margin-top: 10px;
 }
-.copyright, .navbar-footer {
+.copyright, .navbar-footer, .footer-social {
 	text-align: center;
 }
 @media (min-width: @screen-md-min) {
-	.navbar-footer {
+	.navbar-footer, .footer-social {
 		text-align: right;
 		margin-top: 0;
 	}
 	.copyright {
 		text-align: left;
+	}
+}
+
+.footer-social {
+	i {
+		margin: 0 5px;
 	}
 }

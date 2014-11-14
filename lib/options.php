@@ -429,15 +429,54 @@
                             'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc, .sidebar, .content-info a' ),
                         ),
                         array(
-                            'id'       => 'sidebar_footer_bg',
+                            'id'       => 'footer_sidebar_border',
+                            'type'     => 'border',
+                            'title'    => __( 'Widget Footer Top Border', 'redux-framework-demo' ),
+                            'output'   => array( '.sidebar-footer' ),
+                            'left'     => false,
+                            'right'     => false,
+                            'bottom'     => false,
+                            'default'  => array(
+                                'border-color'  => '#efefef',
+                                'border-style'  => 'solid',
+                                'border-top'    => '1px',
+                            )
+                        ),
+                        array(
+                            'id'       => 'footer_sidebar_bg',
                             'type'     => 'color',
                             'title'    => __( 'Footer Background Color', 'redux-framework-demo' ),
                             'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
                             'transparent' => false,
-                            'default'  => '#f3f3f3',
+                            'default'  => '#fbfbfb',
                             'validate' => 'color',
                             'mode'     => 'background',
-                            'output'   => '.sidebar-footer, .footer-bottom',
+                            'output'   => '.sidebar-footer',
+                        ),
+                        array(
+                            'id'       => 'footer_bottom_border',
+                            'type'     => 'border',
+                            'title'    => __( 'Bottom Footer Top Border', 'redux-framework-demo' ),
+                            'output'   => array( '.footer-bottom' ),
+                            'left'     => false,
+                            'right'     => false,
+                            'bottom'     => false,
+                            'default'  => array(
+                                'border-color'  => '#efefef',
+                                'border-style'  => 'solid',
+                                'border-top'    => '1px',
+                            )
+                        ),
+                        array(
+                            'id'       => 'footer_bottom_bg',
+                            'type'     => 'color',
+                            'title'    => __( 'Footer Bottom Background Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
+                            'transparent' => false,
+                            'default'  => '#fbfbfb',
+                            'validate' => 'color',
+                            'mode'     => 'background',
+                            'output'   => '.footer-bottom',
                         ),
                     )
                 );
@@ -540,6 +579,153 @@
                             ),
                             'multi'    => true,
                             'default'  => '0'
+                        ),
+                    )
+                );
+
+                // Footer Settings
+                $this->sections[] = array(
+                    'title'   => __( 'Footer', 'shoestrap' ),
+                    'icon' => 'el-icon-website',
+                    'fields'  => array(
+                        array(
+                            'title'       => __( 'Show social icons in footer', 'shoestrap' ),
+                            'desc'        => __( 'Show social icons in the footer.', 'shoestrap' ),
+                            'id'          => 'footer_social',
+                            'type'        => 'switch',
+                            'default'     => 0,
+                        ),
+                    )
+                );
+
+                // Social Settings
+                $this->sections[] = array(
+                    'title'     => __( 'Social Links', 'shoestrap' ),
+                    'icon'      => 'el-icon-heart',
+                    'fields'  => array(
+                        array(
+                            'id'        => 'social_sharing_help_3',
+                            'title'     => __( 'Social Links used in Menus && Footer. Enter full profile URL. To remove, just leave blank.', 'shoestrap' ),
+                            'type'      => 'info'
+                        ),
+                        array(
+                            'title'     => __( 'Dribbble', 'shoestrap' ),
+                            'id'        => 'dribbble_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Facebook', 'shoestrap' ),
+                            'id'        => 'facebook_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Flickr', 'shoestrap' ),
+                            'id'        => 'flickr_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'GitHub', 'shoestrap' ),
+                            'id'        => 'github_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Google+', 'shoestrap' ),
+                            'id'        => 'google_plus_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Email', 'shoestrap' ),
+                            'id'        => 'email_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'LinkedIn', 'shoestrap' ),
+                            'id'        => 'linkedin_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Picassa', 'shoestrap' ),
+                            'id'        => 'picassa_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Pinterest', 'shoestrap' ),
+                            'id'        => 'pinterest_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'RSS', 'shoestrap' ),
+                            'id'        => 'rss_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Skype', 'shoestrap' ),
+                            'id'        => 'skype_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'SoundCloud', 'shoestrap' ),
+                            'id'        => 'soundcloud_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Stack Overflow', 'shoestrap' ),
+                            'id'        => 'stackoverflow_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Twitter', 'shoestrap' ),
+                            'id'        => 'twitter_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'Vimeo', 'shoestrap' ),
+                            'id'        => 'vimeo_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => __( 'WordPress', 'shoestrap' ),
+                            'id'        => 'wordpress_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
+                        ),
+                        array(
+                            'title'     => 'YouTube',
+                            'id'        => 'youtube_link',
+                            'validate'  => 'url',
+                            'default'   => '',
+                            'type'      => 'text'
                         ),
                     )
                 );
