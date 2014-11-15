@@ -132,8 +132,50 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'sections' => $knowledgebaseTemplate
       );
 
+      $homeSorter = array();
+      $homeSorter[] = array(
+        'title' => __('Layout', 'redux-framework-demo'),
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'id'       => 'home_sections',
+                'type'     => 'sorter',
+                'title'    => 'Layout Manager Advanced',
+                'subtitle' => 'You can add multiple drop areas or columns.',
+                'compiler' => 'true',
+                'options'  => array(
+                    'Enabled'  => array(
+                        'header' => 'Header',
+                        'boxes' => 'Boxes',
+                        'categories'     => 'Categories',
+                        'actions'     => 'Actions',
+                        'content' => 'Content',
+                        'sidebar' => 'Sidebar',
+                        'contact'   => 'Contact'
+                    ),
+                    'Disabled' => array(),
+                ),
+                'limits'   => array(
+                    'Disabled' => 4,
+                ),
+            ),
+        )
+      );
+      
+      $metaboxes[] = array(
+        'id' => 'home-layout-metabox',
+        'title' => __('Home Page layout Options', 'pressapps'),
+        'post_types' => array('page'),
+        'page_template' => array('template-home.php'),
+        'position' => 'normal', // normal, advanced, side
+        'priority' => 'core', // high, core, default, low
+        'sections' => $homeSorter
+      );
+
       $homeTemplate = array();
       $homeTemplate[] = array(
+        'title' => __('Layout', 'redux-framework-demo'),
         'icon_class' => 'icon-large',
         'icon' => 'el-icon-home',
         'fields' => array(
@@ -183,27 +225,6 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                     '0' => 'Disabled',
                     '1' => 'WP Search',
                     '2' => 'Live Search',
-                ),
-            ),
-            array(
-                'id'       => 'home_sections',
-                'type'     => 'sorter',
-                'title'    => 'Layout Manager Advanced',
-                'subtitle' => 'You can add multiple drop areas or columns.',
-                'compiler' => 'true',
-                'options'  => array(
-                    'Enabled'  => array(
-                        'header' => 'Header',
-                        'categories'     => 'Categories',
-                        'actions'     => 'Actions',
-                        'content' => 'Content',
-                        'sidebar' => 'Sidebar',
-                        'contact'   => 'Contact'
-                    ),
-                    'Disabled' => array(),
-                ),
-                'limits'   => array(
-                    'Disabled' => 4,
                 ),
             ),
             array(
@@ -275,6 +296,166 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'id'        => 'home_actions_title',
                 'default'   => 'I want to...',
                 'type'      => 'text'
+            ),
+        )
+      );
+
+      $homeTemplate[] = array(
+        'title' => __('Boxes Section', 'redux-framework-demo'),
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'boxes_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id' => 'number_of_boxes',
+                'type' => 'button_set',
+                'title'       => __( 'Number of Boxes', 'shoestrap' ),
+                'options'   => array(
+                    2 => '2 Boxes',
+                    3 => '3 Boxes',
+                    4 => '4 Boxes',
+                ),
+                'default' => '3',
+            ),
+            array(
+                'id'=>'box_1_icon',
+                'type' => 'icon_select', 
+                'title' => __('Box 1 Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200 
+            ),
+            array(
+                'title'     => __( 'Box 1 Title', 'shoestrap' ),
+                'id'        => 'box_1_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id'=>'box_1_text',
+                'type' => 'textarea',
+                'title' => __('Box 1 Text', 'redux-framework-demo'), 
+                'default' => '',
+            ),
+            array(
+                'title'     => __( 'Box 1 Url', 'shoestrap' ),
+                'id'        => 'box_1_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+            ),
+
+            array(
+                'id'=>'box_2_icon',
+                'type' => 'icon_select', 
+                'title' => __('Box 2 Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200 
+            ),
+            array(
+                'title'     => __( 'Box 2 Title', 'shoestrap' ),
+                'id'        => 'box_2_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id'=>'box_2_text',
+                'type' => 'textarea',
+                'title' => __('Box 2 Text', 'redux-framework-demo'), 
+                'default' => '',
+            ),
+            array(
+                'title'     => __( 'Box 2 Url', 'shoestrap' ),
+                'id'        => 'box_2_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+            ),
+
+            array(
+                'id'=>'box_3_icon',
+                'type' => 'icon_select', 
+                'title' => __('Box 3 Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200,
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'title'     => __( 'Box 3 Title', 'shoestrap' ),
+                'id'        => 'box_3_title',
+                'default'   => '',
+                'type'      => 'text',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'id'=>'box_3_text',
+                'type' => 'textarea',
+                'title' => __('Box 3 Text', 'redux-framework-demo'), 
+                'default' => '',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'title'     => __( 'Box 3 Url', 'shoestrap' ),
+                'id'        => 'box_3_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+
+            array(
+                'id'=>'box_4_icon',
+                'type' => 'icon_select', 
+                'title' => __('Box 4 Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200,
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'title'     => __( 'Box 4 Title', 'shoestrap' ),
+                'id'        => 'box_4_title',
+                'default'   => '',
+                'type'      => 'text',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'id'=>'box_4_text',
+                'type' => 'textarea',
+                'title' => __('Box 4 Text', 'redux-framework-demo'), 
+                'default' => '',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'title'     => __( 'Box 4 Url', 'shoestrap' ),
+                'id'        => 'box_4_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
             ),
         )
       );

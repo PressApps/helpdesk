@@ -16,6 +16,9 @@ if ($layout): foreach ($layout as $key=>$value) {
         case 'header': get_template_part( 'templates/section', 'header' );
         break;
  
+        case 'boxes': get_template_part( 'templates/section', 'boxes' );
+        break;
+
         case 'actions': get_template_part( 'templates/section', 'actions' );
         break;
  

@@ -146,6 +146,8 @@ class Roots_Vcard_Widget extends WP_Widget {
             <option value="Skype"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Skype' ) echo "selected"; ?>>Skype</option>
             <option value="Paper-Plane"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Paper-Plane' ) echo "selected"; ?>>Paper Plane</option>
             <option value="At-Sign"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'At-Sign' ) echo "selected"; ?>>At Sign</option>
+            <option value="Life-Safer"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Life-Safer' ) echo "selected"; ?>>Life Safer</option>
+            <option value="Speach-Bubble"<?php if ( !empty($instance['icon']) && $instance['icon'] == 'Speach-Bubble' ) echo "selected"; ?>>Speach Bubble</option>
           </select>
         </p>
       <?php } else { ?>
