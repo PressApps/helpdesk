@@ -146,13 +146,13 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'compiler' => 'true',
                 'options'  => array(
                     'Enabled'  => array(
-                        'header' => 'Header',
+                        'headline' => 'Headline',
                         'boxes' => 'Boxes',
                         'categories'     => 'Categories',
                         'actions'     => 'Actions',
                         'content' => 'Content',
                         'sidebar' => 'Sidebar',
-                        'contact'   => 'Contact'
+                        'cta'   => 'CTA'
                     ),
                     'Disabled' => array(),
                 ),

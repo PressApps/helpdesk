@@ -42,8 +42,8 @@ $categories = wp_list_filter($categories,array('parent'=>0));
 
 ?>
 
-<section class="category-list">
-	
+<section class="section-categories">
+    <div class="container">
 <?php
 if ($title) {
     echo '<h2 class="section-title">' . $title . '</h2>';
@@ -59,17 +59,17 @@ foreach($categories as $category) {
 
     if($i++%$kb_columns==0 && $skip){
         ?>
-        <div class="row half-gutter-row knowledge-base-row">
+        <div class="row half-gutter-row box-row">
         <?php
     }
     $skip = TRUE;
     ?>
     <div class="col-sm-<?php echo $col_class; ?> half-gutter-col">
-	    <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>" class="category">
+	    <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>" class="box">
 	    	<?php echo pa_category_icon_url($category->term_id, TRUE); ?>
-	        <h2><?php echo $category->name; ?></h2>
-	        <p class="article-desc"><?php echo $category->description; ?></p>
-	        <p class="article-count"> <?php _e('View all', 'pressapps'); ?> <?php echo $category->count;  ?> <?php _e('articles', 'pressapps'); ?></p>
+	        <h3><?php echo $category->name; ?></h3>
+	        <p><?php echo $category->description; ?></p>
+	        <p><?php _e('View all', 'pressapps'); ?> <?php echo $category->count;  ?> <?php _e('articles', 'pressapps'); ?></p>
 	    </a>
 	</div>
     <?php		
@@ -87,5 +87,5 @@ if($i%$kb_columns!=0){
 wp_reset_query();
 
 ?>
-
+    </div>
 </section>

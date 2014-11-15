@@ -1,5 +1,4 @@
 <?php
-
 global $post, $helpdesk, $meta;
 $meta = redux_post_meta( 'helpdesk', get_the_ID() );
 
@@ -35,31 +34,33 @@ function get_page_boxes() {
 $boxes = get_page_boxes();
 ?>
 
-<section class="category-list">
-    
-<?php
-if ($title) {
-    echo '<h2 class="section-title">' . $title . '</h2>';
-}
+<section class="section-boxes">
+    <div class="container">
+        
+        <?php
+        if ($title) {
+            echo '<h2 class="section-title">' . $title . '</h2>';
+        }
 
-echo '<div class="row half-gutter-row">';
+        echo '<div class="row half-gutter-row">';
 
-foreach ( $boxes as $box ) {
-    if ( isset( $box['title'] ) && $box['title'] != '' ) {
+        foreach ( $boxes as $box ) {
+            if ( isset( $box['title'] ) && $box['title'] != '' ) {
 
-        if(++$i > $boxes_columns) break;
+                if(++$i > $boxes_columns) break;
 
-        echo '<div class="col-sm-' . $col_class . ' half-gutter-col">';
-        echo '<a href="' . $box['url'] . '" title="' . $box['title'] . '" class="category">';
-        echo '<i class="' . $box['icon'] . '"></i>';
-        echo '<h2>' . $box['title'] . '</h2>';
-        echo '<p class="article-desc">' . $box['text'] . '</p>';
-        echo '</a>';
+                echo '<div class="col-sm-' . $col_class . ' half-gutter-col">';
+                echo '<a href="' . $box['url'] . '" title="' . $box['title'] . '" class="box">';
+                echo '<i class="' . $box['icon'] . '"></i>';
+                echo '<h3>' . $box['title'] . '</h3>';
+                echo '<p>' . $box['text'] . '</p>';
+                echo '</a>';
+                echo '</div>';
+            }
+        }
+
         echo '</div>';
-    }
-}
+        ?>
 
-echo '</div>';
-?>
-
+    </div>
 </section>

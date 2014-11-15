@@ -1,6 +1,5 @@
-
-<?php while (have_posts()) : the_post(); ?>
-	<section>
-  		<?php get_template_part('templates/content', 'page'); ?>
-	</section>
-<?php endwhile; ?>
+<section class="section-content">
+	<div class="container">
+		<?php get_template_part('templates/content', 'page'); ?>
+	</div>
+</section>

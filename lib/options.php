@@ -426,7 +426,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond, .entry-summary, .article-desc, .sidebar, .content-info a' ),
+                            'output'   => array( '.related, .comments, #respond, .entry-summary, .box p, .sidebar, .content-info a' ),
                         ),
                         array(
                             'id'       => 'footer_sidebar_border',
