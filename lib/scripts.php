@@ -35,7 +35,7 @@ function roots_scripts() {
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
-      //'ionicons'  => '//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
+      'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
       'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
