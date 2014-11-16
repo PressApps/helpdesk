@@ -422,6 +422,45 @@ function pa_vote_js(){
     <?php
 }
 
+add_action('save_post','pa_reset_post_votes');
+
+function pa_reset_post_votes($post_id){
+    
+    $reset_flag = get_post_meta($post_id,'reset_post_votes',TRUE);
+    /**
+     * In case the reset Button Is being Pressed in that case Reset
+     * All the Votes and Delete that post meta as well
+     */
+    if(!empty($reset_flag)){
+        delete_post_meta($post_id, '_votes_likes');
+        delete_post_meta($post_id, '_votes_dislikes');
+        delete_post_meta($post_id, 'reset_post_votes');
+    }
+}
+
+add_action('init','pa_reset_all_post_votes');
+
+/**
+ * 
+ * Delete All the Likes/Dislikes by firing single Database Query
+ * 
+ * @global type $helpdesk
+ * @global type $wpdb
+ * @global type $reduxConfig
+ * @return null
+ */
+function pa_reset_all_post_votes(){
+    global $helpdesk,$wpdb,$reduxConfig;
+
+    $reset_all_votes = $helpdesk['reset_all_votes'];
+   
+    if(empty($reset_all_votes))
+        return NULL;
+    
+    $reduxConfig->ReduxFramework->set('reset_all_votes','');
+    $qry = " DELETE FROM {$wpdb->postmeta} WHERE meta_key IN ('_votes_likes','_votes_dislikes') ";
+    $wpdb->query($qry);
+}
 
 /* add vote columns to posts */
 function pa_add_votes_columns($columns) {
