@@ -2118,7 +2118,7 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
-      
+      $(".main").fitVids();
 
 
     }

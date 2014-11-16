@@ -74,7 +74,8 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'assets/js/scripts.min.js': [jsFileList]
+          'assets/js/scripts.min.js': [jsFileList],
+          'assets/js/vendor/jquery.fitvids.min.js': 'assets/vendor/fitvids/jquery.fitvids.js'
         }
       }
     },

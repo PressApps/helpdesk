@@ -26,9 +26,9 @@ function roots_scripts() {
       'css'       => '/assets/css/main.css',
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.js',
-      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
+      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
-      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
+      'fitvids' => '/assets/vendor/fitvids/jquery.fitvids.js',
     );
   } else {
     $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
@@ -37,9 +37,9 @@ function roots_scripts() {
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
-      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',      
+      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
-      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+      'fitvids' => '/assets/js/vendor/jquery.fitvids.min.js',
     );
   }
 
@@ -54,7 +54,8 @@ function roots_scripts() {
   wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, true);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
-  wp_enqueue_script('autocomplete_js', get_template_directory_uri() . $assets['autocomplete'], array(), null, true);
+  wp_enqueue_script('autocomplete', get_template_directory_uri() . $assets['autocomplete'], array(), null, true);
+  wp_enqueue_script('fitvids', get_template_directory_uri() . $assets['fitvids'], array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 
@@ -73,23 +74,6 @@ global $pagenow;
   add_action( 'admin_enqueue_scripts', 'admin_scripts' );
 //}
 
-
-// http://wordpress.stackexchange.com/a/12450
-function roots_jquery_local_fallback($src, $handle = null) {
-  static $add_jquery_fallback = false;
-
-  if ($add_jquery_fallback) {
-    echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/vendor/jquery/dist/jquery.min.js?1.11.1"><\/script>\')</script>' . "\n";
-    $add_jquery_fallback = false;
-  }
-
-  if ($handle === 'jquery') {
-    $add_jquery_fallback = true;
-  }
-
-  return $src;
-}
-add_action('wp_head', 'roots_jquery_local_fallback');
 
 /**
  * Google Analytics snippet from HTML5 Boilerplate
