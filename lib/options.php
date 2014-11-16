@@ -4,9 +4,9 @@
      * For full documentation, please visit: http://docs.reduxframework.com/
      */
 
-    if ( ! class_exists( 'Redux_Framework_sample_config' ) ) {
+    if ( ! class_exists( 'Helpdesk_Redux_Framework_config' ) ) {
 
-        class Redux_Framework_sample_config {
+        class Helpdesk_Redux_Framework_config {
 
             public $args = array();
             public $sections = array();
@@ -35,9 +35,6 @@
 
                 // Set the default arguments
                 $this->setArguments();
-
-                // Set a few help tabs so you can see how it's done
-                $this->setHelpTabs();
 
                 // Create the sections and fields
                 $this->setSections();
@@ -236,7 +233,7 @@
 
                 // ACTUAL DECLARATION OF SECTIONS
                 $this->sections[] = array(
-                    'icon'   => 'el-icon-cogs',
+                    'icon'   => 'el-icon-cog',
                     'title'  => __( 'General Settings', 'redux-framework-demo' ),
                     'fields' => array(
                         array(
@@ -310,6 +307,12 @@
                     'title'      => __( 'Styling Options', 'redux-framework-demo' ),
                     'fields'     => array(
                         array(
+                            'id'       => 'section-navbar',
+                            'type'     => 'section',
+                            'title'    => __( 'Navigation', 'redux-framework-demo' ),
+                            'indent'   => true, 
+                        ),
+                        array(
                             'id'       => 'navbar_link_color',
                             'type'     => 'link_color',
                             'title'    => __( 'Nav Links Color', 'redux-framework-demo' ),
@@ -323,6 +326,12 @@
                                 'hover'   => '#439dd0',
                             ),
                             //'output'   => array( '.navbar-default .navbar-nav li > a' ),
+                        ),
+                        array(
+                            'id'       => 'section-hedline',
+                            'type'     => 'section',
+                            'title'    => __( 'Headline', 'redux-framework-demo' ),
+                            'indent'   => true, 
                         ),
                         array(
                             'id'       => 'headline_bg',
@@ -359,8 +368,14 @@
                             'transparent' => false,
                             'validate' => 'color',
                             'output'    => array(
-                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before, .headline h1, .headline h4'
+                                'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before'
                             )
+                        ),
+                        array(
+                            'id'       => 'section-content',
+                            'type'     => 'section',
+                            'title'    => __( 'Content', 'redux-framework-demo' ),
+                            'indent'   => true, 
                         ),
                         array(
                             'id'       => 'link_color',
@@ -426,12 +441,18 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond, .entry-summary, .box p, .sidebar, .content-info a' ),
+                            'output'   => array( '.related, .comments, #respond, .entry-summary, .box p, .sidebar' ),
+                        ),
+                        array(
+                            'id'       => 'section-footer',
+                            'type'     => 'section',
+                            'title'    => __( 'Footer', 'redux-framework-demo' ),
+                            'indent'   => true, 
                         ),
                         array(
                             'id'       => 'footer_sidebar_border',
                             'type'     => 'border',
-                            'title'    => __( 'Widget Footer Top Border', 'redux-framework-demo' ),
+                            'title'    => __( 'Sidebar Top Border', 'redux-framework-demo' ),
                             'output'   => array( '.sidebar-footer' ),
                             'left'     => false,
                             'right'     => false,
@@ -440,12 +461,12 @@
                                 'border-color'  => '#efefef',
                                 'border-style'  => 'solid',
                                 'border-top'    => '1px',
-                            )
+                            ),
                         ),
                         array(
                             'id'       => 'footer_sidebar_bg',
                             'type'     => 'color',
-                            'title'    => __( 'Footer Background Color', 'redux-framework-demo' ),
+                            'title'    => __( 'Sidebar Background Color', 'redux-framework-demo' ),
                             'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
                             'transparent' => false,
                             'default'  => '#fbfbfb',
@@ -454,9 +475,19 @@
                             'output'   => '.sidebar-footer',
                         ),
                         array(
+                            'id'       => 'footer_sidebar_color',
+                            'type'     => 'color',
+                            'title'    => __( 'Sidebar Text Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
+                            'default'  => '#84949f',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .post-format' ),
+                        ),
+                        array(
                             'id'       => 'footer_bottom_border',
                             'type'     => 'border',
-                            'title'    => __( 'Bottom Footer Top Border', 'redux-framework-demo' ),
+                            'title'    => __( 'Bottom Top Border', 'redux-framework-demo' ),
                             'output'   => array( '.footer-bottom' ),
                             'left'     => false,
                             'right'     => false,
@@ -470,7 +501,7 @@
                         array(
                             'id'       => 'footer_bottom_bg',
                             'type'     => 'color',
-                            'title'    => __( 'Footer Bottom Background Color', 'redux-framework-demo' ),
+                            'title'    => __( 'Bottom Background Color', 'redux-framework-demo' ),
                             'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
                             'transparent' => false,
                             'default'  => '#fbfbfb',
@@ -478,6 +509,17 @@
                             'mode'     => 'background',
                             'output'   => '.footer-bottom',
                         ),
+                        array(
+                            'id'       => 'footer_bottom_color',
+                            'type'     => 'color',
+                            'title'    => __( 'Bottom Text Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Pick a bottom color.', 'redux-framework-demo' ),
+                            'default'  => '#84949f',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'   => array( '.footer-bottom, .footer-bottom a, .footer-bottom i' ),
+                        ),
+
                     )
                 );
 
@@ -747,25 +789,6 @@
 
             }
 
-            public function setHelpTabs() {
-
-                // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
-                $this->args['help_tabs'][] = array(
-                    'id'      => 'redux-help-tab-1',
-                    'title'   => __( 'Theme Information 1', 'redux-framework-demo' ),
-                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo' )
-                );
-
-                $this->args['help_tabs'][] = array(
-                    'id'      => 'redux-help-tab-2',
-                    'title'   => __( 'Theme Information 2', 'redux-framework-demo' ),
-                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'redux-framework-demo' )
-                );
-
-                // Set the help sidebar
-                $this->args['help_sidebar'] = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'redux-framework-demo' );
-            }
-
             /**
              * All the possible arguments for Redux.
              * For full documentation on arguments, please refer to: https://github.com/ReduxFramework/ReduxFramework/wiki/Arguments
@@ -844,7 +867,7 @@
                     // Global shut-off for dynamic CSS output by the framework. Will also disable google fonts output
                     'output_tag'           => true,
                     // Allows dynamic CSS to be generated for customizer and google fonts, but stops the dynamic CSS from going to the head
-                    // 'footer_credit'     => '',                   // Disable the footer credit of Redux. Please leave if you can help it.
+                    'footer_credit'     => ' ',                   // Disable the footer credit of Redux. Please leave if you can help it.
 
                     // FUTURE -> Not in use yet, but reserved or partially implemented. Use at your own risk.
                     'database'             => '',
@@ -902,43 +925,6 @@
                     'title' => __( 'Extensions', 'redux-framework-demo' ),
                 );
 
-                // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-                $this->args['share_icons'][] = array(
-                    'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-                    'title' => 'Visit us on GitHub',
-                    'icon'  => 'el-icon-github'
-                    //'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-                );
-                $this->args['share_icons'][] = array(
-                    'url'   => 'https://www.facebook.com/pages/Redux-Framework/243141545850368',
-                    'title' => 'Like us on Facebook',
-                    'icon'  => 'el-icon-facebook'
-                );
-                $this->args['share_icons'][] = array(
-                    'url'   => 'http://twitter.com/reduxframework',
-                    'title' => 'Follow us on Twitter',
-                    'icon'  => 'el-icon-twitter'
-                );
-                $this->args['share_icons'][] = array(
-                    'url'   => 'http://www.linkedin.com/company/redux-framework',
-                    'title' => 'Find us on LinkedIn',
-                    'icon'  => 'el-icon-linkedin'
-                );
-
-                // Panel Intro text -> before the form
-                if ( ! isset( $this->args['global_variable'] ) || $this->args['global_variable'] !== false ) {
-                    if ( ! empty( $this->args['global_variable'] ) ) {
-                        $v = $this->args['global_variable'];
-                    } else {
-                        $v = str_replace( '-', '_', $this->args['opt_name'] );
-                    }
-                    $this->args['intro_text'] = sprintf( __( '<p>Did you know that Redux sets a global variable for you? To access any of your saved options from within your code you can use your global variable: <strong>$%1$s</strong></p>', 'redux-framework-demo' ), $v );
-                } else {
-                    $this->args['intro_text'] = __( '<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'redux-framework-demo' );
-                }
-
-                // Add content after the form.
-                $this->args['footer_text'] = __( '<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'redux-framework-demo' );
             }
 
             public function validate_callback_function( $field, $value, $existing_value ) {
@@ -975,9 +961,9 @@
         }
 
         global $reduxConfig;
-        $reduxConfig = new Redux_Framework_sample_config();
+        $reduxConfig = new Helpdesk_Redux_Framework_config();
     } else {
-        echo "The class named Redux_Framework_sample_config has already been called. <strong>Developers, you need to prefix this class with your company name or you'll run into problems!</strong>";
+        echo "The class named Helpdesk_Redux_Framework_config has already been called. <strong>Developers, you need to prefix this class with your company name or you'll run into problems!</strong>";
     }
 
     /**

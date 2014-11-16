@@ -13,7 +13,7 @@ if ($layout): foreach ($layout as $key=>$value) {
  
     switch($key) {
  
-        case 'headline': get_template_part( 'templates/section', 'headline' );
+        case 'hero': get_template_part( 'templates/section', 'hero' );
         break;
  
         case 'boxes': get_template_part( 'templates/section', 'boxes' );

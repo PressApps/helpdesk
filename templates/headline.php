@@ -1,5 +1,5 @@
 <?php global $helpdesk; ?>
-<div class="headline headline-default">
+<div class="headline">
   <div class="container">
     <div class="row">
       <div class="col-md-7 hidden-xs hidden-sm">

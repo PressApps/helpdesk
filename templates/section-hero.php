@@ -1,5 +1,5 @@
 <?php global $helpdesk; ?>
-<section class="headline headline-home">
+<section class="section-hero">
   <div class="container">
     <?php the_title( '<h1 class="title">', '</h1>' ); ?>
     <?php if ($helpdesk['subtitle']) { ?>

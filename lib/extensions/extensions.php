@@ -120,9 +120,9 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'default'   => true,
             ),
         )
-      );
+    );
       
-      $metaboxes[] = array(
+    $metaboxes[] = array(
         'id' => 'kb-metabox',
         'title' => __('Knowledge Base Options', 'pressapps'),
         'post_types' => array('page'),
@@ -130,23 +130,21 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'position' => 'normal', // normal, advanced, side
         'priority' => 'core', // high, core, default, low
         'sections' => $knowledgebaseTemplate
-      );
+    );
 
-      $homeSorter = array();
-      $homeSorter[] = array(
-        'title' => __('Layout', 'redux-framework-demo'),
+    $homeSorter = array();
+    $homeSorter[] = array(
         'icon_class' => 'icon-large',
         'icon' => 'el-icon-home',
         'fields' => array(
             array(
                 'id'       => 'home_sections',
                 'type'     => 'sorter',
-                'title'    => 'Layout Manager Advanced',
                 'subtitle' => 'You can add multiple drop areas or columns.',
                 'compiler' => 'true',
                 'options'  => array(
                     'Enabled'  => array(
-                        'headline' => 'Headline',
+                        'hero' => 'Hero',
                         'boxes' => 'Boxes',
                         'categories'     => 'Categories',
                         'actions'     => 'Actions',
@@ -156,102 +154,284 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                     ),
                     'Disabled' => array(),
                 ),
-                'limits'   => array(
-                    'Disabled' => 4,
-                ),
             ),
         )
-      );
+    );
       
-      $metaboxes[] = array(
+    $metaboxes[] = array(
         'id' => 'home-layout-metabox',
-        'title' => __('Home Page layout Options', 'pressapps'),
+        'title' => __('Page Layout Options', 'pressapps'),
         'post_types' => array('page'),
         'page_template' => array('template-home.php'),
         'position' => 'normal', // normal, advanced, side
         'priority' => 'core', // high, core, default, low
         'sections' => $homeSorter
-      );
+    );
 
-      $homeTemplate = array();
-      $homeTemplate[] = array(
-        'title' => __('Layout', 'redux-framework-demo'),
+    $homeTemplate = array();
+    $homeTemplate[] = array(
+        'title' => __('Hero Section', 'redux-framework-demo'),
         'icon_class' => 'icon-large',
-        'icon' => 'el-icon-home',
+        'icon' => 'el-icon-minus',
         'fields' => array(
             array(
-                'id'       => 'headline_bg',
+                'id'       => 'hero_bg',
                 'type'     => 'background',
-                'output'   => array( '.headline' ),
-                'title'    => __( 'Body Background', 'redux-framework-demo' ),
-                'subtitle' => __( 'Body background with image, color, etc.', 'redux-framework-demo' ),
+                'output'   => array( '.section-hero' ),
+                'title'    => __( 'Background', 'redux-framework-demo' ),
+                'default'  => array(
+                    'background-color' => '#f3f3f3',
+                )
             ),
             array(
-                'id'       => 'headline_padding',
+                'id'       => 'hero_padding',
                 'type'     => 'spacing',
-                'output'   => array( '.headline' ),
+                'output'   => array( '.section-hero' ),
                 'mode'     => 'padding',
-                //'all'      => false,
                 'right'         => false,
                 'left'          => false,
                 'units'         => 'px',
                 'title'    => __( 'Padding', 'redux-framework-demo' ),
-                'desc'     => __( 'Set page navigation top and bottom padding in px.', 'redux-framework-demo' ),
+                'default'  => array(
+                    'padding-top'    => '100px',
+                    'padding-bottom' => '100px',
+                )
             ),
             array(
-                'id'       => 'headline_text',
+                'id'       => 'hero_text',
                 'type'     => 'color',
                 'title'    => __( 'Text Color', 'redux-framework-demo' ),
-                'subtitle' => __( 'Pick a page navigation text color.', 'redux-framework-demo' ),
-                //'default'  => '#aaaaaa',
+                'default'  => '#aaaaaa',
                 'transparent' => false,
                 'validate' => 'color',
-                //'output'    => array(
-                //    'color'            => '.breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb > .active, .breadcrumb > li + li:before, .headline h1, .headline h4'
-                //)
+                'output'    => array(
+                    'color' => '.section-hero h1, .section-hero h4'
+                )
             ),
             array(
                 'id'       => 'subtitle',
                 'type'     => 'text',
                 'title'    => __( 'Subtitle', 'redux-framework-demo' ),
-                'desc'     => __( 'Enter page subtitle.', 'redux-framework-demo' ),
             ),
             array(
                 'id' => 'headline_search',
                 'type' => 'button_set',
                 'title'       => __( 'Search', 'shoestrap' ),
-                'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
+                'desc'        => __( 'Display a search form in the hero section.', 'shoestrap' ),
                 'options'   => array(
                     '0' => 'Disabled',
                     '1' => 'WP Search',
                     '2' => 'Live Search',
                 ),
             ),
+        )
+    );
+
+    $homeTemplate[] = array(
+        'title' => __('Boxes Section', 'redux-framework-demo'),
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-minus',
+        'fields' => array(
             array(
-                'id' => 'home_sidebar',
-                'title' => __( 'Sidebar', 'fusion-framework' ),
-                'desc' => 'Select custom sidebar, if left blank default "Primary" sidebar is used. You can create custom sidebars under Appearance > Widgets.',
-                'type' => 'select',
-                //'required' => array('layout','>','1'),       
-                'data' => 'sidebars',
-                'default' => 'None',
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'boxes_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id' => 'number_of_boxes',
+                'type' => 'button_set',
+                'title'       => __( 'Number of Boxes', 'shoestrap' ),
+                'options'   => array(
+                    2 => '2 Boxes',
+                    3 => '3 Boxes',
+                    4 => '4 Boxes',
+                ),
+                'default' => '3',
+            ),
+            array(
+                'id'       => 'section-box1',
+                'type'     => 'section',
+                'title'    => __( 'Box 1', 'redux-framework-demo' ),
+                'indent'   => true, 
+            ),
+            array(
+                'id'=>'box_1_icon',
+                'type' => 'icon_select', 
+                'title' => __('Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200 
             ),
             array(
                 'title'     => __( 'Title', 'shoestrap' ),
-                'id'        => 'home_categories_title',
+                'id'        => 'box_1_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id'=>'box_1_text',
+                'type' => 'textarea',
+                'title' => __('Text', 'redux-framework-demo'), 
+                'default' => '',
+            ),
+            array(
+                'title'     => __( 'Url', 'shoestrap' ),
+                'id'        => 'box_1_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+            ),
+            array(
+                'id'       => 'section-box2',
+                'type'     => 'section',
+                'title'    => __( 'Box 2', 'redux-framework-demo' ),
+                'indent'   => true, 
+            ),
+            array(
+                'id'=>'box_2_icon',
+                'type' => 'icon_select', 
+                'title' => __('Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200 
+            ),
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'box_2_title',
+                'default'   => '',
+                'type'      => 'text'
+            ),
+            array(
+                'id'=>'box_2_text',
+                'type' => 'textarea',
+                'title' => __('Text', 'redux-framework-demo'), 
+                'default' => '',
+            ),
+            array(
+                'title'     => __( 'Url', 'shoestrap' ),
+                'id'        => 'box_2_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+            ),
+            array(
+                'id'       => 'section-box3',
+                'type'     => 'section',
+                'title'    => __( 'Box 3', 'redux-framework-demo' ),
+                'indent'   => true, 
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'id'=>'box_3_icon',
+                'type' => 'icon_select', 
+                'title' => __('Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200,
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'box_3_title',
+                'default'   => '',
+                'type'      => 'text',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'id'=>'box_3_text',
+                'type' => 'textarea',
+                'title' => __('Text', 'redux-framework-demo'), 
+                'default' => '',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'title'     => __( 'Url', 'shoestrap' ),
+                'id'        => 'box_3_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
+            ),
+            array(
+                'id'       => 'section-box4',
+                'type'     => 'section',
+                'title'    => __( 'Box 4', 'redux-framework-demo' ),
+                'indent'   => true, 
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'id'=>'box_4_icon',
+                'type' => 'icon_select', 
+                'title' => __('Icon', 'redux-framework-demo'),
+                'default'     => '',
+                'enqueue' => false, 
+                'enqueue_frontend' => false, 
+                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
+                'prefix' => '', 
+                'selector' => 'icon-', 
+                'height' => 200,
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'box_4_title',
+                'default'   => '',
+                'type'      => 'text',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'id'=>'box_4_text',
+                'type' => 'textarea',
+                'title' => __('Text', 'redux-framework-demo'), 
+                'default' => '',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+            array(
+                'title'     => __( 'Url', 'shoestrap' ),
+                'id'        => 'box_4_url',
+                'default'   => '',
+                'type'      => 'text',
+                'validate'  => 'url',
+                'required' => array( 'number_of_boxes', 'equals', '4' ),
+            ),
+        )
+    );
+
+    $homeTemplate[] = array(
+        'title' => __('Categories Section', 'redux-framework-demo'),
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-minus',
+        'fields' => array(
+            array(
+                'title'     => __( 'Title', 'shoestrap' ),
+                'id'        => 'section_categories_title',
                 'default'   => 'Browse Help Topics',
                 'type'      => 'text'
             ),
             array(
-                'id'        => 'home_categories',
+                'id'        => 'section_categories',
                 'title'     => __('Categories', 'redux-framework-demo'),
                 'type'      => 'select',
                 'data'      => 'categories',
                 'multi'     => true,
-                'desc'      => __('Select categories to display on Knowledge Base page template (If none selected all categories will be displayed).', 'redux-framework-demo'),
+                'desc'      => __('Select categories to display in section (If none selected all categories will be displayed).', 'redux-framework-demo'),
             ),
+            /*
             array(
-                'id' => 'home_columns',
+                'id' => 'section_columns',
                 'type' => 'select',
                 'title' => __('Columns Per Page', 'pressapps' ), 
                 'desc' => __('Select number of knowledge base columns displayed on page.', 'pressapps' ),
@@ -264,7 +444,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'default'   => '4', 
             ),
             array(
-                'id' => 'home_aticles_per_cat',
+                'id' => 'section_aticles_per_cat',
                 'type' => 'select',
                 'title' => __('Articles Per Category', 'pressapps' ), 
                 'desc' => __('Select number of knowledge base articles displayed per category.', 'pressapps' ),
@@ -291,184 +471,47 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'desc'  => __('Display 3rd level child categories.', 'redux-framework-demo'),
                 'default'   => true,
             ),
+            */
+        )
+    );
+
+    $homeTemplate[] = array(
+        'title' => __('Actions Section', 'redux-framework-demo'),
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-minus',
+        'fields' => array(
             array(
                 'title'     => __( 'Title', 'shoestrap' ),
-                'id'        => 'home_actions_title',
+                'id'        => 'section_actions_title',
                 'default'   => 'I want to...',
                 'type'      => 'text'
             ),
         )
-      );
+    );
 
-      $homeTemplate[] = array(
-        'title' => __('Boxes Section', 'redux-framework-demo'),
+    $homeTemplate[] = array(
+        'title' => __('CTA Section', 'redux-framework-demo'),
         'icon_class' => 'icon-large',
-        'icon' => 'el-icon-home',
+        'icon' => 'el-icon-minus',
         'fields' => array(
             array(
-                'title'     => __( 'Title', 'shoestrap' ),
-                'id'        => 'boxes_title',
-                'default'   => '',
-                'type'      => 'text'
-            ),
-            array(
-                'id' => 'number_of_boxes',
-                'type' => 'button_set',
-                'title'       => __( 'Number of Boxes', 'shoestrap' ),
-                'options'   => array(
-                    2 => '2 Boxes',
-                    3 => '3 Boxes',
-                    4 => '4 Boxes',
-                ),
-                'default' => '3',
-            ),
-            array(
-                'id'=>'box_1_icon',
-                'type' => 'icon_select', 
-                'title' => __('Box 1 Icon', 'redux-framework-demo'),
-                'default'     => '',
-                'enqueue' => false, 
-                'enqueue_frontend' => false, 
-                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
-                'prefix' => '', 
-                'selector' => 'icon-', 
-                'height' => 200 
-            ),
-            array(
-                'title'     => __( 'Box 1 Title', 'shoestrap' ),
-                'id'        => 'box_1_title',
-                'default'   => '',
-                'type'      => 'text'
-            ),
-            array(
-                'id'=>'box_1_text',
-                'type' => 'textarea',
-                'title' => __('Box 1 Text', 'redux-framework-demo'), 
-                'default' => '',
-            ),
-            array(
-                'title'     => __( 'Box 1 Url', 'shoestrap' ),
-                'id'        => 'box_1_url',
-                'default'   => '',
-                'type'      => 'text',
-                'validate'  => 'url',
-            ),
-
-            array(
-                'id'=>'box_2_icon',
-                'type' => 'icon_select', 
-                'title' => __('Box 2 Icon', 'redux-framework-demo'),
-                'default'     => '',
-                'enqueue' => false, 
-                'enqueue_frontend' => false, 
-                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
-                'prefix' => '', 
-                'selector' => 'icon-', 
-                'height' => 200 
-            ),
-            array(
-                'title'     => __( 'Box 2 Title', 'shoestrap' ),
-                'id'        => 'box_2_title',
-                'default'   => '',
-                'type'      => 'text'
-            ),
-            array(
-                'id'=>'box_2_text',
-                'type' => 'textarea',
-                'title' => __('Box 2 Text', 'redux-framework-demo'), 
-                'default' => '',
-            ),
-            array(
-                'title'     => __( 'Box 2 Url', 'shoestrap' ),
-                'id'        => 'box_2_url',
-                'default'   => '',
-                'type'      => 'text',
-                'validate'  => 'url',
-            ),
-
-            array(
-                'id'=>'box_3_icon',
-                'type' => 'icon_select', 
-                'title' => __('Box 3 Icon', 'redux-framework-demo'),
-                'default'     => '',
-                'enqueue' => false, 
-                'enqueue_frontend' => false, 
-                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
-                'prefix' => '', 
-                'selector' => 'icon-', 
-                'height' => 200,
-                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
-            ),
-            array(
-                'title'     => __( 'Box 3 Title', 'shoestrap' ),
-                'id'        => 'box_3_title',
-                'default'   => '',
-                'type'      => 'text',
-                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
-            ),
-            array(
-                'id'=>'box_3_text',
-                'type' => 'textarea',
-                'title' => __('Box 3 Text', 'redux-framework-demo'), 
-                'default' => '',
-                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
-            ),
-            array(
-                'title'     => __( 'Box 3 Url', 'shoestrap' ),
-                'id'        => 'box_3_url',
-                'default'   => '',
-                'type'      => 'text',
-                'validate'  => 'url',
-                'required' => array( 'number_of_boxes', 'equals', array( '3', '4' ) ),
-            ),
-
-            array(
-                'id'=>'box_4_icon',
-                'type' => 'icon_select', 
-                'title' => __('Box 4 Icon', 'redux-framework-demo'),
-                'default'     => '',
-                'enqueue' => false, 
-                'enqueue_frontend' => false, 
-                'stylesheet' => get_template_directory_uri() . '/assets/css/icons.min.css', 
-                'prefix' => '', 
-                'selector' => 'icon-', 
-                'height' => 200,
-                'required' => array( 'number_of_boxes', 'equals', '4' ),
-            ),
-            array(
-                'title'     => __( 'Box 4 Title', 'shoestrap' ),
-                'id'        => 'box_4_title',
-                'default'   => '',
-                'type'      => 'text',
-                'required' => array( 'number_of_boxes', 'equals', '4' ),
-            ),
-            array(
-                'id'=>'box_4_text',
-                'type' => 'textarea',
-                'title' => __('Box 4 Text', 'redux-framework-demo'), 
-                'default' => '',
-                'required' => array( 'number_of_boxes', 'equals', '4' ),
-            ),
-            array(
-                'title'     => __( 'Box 4 Url', 'shoestrap' ),
-                'id'        => 'box_4_url',
-                'default'   => '',
-                'type'      => 'text',
-                'validate'  => 'url',
-                'required' => array( 'number_of_boxes', 'equals', '4' ),
+                'id'       => 'page_cta',
+                'type'     => 'editor',
+                'title'    => __( 'Call To Action Content', 'redux-framework-demo' ),
+                'default'  => 'Add your call to action content here.',
             ),
         )
-      );
-      
-      $metaboxes[] = array(
+    );
+
+    $metaboxes[] = array(
         'id' => 'home-metabox',
-        'title' => __('Home Page Options', 'pressapps'),
+        'title' => __('Sections Options', 'pressapps'),
         'post_types' => array('page'),
         'page_template' => array('template-home.php'),
         'position' => 'normal', // normal, advanced, side
         'priority' => 'core', // high, core, default, low
         'sections' => $homeTemplate
-      );
+    );
 
     // Kind of overkill, but ahh well.  ;)
     //$metaboxes = apply_filters( 'your_custom_redux_metabox_filter_here', $metaboxes );

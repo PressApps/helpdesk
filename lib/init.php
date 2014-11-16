@@ -73,7 +73,7 @@ add_action('widgets_init', 'roots_widgets_init');
 /**
  * Count number of widgets in a sidebar
  */
-function pa_count_widgets( $sidebar_id ) {
+function pa_count_widgets( $sidebar_id, $count = FALSE ) {
   // If loading from front page, consult $_wp_sidebars_widgets rather than options
   // to see if wp_convert_widget_settings() has made manipulations in memory.
   global $_wp_sidebars_widgets;
@@ -87,6 +87,34 @@ function pa_count_widgets( $sidebar_id ) {
     $widget_count = count( $sidebars_widgets_count[ $sidebar_id ] );
     $col = ceil(12 / $widget_count); 
     $widget_classes = ' col-sm-' . $col;
-    return $widget_classes;
+    if ($count) {
+      return $widget_count;
+    } else {
+      return $widget_classes;
+    }
   endif;
 }
+
+
+/**
+ * Add classes to custom Reduxs sidebar widgets
+ */
+/*
+add_filter('redux_custom_widget_args', 'custom_sidebar_classes');
+
+function custom_sidebar_classes($options) {
+  global $helpdesk, $post;
+  $home_sidebar = redux_post_meta( 'helpdesk', $post->ID, 'home_sidebar' );
+
+  $options = array(
+    'before_title'  => '<h3>', 
+    'after_title'   => '</h3>',
+    'before_widget' => '<div class="widget %1$s %2$s half-gutter-col '. pa_count_widgets( $home_sidebar ) .'"><div class="widget-inner">', 
+    'after_widget'  => '</div></div>'
+  );
+
+    return $options;
+}
+*/
+
+
