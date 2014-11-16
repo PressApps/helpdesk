@@ -615,7 +615,7 @@
                             'id'       => 'reset_all_votes',
                             'type'     => 'button_set',
                             'title'    => __( 'Reset All Article Votes', 'redux-framework-demo' ),
-                            'desc'     => __( 'Reset votes on all articles!.', 'redux-framework-demo' ),
+                            'desc'     => __( 'Reset votes on all articles!', 'redux-framework-demo' ),
                             'options'  => array(
                                 '1' => 'Reset All Votes'
                             ),

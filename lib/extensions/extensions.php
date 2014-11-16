@@ -51,7 +51,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'id'       => 'reset_post_votes',
                 'type'     => 'switch',
                 'title'    => __( 'Reset Article Votes', 'redux-framework-demo' ),
-                'desc'     => __( 'Reset votes on this article!.', 'redux-framework-demo' ),
+                'desc'     => __( 'Reset votes on this article!', 'redux-framework-demo' ),
                 'default'  => '0'
             ),
         )
