@@ -3,29 +3,30 @@
 global $post, $helpdesk, $meta;
 $meta = redux_post_meta( 'helpdesk', get_the_ID() );
 
+$section_categories_include = 'list';
+$section_categories_columns = 3;
+$col_class = 4;
+$i    = 0;
+
 $title = $meta['section_categories_title'];
-if (isset($meta['section_categories']) && $meta['section_categories'] != '') {
-    $section_categories = implode(",", $meta['section_categories']);
+if (isset($meta['section_categories_include']) && $meta['section_categories_include'] != '') {
+    $section_categories_include = implode(",", $meta['section_categories_include']);
 }
-if (isset($meta['section_columns']) && $meta['section_columns'] != '') {
-    $section_columns = $meta['section_columns'];
-    if ($section_columns == 2) {
+if (isset($meta['section_categories_columns']) && $meta['section_categories_columns'] != '') {
+    $section_categories_columns = $meta['section_categories_columns'];
+    if ($section_categories_columns == 2) {
         $col_class = 6;
-    } elseif ($section_columns == 4) {
+    } elseif ($section_categories_columns == 4) {
         $col_class = 3;
-    } elseif ($section_columns == 6) {
+    } elseif ($section_categories_columns == 6) {
         $col_class = 2;
     }
 } 
-$section_categories = 'list';
-$section_columns = 3;
-$col_class = 4;
-$i    = 0;
 
 $categories = get_categories(array(
     'orderby'         => 'slug',
     'order'           => 'ASC',
-    'include'         => $section_categories,
+    'include'         => $section_categories_include,
     'pad_counts'  => 1,
 )); 
 
@@ -43,7 +44,7 @@ $categories = wp_list_filter($categories,array('parent'=>0));
             $term_id        = array();
             $term_id[]      = $category->term_id;
 
-            if($i++%$section_columns==0){
+            if($i++%$section_categories_columns==0){
                 ?>
                 <div class="row half-gutter-row box-row">
                 <?php
@@ -59,14 +60,14 @@ $categories = wp_list_filter($categories,array('parent'=>0));
         	</div>
             <?php		
             
-            if($i%$section_columns==0){
+            if($i%$section_categories_columns==0){
                 ?>
                 </div>
                 <?php
             }
            
         }
-        if($i%$section_columns!=0){
+        if($i%$section_categories_columns!=0){
                 echo "</div>";
             }
         wp_reset_query();

@@ -540,7 +540,7 @@ function page_navi($before = '', $after = '') {
  */
 add_action('admin_init', 'pa_init');
 function pa_init() {
-  $pa_taxonomies = array('category', 'action');;
+  $pa_taxonomies = array('category', 'actions');;
   if (is_array($pa_taxonomies)) {
       foreach ($pa_taxonomies as $pa_taxonomy) {
           add_action($pa_taxonomy.'_add_form_fields', 'pa_add_texonomy_field');
@@ -986,11 +986,11 @@ function get_social_links() {
 }
 
 /**
- * "I want to..." action taxonomy
+ * "I want to..." actions taxonomy
  */
-add_action( 'init', 'create_action_taxonomy', 0 );
+add_action( 'init', 'create_actions_taxonomy', 0 );
 
-function create_action_taxonomy() {
+function create_actions_taxonomy() {
   $labels = array(
     'name'              => _x( 'Actions', 'taxonomy general name' ),
     'singular_name'     => _x( 'Action', 'taxonomy singular name' ),
@@ -1002,7 +1002,7 @@ function create_action_taxonomy() {
     'update_item'       => __( 'Update Action' ),
     'add_new_item'      => __( 'Add New Action' ),
     'new_item_name'     => __( 'New Action Name' ),
-    'menu_name'         => __( 'Action' ),
+    'menu_name'         => __( 'Actions' ),
   );
 
   $args = array(
@@ -1011,9 +1011,9 @@ function create_action_taxonomy() {
     'show_ui'           => true,
     'show_admin_column' => true,
     'query_var'         => true,
-    'rewrite'           => array( 'slug' => 'action' ),
+    'rewrite'           => array( 'slug' => 'actions' ),
   );
 
-  register_taxonomy( 'action', array( 'post' ), $args );
+  register_taxonomy( 'actions', array( 'post' ), $args );
 }
 
