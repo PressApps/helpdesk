@@ -238,14 +238,14 @@
                     'fields' => array(
                         array(
                             'id' => 'logo',
-                            'type' => 'media', 
-                            'title' => __('Logo Upload', 'pressapps' ), 
+                            'type' => 'media',
+                            'title' => __('Logo Upload', 'pressapps' ),
                             'subtitle' => __('Upload logo image.', 'pressapps' ),
                         ),
                         array(
                             'id' => 'favicon',
-                            'type' => 'media', 
-                            'title' => __('Favicon Upload', 'pressapps' ), 
+                            'type' => 'media',
+                            'title' => __('Favicon Upload', 'pressapps' ),
                             'subtitle' => __('Upload favicon image.', 'pressapps' ),
                         ),
                         array(
@@ -310,7 +310,7 @@
                             'id'       => 'section-navbar',
                             'type'     => 'section',
                             'title'    => __( 'Navigation', 'redux-framework-demo' ),
-                            'indent'   => true, 
+                            'indent'   => true,
                         ),
                         array(
                             'id'       => 'navbar_link_color',
@@ -331,7 +331,7 @@
                             'id'       => 'section-hedline',
                             'type'     => 'section',
                             'title'    => __( 'Headline', 'redux-framework-demo' ),
-                            'indent'   => true, 
+                            'indent'   => true,
                         ),
                         array(
                             'id'       => 'headline_bg',
@@ -375,7 +375,7 @@
                             'id'       => 'section-content',
                             'type'     => 'section',
                             'title'    => __( 'Content', 'redux-framework-demo' ),
-                            'indent'   => true, 
+                            'indent'   => true,
                         ),
                         array(
                             'id'       => 'link_color',
@@ -447,7 +447,7 @@
                             'id'       => 'section-footer',
                             'type'     => 'section',
                             'title'    => __( 'Footer', 'redux-framework-demo' ),
-                            'indent'   => true, 
+                            'indent'   => true,
                         ),
                         array(
                             'id'       => 'footer_sidebar_border',
@@ -543,14 +543,21 @@
                         array(
                             'id' => 'live_search_in',
                             'type' => 'select',
-                            'title' => __('Search Titles / Content', 'pressapps' ), 
+                            'title' => __('Search Titles / Content', 'pressapps' ),
                             'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
                             'required'    => array('headline_search','=',array('2')),
                             'options' => array(
                                 '1' => 'Titles Only',
                                 '2' => 'Titles and Content'
-                            ), 
+                            ),
                             'default' => '2',
+                        ),
+                        array(
+                            'id'       => 'search_analytics',
+                            'type'     => 'switch',
+                            'title'    => __( 'Search Analytics', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable to save user search data for for analytics', 'redux-framework-demo' ),
+                            'default'  => '1'
                         ),
                         array(
                             'id'       => 'print',
@@ -939,7 +946,7 @@
               } elseif(something else) {
                 $error = true;
                 $value = $existing_value;
-                
+
               }
              */
 
@@ -993,7 +1000,7 @@
           } elseif(something else) {
             $error = true;
             $value = $existing_value;
-            
+
           }
          */
 
