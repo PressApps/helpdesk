@@ -181,6 +181,14 @@ function pa_breadcrumbs() {
 
       echo the_title('<li class="active">', '</li>');
 
+    } elseif (is_search()) {
+
+      echo '<li>' . sprintf(__('Search Results for %s', 'roots'), get_search_query()) . '</li>';
+
+    } elseif (is_404()) {
+
+      echo '<li>' . __('Not Found', 'roots') . '</li>';
+
     } else {
       echo the_title('<li class="active">', '</li>');
     }
