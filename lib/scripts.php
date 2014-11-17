@@ -26,7 +26,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.css',
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.js',
-      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',
+      'autocomplete'        => '/assets/vendor/devbridge-autocomplete/src/jquery.autocomplete.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'fitvids' => '/assets/vendor/fitvids/jquery.fitvids.js',
     );
@@ -37,7 +37,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.min.css?' . $assets['assets/css/main.min.css']['hash'],
       'print'  => '/assets/css/print.css',
       'js'        => '/assets/js/scripts.min.js?' . $assets['assets/js/scripts.min.js']['hash'],
-      'autocomplete'        => '/assets/js/jquery.autocomplete.min.js',
+      'autocomplete'        => '/assets/js/vendor/jquery.autocomplete.min.js',
       'modernizr' => '/assets/js/vendor/modernizr.min.js',
       'fitvids' => '/assets/js/vendor/jquery.fitvids.min.js',
     );
