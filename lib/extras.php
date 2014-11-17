@@ -242,7 +242,7 @@ function pa_post_format_icon($post_id = '') {
           break;
   }
 
-  return '<i class="post-format ' . $post_icon . '"></i> ';
+  return '<i class="icon-light ' . $post_icon . '"></i> ';
 
 }
 
@@ -566,7 +566,7 @@ function page_navi($before = '', $after = '') {
     
   echo $before.'<nav class="text-center"><ul class="pagination pagination-sm">'."";
     
-  $prevposts = get_previous_posts_link('&larr; Previous');
+  $prevposts = get_previous_posts_link('&larr;');
   if($prevposts) { echo '<li>' . $prevposts  . '</li>'; }
   
   for($i = $start_page; $i  <= $end_page; $i++) {
@@ -577,7 +577,7 @@ function page_navi($before = '', $after = '') {
     }
   }
   echo '<li class="">';
-  next_posts_link('Next &rarr;');
+  next_posts_link('&rarr;');
   echo '</li>';
   echo '</ul>'.$after."</nav>";
 }
@@ -678,7 +678,7 @@ function pa_category_icon_url($term_id = NULL, $explode_icon = FALSE) {
 
   if ($explode_icon) {
     $icon_css = explode('|', $category_icon_url);
-    return '<i class="' . $icon_css[0] . ' ' . $icon_css[1] . '"></i>';
+    return '<i class="icon-light ' . $icon_css[1] . '"></i>';
   } else {
     return $category_icon_url;
   }

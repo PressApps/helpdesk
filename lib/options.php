@@ -482,7 +482,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .post-format' ),
+                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .icon-light' ),
                         ),
                         array(
                             'id'       => 'footer_bottom_border',

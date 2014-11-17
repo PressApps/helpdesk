@@ -6230,6 +6230,18 @@ a:hover {
 .page-header {
   margin-top: 0;
 }
+.pagination > li > a,
+.pagination > li > span {
+  margin-left: 5px;
+}
+.pagination > li > a,
+.pagination > li > span,
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span,
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-radius: 2px;
+}
 /*
 textarea, .form-control, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
    border: 1px solid #ddd;
@@ -8050,13 +8062,33 @@ figure.alignnone {
     text-align: left;
   }
 }
-.knowledge-base-row ul {
-  padding: 0;
-  list-style: none;
-}
 .no-results {
   line-height: 1.6em;
   font-size: 26px;
+}
+/**
+ * Knowledge base template
+ */
+.kb-row {
+  margin-top: 50px;
+}
+.kb-row h2 {
+  margin-bottom: 14px;
+}
+.kb-row ul {
+  padding: 0;
+  list-style: none;
+}
+.kb-row li {
+  line-height: 1.9em;
+}
+.kb-row .icon-wrap {
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+}
+.kb-row-1 {
+  margin-top: 0;
 }
 .not-found {
   text-align: center;
@@ -8173,11 +8205,13 @@ section .box:hover {
   border-bottom: 1px solid #efefef;
   padding-bottom: 15px;
 }
-.entry-title .post-format,
-a .post-format {
+.entry-title .icon-light,
+a .icon-light {
   color: #999;
+  /*
   font-size: 0.9em;
   margin-right: 5px;
+  */
 }
 .entry-title .icon {
   color: #bbb;
