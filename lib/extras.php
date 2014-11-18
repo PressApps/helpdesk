@@ -210,7 +210,7 @@ add_action('wp_head','pa_add_favicon');
 /**
  * Post format icons 
  */
-function pa_post_format_icon($post_id = '') {
+function pa_post_format_icon($post_id = '', $type = '') {
 
   switch(get_post_format($post_id)){
       case 'gallery':
@@ -242,7 +242,11 @@ function pa_post_format_icon($post_id = '') {
           break;
   }
 
-  return '<i class="icon-light ' . $post_icon . '"></i> ';
+  if ($type == 'kb_page') {
+    return '<span class="icon-wrap"><i class="icon-light ' . $post_icon . '"></i></span>';
+  } else {
+    return '<i class="icon-light ' . $post_icon . '"></i> ';
+  }
 
 }
 
@@ -676,11 +680,15 @@ function pa_category_icon_url($term_id = NULL, $explode_icon = FALSE) {
       }
   }
 
-  if ($explode_icon) {
-    $icon_css = explode('|', $category_icon_url);
-    return '<i class="icon-light ' . $icon_css[1] . '"></i>';
-  } else {
-    return $category_icon_url;
+  if ($category_icon_url) {
+    if ($explode_icon ) {
+      $icon_css = explode('|', $category_icon_url);
+      if ($icon_css[1] != 'icon-blank') {
+        return '<span class="icon-wrap"><i class="icon-light ' . $icon_css[1] . '"></i></span>';
+      }
+    } else {
+      return $category_icon_url;
+    }
   }
 }
 

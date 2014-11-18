@@ -61,7 +61,7 @@ foreach($categories as $category) {
     ?>
     <div class="col-sm-<?php echo $col_class; ?> kb-category">
         <h2>
-            <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>"><span class="icon-wrap"><?php echo pa_category_icon_url($category->term_id, TRUE); ?></span><?php echo $category->name; ?>
+            <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>"><?php echo pa_category_icon_url($category->term_id, TRUE); ?><?php echo $category->name; ?>
             </a>
         </h2>
         <?php
@@ -74,7 +74,7 @@ foreach($categories as $category) {
             foreach($cat_posts as $post){
                 setup_postdata($post);
                 ?>
-                <li><a href="<?php the_permalink(); ?>"><span class="icon-wrap"><?php echo pa_post_format_icon(); ?></span><?php the_title(); ?></a></li>
+                <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon($post->ID, 'kb_page'); ?><?php the_title(); ?></a></li>
             <?php
             if($j++==$cat_post_num)
                 break;
