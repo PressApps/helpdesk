@@ -110,6 +110,12 @@ function pa_output_css() {
     $output .= ' @media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
   }
 
+  if ($helpdesk['icons_category'] && $helpdesk['icons_post_format']) {
+    $output .= '.kb-row .icon-wrap {min-width: 40px;text-align: center;}';
+  } else {
+    $output .= '.kb-row .icon-wrap {margin-left: 1px;margin-right: 10px;}';
+  }
+
   if ( ! empty( $output ) ) {
       echo '<style type="text/css" id="helpdesk-css">' . $output . '</style>';
   }
@@ -210,7 +216,12 @@ add_action('wp_head','pa_add_favicon');
 /**
  * Post format icons 
  */
-function pa_post_format_icon($post_id = '', $type = '') {
+function pa_post_format_icon($post_id = '') {
+  global $helpdesk;
+
+  if (!$helpdesk['icons_post_format']) {
+    return;
+  }
 
   switch(get_post_format($post_id)){
       case 'gallery':
@@ -242,12 +253,22 @@ function pa_post_format_icon($post_id = '', $type = '') {
           break;
   }
 
-  if ($type == 'kb_page') {
-    return '<span class="icon-wrap"><i class="icon-light ' . $post_icon . '"></i></span>';
+     return '<span class="icon-wrap"><i class="' . $post_icon . '"></i></span>';
+     /*
+ if ($type == 'kb_page') {
   } else {
-    return '<i class="icon-light ' . $post_icon . '"></i> ';
+    return '<i class="' . $post_icon . '"></i> ';
   }
+  */
 
+}
+
+function pa_view_all_icon() {
+  global $helpdesk;
+  if (!$helpdesk['icons_post_format']) {
+    return;
+  }
+  return '<span class="icon-wrap"><i class="icon-Files"></i></span>';
 }
 
 /**
@@ -662,6 +683,12 @@ function pa_get_attachment_id_by_url($image_src) {
 
 // get taxonomy image url for the given term_id (Place holder image by default)
 function pa_category_icon_url($term_id = NULL, $explode_icon = FALSE) {
+  global $helpdesk;
+
+  if (!$helpdesk['icons_category']) {
+    return;
+  }
+
   if (!$term_id) {
     if (is_category())
       $term_id = get_query_var('cat');
@@ -671,13 +698,13 @@ function pa_category_icon_url($term_id = NULL, $explode_icon = FALSE) {
     }
   }
   
-    $category_icon_url = get_option('pa_category_icon'.$term_id);
-    if(!empty($category_icon_url)) {
-      $attachment_id = pa_get_attachment_id_by_url($category_icon_url);
-      if(!empty($attachment_id)) {
-        $category_icon_url = wp_get_attachment_image_src($attachment_id, $size);
-        $category_icon_url = $category_icon_url[0];
-      }
+  $category_icon_url = get_option('pa_category_icon'.$term_id);
+  if(!empty($category_icon_url)) {
+    $attachment_id = pa_get_attachment_id_by_url($category_icon_url);
+    if(!empty($attachment_id)) {
+      $category_icon_url = wp_get_attachment_image_src($attachment_id, $size);
+      $category_icon_url = $category_icon_url[0];
+    }
   }
 
   if ($category_icon_url) {

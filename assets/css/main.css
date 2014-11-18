@@ -7963,6 +7963,9 @@ figure.alignnone {
 .autocomplete-selected {
   background: WhiteSmoke;
 }
+.widget .icon-wrap {
+  margin-right: 6px;
+}
 .sidebar {
   position: relative;
   min-height: 1px;
@@ -8015,9 +8018,6 @@ figure.alignnone {
 }
 .content-info .content-info p {
   margin: 0;
-}
-.content-info a:hover {
-  opacity: 0.8;
 }
 .sidebar-footer {
   padding-top: 60px;
@@ -8081,11 +8081,6 @@ figure.alignnone {
 }
 .kb-row li {
   line-height: 1.9em;
-}
-.kb-row .icon-wrap {
-  display: inline-block;
-  min-width: 40px;
-  text-align: center;
 }
 .kb-row-1 {
   margin-top: 0;
@@ -8191,6 +8186,9 @@ section .box:hover {
 .section-hero .icon-Magnifi-Glass2 {
   top: 19px;
 }
+.icon-wrap {
+  display: inline-block;
+}
 .post.hentry {
   margin-bottom: 30px;
 }
@@ -8205,10 +8203,10 @@ section .box:hover {
   border-bottom: 1px solid #efefef;
   padding-bottom: 15px;
 }
-.entry-title .icon-light,
-a .icon-light {
-  color: #999;
+.entry-title .icon-wrap,
+a .icon-wrap {
   /*
+  color: #999;
   font-size: 0.9em;
   margin-right: 5px;
   */

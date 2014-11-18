@@ -74,7 +74,7 @@ foreach($categories as $category) {
             foreach($cat_posts as $post){
                 setup_postdata($post);
                 ?>
-                <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon($post->ID, 'kb_page'); ?><?php the_title(); ?></a></li>
+                <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon(); ?><?php the_title(); ?></a></li>
             <?php
             if($j++==$cat_post_num)
                 break;
@@ -84,7 +84,7 @@ foreach($categories as $category) {
         <?php
         }
         ?>
-        <a class="view-all" href="<?php echo get_category_link( $category->term_id ) ?>" ><span class="icon-wrap"><i class="icon-light icon-Files"></i></span><?php _e('View all', 'pressapps'); ?> <?php echo $category->count;  ?> <?php _e('articles', 'pressapps'); ?></a>
+        <a class="view-all" href="<?php echo get_category_link( $category->term_id ) ?>" ><?php echo pa_view_all_icon(); ?><?php _e('View all', 'pressapps'); ?> <?php echo $category->count;  ?> <?php _e('articles', 'pressapps'); ?></a>
     </div>
     <?php		
     

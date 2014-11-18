@@ -482,7 +482,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .icon-light' ),
+                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .icon-wrap' ),
                         ),
                         array(
                             'id'       => 'footer_bottom_border',
@@ -525,8 +525,8 @@
 
 
                 $this->sections[] = array(
-                    'icon'       => 'el-icon-file',
-                    'title'      => __( 'Knowledge Base', 'redux-framework-demo' ),
+                    'icon'       => 'el-icon-list',
+                    'title'      => __( 'KB Options', 'redux-framework-demo' ),
                     'fields'     => array(
                         array(
                             'id' => 'headline_search',
@@ -559,6 +559,28 @@
                             'desc'     => __( 'Enable to save user search data for for analytics', 'redux-framework-demo' ),
                             'default'  => '1'
                         ),
+                        array(
+                            'id'       => 'icons_category',
+                            'type'     => 'switch',
+                            'title'    => __( 'Category Icons', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable category icons (Assign icons to categoies under Posts >> Categories).', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'icons_post_format',
+                            'type'     => 'switch',
+                            'title'    => __( 'Post Format Icons', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable post format icons.', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
+                    )
+                );
+
+
+                $this->sections[] = array(
+                    'icon'       => 'el-icon-file',
+                    'title'      => __( 'KB Single Page', 'redux-framework-demo' ),
+                    'fields'     => array(
                         array(
                             'id'       => 'print',
                             'type'     => 'switch',
