@@ -7946,6 +7946,7 @@ figure.alignnone {
   line-height: 1.3em;
   margin: 5px 0;
   font-weight: 400;
+  color: #666;
 }
 .autocomplete-suggestion p {
   float: right;
@@ -8032,10 +8033,10 @@ figure.alignnone {
   color: #999;
   font-size: 0.9em;
 }
-.footer-bottom .footer-social {
+.footer-social {
   margin-top: 10px;
 }
-.footer-bottom .footer-social i {
+.footer-social i {
   margin: 0 5px;
 }
 .navbar-footer {
@@ -8189,29 +8190,15 @@ section .box:hover {
 .icon-wrap {
   display: inline-block;
 }
-.post.hentry {
-  margin-bottom: 30px;
-}
-.single .post.hentry {
-  margin-bottom: 0;
-}
-.entry-title {
-  margin-bottom: 10px;
-}
-.single .entry-title {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #efefef;
-  padding-bottom: 15px;
-}
 .icon-wrap,
 .entry-title .icon-wrap,
 a .icon-wrap {
-  color: #999;
+  color: #888;
   margin-right: 5px;
-  /*
   font-size: 0.9em;
-  margin-right: 5px;
-  */
+}
+.entry-title {
+  margin-bottom: 10px;
 }
 .entry-title .icon {
   color: #bbb;
@@ -8219,9 +8206,19 @@ a .icon-wrap {
   float: right;
   margin: 4px 0 0 10px;
 }
+.post.hentry {
+  margin-bottom: 30px;
+}
+.single .post.hentry {
+  margin-bottom: 0;
+}
+.single .entry-title {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 15px;
+}
 .meta {
   font-size: 0.9em;
-  color: #aaa;
   border-top: 1px solid #efefef;
   padding-top: 10px;
 }
@@ -8230,11 +8227,18 @@ a .icon-wrap {
   display: inline-block;
   margin-right: 20px;
 }
+.wrap .meta {
+  color: #aaa;
+}
+.wrap .meta p,
+.wrap .meta time,
+.wrap .meta a {
+  color: #aaa;
+}
 .tags a,
 .tags a:visited {
   display: inline-block;
   padding: 5px 10px 6px;
-  color: #555;
   font-size: 11px;
   line-height: 10px;
   margin: 0 0 5px 20px;
@@ -8243,11 +8247,13 @@ a .icon-wrap {
   border-radius: 1px;
 }
 .tags a:hover {
-  color: #333;
   text-decoration: none;
 }
 .module {
   margin-top: 60px;
+}
+.module h2 {
+  margin-bottom: 20px;
 }
 /**
  * Article voting
@@ -8267,6 +8273,9 @@ a .icon-wrap {
 .vote p {
   margin: 25px 0 0;
 }
+.vote .icon:hover {
+  opacity: 0.7;
+}
 .like-btn,
 .dislike-btn {
   font-size: 36px;
@@ -8277,9 +8286,6 @@ a .icon-wrap {
 }
 .dislike-btn .icon {
   color: #c84848;
-}
-.vote .icon:hover {
-  opacity: 0.7;
 }
 /**
  * Related articles

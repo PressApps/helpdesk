@@ -36,7 +36,7 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
     $metaboxes[] = array(
         'id' => 'demo-layout',
         'post_types' => array('page'),
-        'page_template' => array('template-custom.php'),
+        //'page_template' => array('template-custom.php'),
         'position' => 'side', // normal, advanced, side
         'priority' => 'high', // high, core, default, low
         'sections' => $boxLayout
