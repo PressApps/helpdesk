@@ -8,6 +8,21 @@
 <?php endif; ?>
 
 <?php
+global $helpdesk;
+if (isset($helpdesk['kb_columns_category']) && $helpdesk['kb_columns_category'] != '') {
+    $kb_columns = $helpdesk['kb_columns_category'];
+    if ($kb_columns == 2) {
+        $col_class = 6;
+    } elseif ($kb_columns == 4) {
+        $col_class = 3;
+    }
+} 
+
+$kb_columns = 3;
+$col_class = 4;
+$i    = 0;
+$row  = 0;
+
 // Sub category
 $sub_category_id = get_query_var('cat');
 
@@ -24,42 +39,62 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
  * Category posts
  */
 if ($sub_categories) { ?>
-  <ul class="sub-categories clearfix">
-  <?php foreach($sub_categories as $sub_category) {  ?>
-  <li><h4><a href="<?php echo get_category_link( $sub_category->term_id ) ?>"><?php echo pa_category_icon_url($sub_category->term_id, TRUE); ?> <?php echo $sub_category->name ?></a>
-      <?php //if (of_get_option('st_hp_subcat_counts') == '1') {
-        echo '<span class="cat-count">(' . $sub_category->count.')</span>';  
-      //} 
+<div class="category-sub">
+  
 
+    <?php foreach($sub_categories as $sub_category) {  ?>
+      <?php
+      if($i++%$kb_columns==0){
+          $row++;
+          ?>
+          <div class="row kb-row<?php //if ($row == 1) {echo ' kb-row-1';}?>">
+          <?php
+      }
+      ?>
+                <div class="col-sm-<?php echo $col_class; ?>">
+    <h4><a href="<?php echo get_category_link( $sub_category->term_id ) ?>"><?php echo pa_category_icon_url($sub_category->term_id, TRUE); ?> <?php echo $sub_category->name ?></a>
+        <?php //if (of_get_option('st_hp_subcat_counts') == '1') {
+          echo '<span class="cat-count">(' . $sub_category->count.')</span>';  
+        //} 
+          ?>
+        </h4>
+                <ul>
+                <?php 
 
+                $cat_posts = get_posts(array(
+                    'numberposts'   => -1,
+                    'cat'  => $sub_category->term_id,
+                ));
+
+                $j            = 1;
+                $cat_post_num = 10; //$kb_aticles_per_cat; 
+                foreach($cat_posts as $post){
+                    setup_postdata($post);
+                    ?>
+                    <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon(); ?> <?php the_title(); ?></a></li>
+                <?php
+                if($j++==$cat_post_num)
+                    break;
+                }
+                ?>
+                </ul>
+        </div>
+    <?php   
+    if($i%$kb_columns==0){
         ?>
-      </h4></li>
+        </div>
+        <?php
+    }
+    ?>
+    <?php } ?>
 
-              <ul class="category-posts">
-              <?php 
+    <?php
+    if($i%$kb_columns!=0){
+        echo "</div>";
+    }
 
-              $cat_posts = get_posts(array(
-                  'numberposts'   => -1,
-                  'cat'  => $sub_category->term_id,
-              ));
-
-              $j            = 1;
-              $cat_post_num = 10; //$kb_aticles_per_cat; 
-              foreach($cat_posts as $post){
-                  setup_postdata($post);
-                  ?>
-                  <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon(); ?> <?php the_title(); ?></a></li>
-              <?php
-              if($j++==$cat_post_num)
-                  break;
-              }
-              ?>
-              </ul>
-
-
-  <?php } ?>
-  </ul>
-
+    ?>
+</div> 
         <?php
       $current_cat = intval( get_query_var('cat') );
       $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -85,7 +120,6 @@ if ($sub_categories) { ?>
 
 
       <?php endif; ?>
-
 
 
 

@@ -59,7 +59,7 @@ foreach($categories as $category) {
     }
 
     ?>
-    <div class="col-sm-<?php echo $col_class; ?> kb-category">
+    <div class="col-sm-<?php echo $col_class; ?>">
         <h2>
             <a href="<?php echo get_category_link($category->term_id); ?>" title="<?php echo $category->name; ?>"><?php echo pa_category_icon_url($category->term_id, TRUE); ?><?php echo $category->name; ?>
             </a>
@@ -67,7 +67,7 @@ foreach($categories as $category) {
         <?php
         if(count($cat_posts)>0){
             ?>
-            <ul class="category-posts">
+            <ul>
             <?php 
             $j            = 1;
             $cat_post_num = $kb_aticles_per_cat; 

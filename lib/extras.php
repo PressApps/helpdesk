@@ -334,7 +334,7 @@ function pa_article_voting($is_ajax = FALSE) {
       $cookie_vote_count = array();
   }
  
-  echo (($is_ajax)?'':'<div class="vote section">');
+  echo (($is_ajax)?'':'<div class="vote module">');
                           
   if (is_user_logged_in() || $helpdesk['article_voting'] == 1) :
       

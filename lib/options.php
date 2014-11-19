@@ -312,6 +312,18 @@
                             'default'  => '2'
                         ),
                         array(
+                            'id' => 'kb_columns_category',
+                            'type' => 'select',
+                            'title' => __('Subcategory Columns', 'pressapps' ), 
+                            'desc' => __('Select number of knowledge base subcategory columns displayed on page.', 'pressapps' ),
+                            'options' => array(
+                                2 => '2 Columns',
+                                3 => '3 Columns',
+                                4 => '4 Columns',
+                            ),
+                            'default'   => '3', 
+                        ),
+                        array(
                             'id'       => 'opt-textarea',
                             'type'     => 'textarea',
                             'required' => array( 'layout', 'equals', '1' ),
@@ -622,6 +634,22 @@
                     'icon'       => 'el-icon-file',
                     'title'      => __( 'KB Single Page', 'redux-framework-demo' ),
                     'fields'     => array(
+                        array(
+                            'id'       => 'single_modules',
+                            'type'     => 'sorter',
+                            'options'  => array(
+                                'Enabled'  => array(
+                                    //'hero' => 'Hero',
+                                    //'boxes' => 'Boxes',
+                                    //'categories'     => 'Categories',
+                                    'voting' => 'Voting',
+                                    'related'     => 'Related',
+                                    'cta'   => 'CTA',
+                                    'comments' => 'Comments',
+                                ),
+                                'Disabled' => array(),
+                            ),
+                        ),
                         array(
                             'id'       => 'print',
                             'type'     => 'switch',

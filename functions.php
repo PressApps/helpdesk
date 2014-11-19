@@ -33,3 +33,16 @@ foreach ($pa_includes as $file) {
 }
 unset($file, $filepath);
 
+/**
+ * Include addons
+ */
+$path = dirname( __FILE__ ) . '/lib/addons/';
+$addons = scandir( $path, 1 );      
+foreach($addons as $addon_file) {
+  if ( !is_file($path . $addon_file) ) {
+    continue; 
+  } 
+  $addon_path = $path . $addon_file;
+  require_once $addon_path;
+}
+unset($addon_file, $addon_path);

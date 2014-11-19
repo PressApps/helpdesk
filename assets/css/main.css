@@ -8246,6 +8246,9 @@ a .icon-wrap {
   color: #333;
   text-decoration: none;
 }
+.module {
+  margin-top: 60px;
+}
 /**
  * Article voting
  */
@@ -8281,6 +8284,9 @@ a .icon-wrap {
 /**
  * Related articles
  */
+.related p {
+  margin-bottom: 0;
+}
 /**
  * Comments
  */
@@ -8312,7 +8318,10 @@ a .icon-wrap {
 /**
  * Category page
  */
-.sub-categories,
+.category-sub {
+  margin-bottom: 60px;
+}
+/*
 .category-posts {
   padding: 0;
   list-style: none;
@@ -8320,4 +8329,6 @@ a .icon-wrap {
 .sub-categories {
   margin-bottom: 25px;
 }
+
+*/
 /*# sourceMappingURL=main.css.map */

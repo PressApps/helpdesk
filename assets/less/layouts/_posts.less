@@ -64,6 +64,9 @@
 .hentry .byline { }
 .hentry .entry-content { }
 
+.module {
+  margin-top: @section-spacing;
+}
 
 /**
  * Article voting
@@ -101,7 +104,9 @@
  * Related articles
  */
 .related {
-  
+  p {
+    margin-bottom: 0;
+  }
 }
 
 
@@ -136,10 +141,17 @@
 /**
  * Category page
  */
-.sub-categories, .category-posts {
+.category-sub {
+  margin-bottom: @section-spacing;
+}
+/*
+.category-posts {
   padding: 0;
   list-style: none;
 }
 .sub-categories {
   margin-bottom: 25px;
 }
+
+*/
+
