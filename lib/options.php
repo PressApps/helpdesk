@@ -251,9 +251,50 @@
                         array(
                             'id'       => 'layout',
                             'type'     => 'image_select',
-                            'compiler' => true,
                             'title'    => __( 'Main Layout', 'redux-framework-demo' ),
                             'subtitle' => __( 'Select main content and sidebar alignment. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => array(
+                                    'alt' => '1 Column',
+                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                                ),
+                                '2' => array(
+                                    'alt' => '2 Column Left',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                                ),
+                                '3' => array(
+                                    'alt' => '2 Column Right',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                                ),
+                            ),
+                            'default'  => '2'
+                        ),
+                        array(
+                            'id'       => 'layout_category',
+                            'type'     => 'image_select',
+                            'title'    => __( 'Category Layout', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Select article category content and sidebar alignment. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => array(
+                                    'alt' => '1 Column',
+                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                                ),
+                                '2' => array(
+                                    'alt' => '2 Column Left',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                                ),
+                                '3' => array(
+                                    'alt' => '2 Column Right',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                                ),
+                            ),
+                            'default'  => '2'
+                        ),
+                        array(
+                            'id'       => 'layout_single',
+                            'type'     => 'image_select',
+                            'title'    => __( 'Single Layout', 'redux-framework-demo' ),
+                            'subtitle' => __( 'Select article single content and sidebar alignment. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
                             'options'  => array(
                                 '1' => array(
                                     'alt' => '1 Column',

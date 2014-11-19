@@ -9,26 +9,26 @@
 
 <?php
 // Sub category
-$st_sub_category_id = get_query_var('cat');
+$sub_category_id = get_query_var('cat');
 
-$st_subcat_args = array(
+$subcat_args = array(
   'orderby' => 'name',
   'order' => 'ASC',
-  'child_of' => $st_sub_category_id,
+  'child_of' => $sub_category_id,
   'pad_counts'  => 1
 );
-$st_sub_categories = get_categories($st_subcat_args); 
-$st_sub_categories = wp_list_filter($st_sub_categories,array('parent'=>$st_sub_category_id));
+$sub_categories = get_categories($subcat_args); 
+$sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_id));
 
 /**
  * Category posts
  */
-if ($st_sub_categories) { ?>
+if ($sub_categories) { ?>
   <ul class="sub-categories clearfix">
-  <?php foreach($st_sub_categories as $st_sub_category) {  ?>
-  <li><h4><a href="<?php echo get_category_link( $st_sub_category->term_id ) ?>"><?php echo pa_category_icon_url($st_sub_category->term_id, TRUE); ?> <?php echo $st_sub_category->name ?></a>
+  <?php foreach($sub_categories as $sub_category) {  ?>
+  <li><h4><a href="<?php echo get_category_link( $sub_category->term_id ) ?>"><?php echo pa_category_icon_url($sub_category->term_id, TRUE); ?> <?php echo $sub_category->name ?></a>
       <?php //if (of_get_option('st_hp_subcat_counts') == '1') {
-        echo '<span class="cat-count">(' . $st_sub_category->count.')</span>';  
+        echo '<span class="cat-count">(' . $sub_category->count.')</span>';  
       //} 
 
 
@@ -40,7 +40,7 @@ if ($st_sub_categories) { ?>
 
               $cat_posts = get_posts(array(
                   'numberposts'   => -1,
-                  'cat'  => $st_sub_category->term_id,
+                  'cat'  => $sub_category->term_id,
               ));
 
               $j            = 1;

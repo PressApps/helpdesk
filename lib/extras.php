@@ -84,10 +84,29 @@ add_filter('roots/display_sidebar', 'pa_sidebars');
 function pa_sidebars($sidebar) {
   global $helpdesk;
 
-  if ($helpdesk['layout'] == '1') {
+  if (is_category() && $helpdesk['layout_category'] == '1') {
+    return false;
+  } elseif (is_singular('post') && $helpdesk['layout_single'] == '1') {
+    return false;
+  } elseif ($helpdesk['layout'] == '1') {
     return false;
   }
   return $sidebar;
+}
+
+/**
+ * Left sidebar
+ */
+function pa_left_sidebar($sidebar = FALSE) {
+  global $helpdesk;
+
+  if (is_category() && $helpdesk['layout_category'] == '2') {
+    return true;
+  } elseif (is_singular('post') && $helpdesk['layout_single'] == '2') {
+    return true;
+  } elseif ($helpdesk['layout'] == '2') {
+    return true;
+  }
 }
 
 /**
@@ -106,12 +125,12 @@ function pa_output_css() {
     $output .= 'section .box i, section .box h3, .article-count, .sidebar h3 { color: ' . $helpdesk['link_color']['regular'] . '; }';
   }
 
-  if ($helpdesk['layout'] == '2') {
+  if (pa_left_sidebar()) {
     $output .= ' @media (min-width: 768px) { .sidebar-primary .main { float: right; } }';
   }
 
   if ($helpdesk['icons_category'] && $helpdesk['icons_post_format']) {
-    $output .= '.kb-row .icon-wrap {min-width: 40px;text-align: center;}';
+    $output .= '.kb-row .icon-wrap {min-width: 40px;text-align: center;margin-right: 0;}';
   } else {
     $output .= '.kb-row .icon-wrap {margin-left: 1px;margin-right: 10px;}';
   }

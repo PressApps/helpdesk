@@ -8203,10 +8203,12 @@ section .box:hover {
   border-bottom: 1px solid #efefef;
   padding-bottom: 15px;
 }
+.icon-wrap,
 .entry-title .icon-wrap,
 a .icon-wrap {
-  /*
   color: #999;
+  margin-right: 5px;
+  /*
   font-size: 0.9em;
   margin-right: 5px;
   */
@@ -8306,5 +8308,16 @@ a .icon-wrap {
 }
 .comment-author {
   float: left;
+}
+/**
+ * Category page
+ */
+.sub-categories,
+.category-posts {
+  padding: 0;
+  list-style: none;
+}
+.sub-categories {
+  margin-bottom: 25px;
 }
 /*# sourceMappingURL=main.css.map */
