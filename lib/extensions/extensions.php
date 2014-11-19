@@ -36,10 +36,34 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
     $metaboxes[] = array(
         'id' => 'demo-layout',
         'post_types' => array('page'),
-        //'page_template' => array('template-custom.php'),
+        'page_template' => array('template-custom.php'),
         'position' => 'side', // normal, advanced, side
         'priority' => 'high', // high, core, default, low
         'sections' => $boxLayout
+    );
+
+    $boxStyle = array();
+    $boxStyle[] = array(
+        'icon_class' => 'icon-large',
+        'icon' => 'el-icon-home',
+        'fields' => array(
+            array(
+                'id'       => 'style_ol',
+                'type'     => 'switch',
+                'title'    => __( 'Ordered List', 'redux-framework-demo' ),
+                'desc'     => __( 'Style ordered list.', 'redux-framework-demo' ),
+                'default'  => '0'
+            ),
+        )
+    );
+  
+    $metaboxes[] = array(
+        'id' => 'post-style',
+        'title' => __('Style Options', 'pressapps'),
+        'post_types' => array('post', 'page'),
+        'position' => 'normal', // normal, advanced, side
+        'priority' => 'core', // high, core, default, low
+        'sections' => $boxStyle
     );
 
     $boxPost = array();

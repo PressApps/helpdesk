@@ -4,7 +4,7 @@
     <header>
       <h1 class="entry-title"><?php echo pa_post_format_icon(); ?><?php the_title(); ?><?php if ($helpdesk['print']) { ?> <a href="javascript:print();" class="icon icon-Printer" title="<?php _e('Print this Article', 'roots'); ?>"></a><?php } ?></h1>
     </header>
-    <div class="entry-content">
+    <div class="entry-content<?php echo pa_style_tag($post->ID); ?>">
       <?php the_content(); ?>
     </div>
     <footer>

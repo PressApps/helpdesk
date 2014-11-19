@@ -1118,3 +1118,14 @@ function create_actions_taxonomy() {
   register_taxonomy( 'actions', array( 'post' ), $args );
 }
 
+/**
+ * Styled elements
+ */
+function pa_style_tag($id) {
+  $meta = redux_post_meta( 'helpdesk', $id );
+  $class = '';
+  if ($meta['style_ol']) {
+    $class .= ' style-ol';
+  }
+  return $class;
+}
