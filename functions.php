@@ -9,6 +9,8 @@
  *
  */
 
+define('OPT_NAME', 'helpdesk');
+
 /**
  * Include addons
  */

@@ -1,4 +1,5 @@
 <?php
+
     /**
      * ReduxFramework Sample Config File
      * For full documentation, please visit: http://docs.reduxframework.com/
@@ -723,153 +724,6 @@
                     )
                 );
 
-                // Footer Settings
-                $this->sections[] = array(
-                    'title'   => __( 'Footer', 'shoestrap' ),
-                    'icon' => 'el-icon-website',
-                    'fields'  => array(
-                        array(
-                            'title'       => __( 'Show social icons in footer', 'shoestrap' ),
-                            'desc'        => __( 'Show social icons in the footer.', 'shoestrap' ),
-                            'id'          => 'footer_social',
-                            'type'        => 'switch',
-                            'default'     => 0,
-                        ),
-                    )
-                );
-
-                // Social Settings
-                $this->sections[] = array(
-                    'title'     => __( 'Social Links', 'shoestrap' ),
-                    'icon'      => 'el-icon-heart',
-                    'fields'  => array(
-                        array(
-                            'id'        => 'social_sharing_help_3',
-                            'title'     => __( 'Social Links used in Menus && Footer. Enter full profile URL. To remove, just leave blank.', 'shoestrap' ),
-                            'type'      => 'info'
-                        ),
-                        array(
-                            'title'     => __( 'Dribbble', 'shoestrap' ),
-                            'id'        => 'dribbble_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Facebook', 'shoestrap' ),
-                            'id'        => 'facebook_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Flickr', 'shoestrap' ),
-                            'id'        => 'flickr_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'GitHub', 'shoestrap' ),
-                            'id'        => 'github_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Google+', 'shoestrap' ),
-                            'id'        => 'google_plus_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Email', 'shoestrap' ),
-                            'id'        => 'email_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'LinkedIn', 'shoestrap' ),
-                            'id'        => 'linkedin_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Picassa', 'shoestrap' ),
-                            'id'        => 'picassa_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Pinterest', 'shoestrap' ),
-                            'id'        => 'pinterest_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'RSS', 'shoestrap' ),
-                            'id'        => 'rss_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Skype', 'shoestrap' ),
-                            'id'        => 'skype_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'SoundCloud', 'shoestrap' ),
-                            'id'        => 'soundcloud_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Stack Overflow', 'shoestrap' ),
-                            'id'        => 'stackoverflow_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Twitter', 'shoestrap' ),
-                            'id'        => 'twitter_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Vimeo', 'shoestrap' ),
-                            'id'        => 'vimeo_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'WordPress', 'shoestrap' ),
-                            'id'        => 'wordpress_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => 'YouTube',
-                            'id'        => 'youtube_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                    )
-                );
-
                 $this->sections[] = array(
                     'title'  => __( 'Import / Export', 'redux-framework-demo' ),
                     'desc'   => __( 'Import and Export your Redux Framework settings from file, text or URL.', 'redux-framework-demo' ),
@@ -897,7 +751,7 @@
 
                 $this->args = array(
                     // TYPICAL -> Change these values as you need/desire
-                    'opt_name'             => 'helpdesk',
+                    'opt_name'             => OPT_NAME,
                     // This is where your data is stored in the database and also becomes your global variable name.
                     'display_name'         => $theme->get( 'Name' ),
                     // Name that appears at the top of your panel
