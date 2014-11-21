@@ -14,6 +14,7 @@ define('OPT_NAME', 'helpdesk');
 /**
  * Include addons
  */
+/*
 $path = dirname( __FILE__ ) . '/lib/addons/';
 $addons = scandir( $path, 1 );      
 foreach($addons as $addon_file) {
@@ -24,7 +25,7 @@ foreach($addons as $addon_file) {
   require_once $addon_path;
 }
 unset($addon_file, $addon_path);
-
+*/
 /**
  * Core files
  */

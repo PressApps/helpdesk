@@ -8020,11 +8020,6 @@ figure.alignnone {
 .content-info .content-info p {
   margin: 0;
 }
-.sidebar-footer {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  border-top: 1px solid #efefef;
-}
 .footer-bottom {
   padding: 20px 0;
   border-top: 1px solid #efefef;
@@ -8032,12 +8027,6 @@ figure.alignnone {
   word-spacing: 2px;
   color: #999;
   font-size: 0.9em;
-}
-.footer-social {
-  margin-top: 10px;
-}
-.footer-social i {
-  margin: 0 5px;
 }
 .navbar-footer {
   list-style: none;
@@ -8049,13 +8038,11 @@ figure.alignnone {
   padding: 0 7px;
 }
 .copyright,
-.navbar-footer,
-.footer-social {
+.navbar-footer {
   text-align: center;
 }
 @media (min-width: 992px) {
-  .navbar-footer,
-  .footer-social {
+  .navbar-footer {
     text-align: right;
     margin-top: 0;
   }

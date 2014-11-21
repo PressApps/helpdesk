@@ -25,6 +25,8 @@ function pa_output_css() {
     $output .= '.kb-row .icon-wrap {margin-left: 1px;margin-right: 10px;}';
   }
 
+  $output .= $helpdesk['custom_css'];
+
   if ( ! empty( $output ) ) {
       echo '<style type="text/css" id="helpdesk-css">' . $output . '</style>';
   }

@@ -22,7 +22,7 @@ function roots_scripts() {
    * Read the asset names from assets-manifest.json
    */
   global $helpdesk;
-  $prism_theme = 'prism';
+
   if (WP_ENV === 'development') {
     $assets = array(
       'css'       => '/assets/css/main.css',
