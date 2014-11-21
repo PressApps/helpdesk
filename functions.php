@@ -42,6 +42,14 @@ $pa_includes = array(
   'lib/dependencies.php',    // Install deoendency plugins
   'lib/scripts.php',         // Scripts and stylesheets
   'lib/extras.php',          // Custom functions
+  'lib/reorder.php',          // Custom
+  'lib/post-types.php',          // Custom
+  'lib/popular.php',          // Custom
+  'lib/live-search.php',          // Custom
+  'lib/category-icons.php',          // Custom
+  'lib/votes.php',          // Custom
+  'lib/breadcrumbs.php',          // Custom
+  'lib/dynamic-css.php',          // Custom
 );
 
 foreach ($pa_includes as $file) {

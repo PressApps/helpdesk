@@ -28,8 +28,8 @@ $i    = 0;
 $sub_category_id = get_query_var('cat');
 
 $subcat_args = array(
-  'orderby' => 'name',
-  'order' => 'ASC',
+  //'orderby' => 'name',
+  //'order' => 'ASC',
   'child_of' => $sub_category_id,
   'pad_counts'  => 1
 );
@@ -86,7 +86,7 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
   $args=array(
     'category__in' => array($current_cat),
     'paged' => $paged,
-    'post_type' => 'post',
+    //'post_type' => 'post',
     'post_status' => 'publish',
     'ignore_sticky_posts'=> 1
   );

@@ -28,8 +28,8 @@ if (isset($meta['kb_columns']) && $meta['kb_columns'] != '') {
 } 
 
 $categories = get_categories(array(
-    'orderby'         => 'slug',
-    'order'           => 'ASC',
+    //'orderby'         => 'slug',
+    //'order'           => 'ASC',
     'include'         => $kb_categories,
     'pad_counts'  => 1,
 )); 

@@ -200,3 +200,95 @@ function my_dynamic_section( $sections ) {
     return $sections;
 }
 add_filter('redux/options/' . OPT_NAME . '/sections', 'my_dynamic_section');
+
+
+
+
+
+
+
+/**
+ * other files
+ *
+ *
+ * 
+ */
+
+
+  register_sidebar(array(
+    'name'          => __('Footer', 'roots'),
+    'id'            => 'sidebar-footer',
+    'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-footer' ) .'">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>',
+  ));
+
+
+
+
+
+                        array(
+                            'id'       => 'footer_sidebar_border',
+                            'type'     => 'border',
+                            'title'    => __( 'Sidebar Top Border', 'redux-framework-demo' ),
+                            'output'   => array( '.sidebar-footer' ),
+                            'left'     => false,
+                            'right'     => false,
+                            'bottom'     => false,
+                            'default'  => array(
+                                'border-color'  => '#efefef',
+                                'border-style'  => 'solid',
+                                'border-top'    => '1px',
+                            ),
+                        ),
+                        array(
+                            'id'       => 'footer_sidebar_bg',
+                            'type'     => 'color',
+                            'title'    => __( 'Sidebar Background Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
+                            'transparent' => false,
+                            'default'  => '#fbfbfb',
+                            'validate' => 'color',
+                            'mode'     => 'background',
+                            'output'   => '.sidebar-footer',
+                        ),
+                        array(
+                            'id'       => 'footer_sidebar_color',
+                            'type'     => 'color',
+                            'title'    => __( 'Sidebar Text Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
+                            'default'  => '#84949f',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .icon-wrap' ),
+                        ),
+
+
+
+
+
+.footer-social {
+  margin-top: 10px;
+  i {
+    margin: 0 5px;
+  }
+}
+
+.sidebar-footer {
+  padding-top: @section-spacing;
+  padding-bottom: @section-spacing;
+  border-top: 1px solid @element-border-color;
+}
+.copyright, .navbar-footer, .footer-social {
+  text-align: center;
+}
+@media (min-width: @screen-md-min) {
+  .navbar-footer, .footer-social {
+    text-align: right;
+    margin-top: 0;
+  }
+  .copyright {
+    text-align: left;
+  }
+}

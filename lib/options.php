@@ -353,6 +353,20 @@
                                 //'teeny'         => false,
                             ),
                         ),
+                        array(
+                            'title'     => __( 'Google Analytics ID', 'shoestrap' ),
+                            'desc'      => __( 'Paste your Google Analytics ID here to enable analytics tracking. Only Universal Analytics properties. Your user ID should be in the form of UA-XXXXX-Y.', 'shoestrap' ),
+                            'id'        => 'analytics_id',
+                            'default'   => '',
+                            'type'      => 'text',
+                        ),
+                        array(
+                            'title'     => __( 'Enable Nice Search', 'shoestrap' ),
+                            'desc'      => __( 'Redirects /?s=query to /search/query/, convert %20 to +.', 'shoestrap' ),
+                            'id'        => 'nice_search',
+                            'default'   => 1,
+                            'type'      => 'switch',
+                        ),
                     )
                 );
 
@@ -504,41 +518,6 @@
                             'indent'   => true,
                         ),
                         array(
-                            'id'       => 'footer_sidebar_border',
-                            'type'     => 'border',
-                            'title'    => __( 'Sidebar Top Border', 'redux-framework-demo' ),
-                            'output'   => array( '.sidebar-footer' ),
-                            'left'     => false,
-                            'right'     => false,
-                            'bottom'     => false,
-                            'default'  => array(
-                                'border-color'  => '#efefef',
-                                'border-style'  => 'solid',
-                                'border-top'    => '1px',
-                            ),
-                        ),
-                        array(
-                            'id'       => 'footer_sidebar_bg',
-                            'type'     => 'color',
-                            'title'    => __( 'Sidebar Background Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
-                            'transparent' => false,
-                            'default'  => '#fbfbfb',
-                            'validate' => 'color',
-                            'mode'     => 'background',
-                            'output'   => '.sidebar-footer',
-                        ),
-                        array(
-                            'id'       => 'footer_sidebar_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Sidebar Text Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
-                            'default'  => '#84949f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .icon-wrap' ),
-                        ),
-                        array(
                             'id'       => 'footer_bottom_border',
                             'type'     => 'border',
                             'title'    => __( 'Bottom Top Border', 'redux-framework-demo' ),
@@ -581,7 +560,16 @@
                 $this->sections[] = array(
                     'icon'       => 'el-icon-list',
                     'title'      => __( 'KB Options', 'redux-framework-demo' ),
-                    'fields'     => apply_filters( 'shoestrap_module_menus_options_modifier', array(
+                    'fields'     => array(
+                        array(
+                            'id' => 'reorder',
+                            'type' => 'switch',
+                            'title' => __('Reorder', 'pressapps' ), 
+                            'desc' => __('Enable drag and drop reordering under Posts>>All Posts and Posts>>Categories.', 'pressapps' ),
+                            "default"       => 1,
+                            'on' => 'Enabled',
+                            'off' => 'Disabled',
+                        ),
                         array(
                             'id' => 'headline_search',
                             'type' => 'button_set',
@@ -627,7 +615,7 @@
                             'desc'     => __( 'Enable post format icons.', 'redux-framework-demo' ),
                             'default'  => '1'
                         ),
-                    )),
+                    )
                 );
 
 

@@ -48,15 +48,6 @@ function roots_widgets_init() {
   ));
 
   register_sidebar(array(
-    'name'          => __('Footer', 'roots'),
-    'id'            => 'sidebar-footer',
-    'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-footer' ) .'">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>',
-  ));
-
-  register_sidebar(array(
     'name'          => __('Home Page', 'roots'),
     'id'            => 'sidebar-home',
     'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-home' ) .' half-gutter-col"><div class="widget-inner">',

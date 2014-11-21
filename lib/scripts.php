@@ -14,6 +14,8 @@
  * - An ID has been defined in config.php
  * - You're not logged in as an administrator
  */
+global $helpdesk;
+
 function roots_scripts() {
   /**
    * The build task in Grunt renames production assets with a hash
@@ -73,6 +75,10 @@ global $pagenow;
 //if ($pagenow=="edit-tags.php" && isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] == 'category'  ) {
   add_action( 'admin_enqueue_scripts', 'admin_scripts' );
 //}
+
+
+
+
 
 
 /**

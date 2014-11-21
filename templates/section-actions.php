@@ -25,8 +25,8 @@ if (isset($meta['section_actions_columns']) && $meta['section_actions_columns'] 
 } 
 
 $actions = get_categories(array(
-    'orderby'         => 'slug',
-    'order'           => 'ASC',
+    //'orderby'         => 'slug',
+    //'order'           => 'ASC',
     'taxonomy'        => 'actions',
     'include'         => $section_actions_include,
     'pad_counts'      => 1,
