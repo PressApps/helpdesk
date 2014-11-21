@@ -580,7 +580,7 @@
                 $this->sections[] = array(
                     'icon'       => 'el-icon-list',
                     'title'      => __( 'KB Options', 'redux-framework-demo' ),
-                    'fields'     => array(
+                    'fields'     => apply_filters( 'shoestrap_module_menus_options_modifier', array(
                         array(
                             'id' => 'headline_search',
                             'type' => 'button_set',
@@ -626,7 +626,7 @@
                             'desc'     => __( 'Enable post format icons.', 'redux-framework-demo' ),
                             'default'  => '1'
                         ),
-                    )
+                    )),
                 );
 
 

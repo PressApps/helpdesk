@@ -272,14 +272,7 @@ function pa_post_format_icon($post_id = '') {
           break;
   }
 
-     return '<span class="icon-wrap"><i class="' . $post_icon . '"></i></span>';
-     /*
- if ($type == 'kb_page') {
-  } else {
-    return '<i class="' . $post_icon . '"></i> ';
-  }
-  */
-
+  return '<span class="icon-wrap"><i class="' . $post_icon . '"></i></span>';
 }
 
 function pa_view_all_icon() {
@@ -576,7 +569,6 @@ function pa_order_by_votes( $query ) {
 /**
  * Pagination
  */
-
 function page_navi($before = '', $after = '') {
   global $wpdb, $wp_query;
   $request = $wp_query->request;
@@ -1053,37 +1045,6 @@ class PAMP_track {
     }
     return 1;
   }
-}
-
-/**
- * Return an array of the social links the user has entered.
- * This is simply a helper function for other functions.
- */
-function get_social_links() {
-  global $helpdesk;
-  // An array of the available networks
-  $networks   = array();
-
-  // Started on the new stuff, not done yet.
-  $networks[] = array( 'url' => $helpdesk['dribbble_link'],     'icon' => 'dribbble',   'fullname' => 'Dribbble' );
-  $networks[] = array( 'url' => $helpdesk['facebook_link'],     'icon' => 'facebook',   'fullname' => 'Facebook' );
-  $networks[] = array( 'url' => $helpdesk['flickr_link'],       'icon' => 'flickr',     'fullname' => 'Flickr' );
-  $networks[] = array( 'url' => $helpdesk['github_link'],       'icon' => 'github',     'fullname' => 'GitHub' );
-  $networks[] = array( 'url' => $helpdesk['google_plus_link'],  'icon' => 'googleplus', 'fullname' => 'Google+' );
-  $networks[] = array( 'url' => $helpdesk['email_link'],    'icon' => 'mail',  'fullname' => 'Email' );
-  $networks[] = array( 'url' => $helpdesk['linkedin_link'],     'icon' => 'linkedin',   'fullname' => 'LinkedIn' );
-  $networks[] = array( 'url' => $helpdesk['pinterest_link'],    'icon' => 'pinterest',  'fullname' => 'Pinterest' );
-  $networks[] = array( 'url' => $helpdesk['picassa_link'],       'icon' => 'picassa',     'fullname' => 'Picassa' );
-  $networks[] = array( 'url' => $helpdesk['rss_link'],          'icon' => 'feed',        'fullname' => 'RSS' );
-  $networks[] = array( 'url' => $helpdesk['skype_link'],        'icon' => 'skype',      'fullname' => 'Skype' );
-  $networks[] = array( 'url' => $helpdesk['soundcloud_link'],   'icon' => 'soundcloud', 'fullname' => 'SoundCloud' );
-  $networks[] = array( 'url' => $helpdesk['stackoverflow_link'],   'icon' => 'stackoverflow', 'fullname' => 'Stack Overflow' );
-  $networks[] = array( 'url' => $helpdesk['wordpress_link'],       'icon' => 'wordpress',     'fullname' => 'WordPress' );
-  $networks[] = array( 'url' => $helpdesk['twitter_link'],      'icon' => 'twitter',    'fullname' => 'Twitter' );
-  $networks[] = array( 'url' => $helpdesk['vimeo_link'],        'icon' => 'vimeo',      'fullname' => 'Vimeo' );
-  $networks[] = array( 'url' => $helpdesk['youtube_link'],      'icon' => 'youtube',    'fullname' => 'YouTube' );
-
-  return $networks;
 }
 
 /**
