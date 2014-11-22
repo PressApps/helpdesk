@@ -299,7 +299,7 @@
                                     'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                                 ),
                             ),
-                            'default'  => '2'
+                            'default'  => '3'
                         ),
                         array(
                             'id'       => 'layout_category',
@@ -320,7 +320,7 @@
                                     'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                                 ),
                             ),
-                            'default'  => '2'
+                            'default'  => '3'
                         ),
                         array(
                             'id'       => 'layout_single',
@@ -341,7 +341,7 @@
                                     'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                                 ),
                             ),
-                            'default'  => '2'
+                            'default'  => '3'
                         ),
                         array(
                             'id' => 'kb_columns_category',
@@ -680,7 +680,7 @@
                             'default'  => '#84949f',
                             'transparent' => false,
                             'validate' => 'color',
-                            'output'   => array( 'h1, h2, h3, h4, h5, h6, .related, .comments, #respond, .entry-summary, .box p, .sidebar' ),
+                            'output'   => array( 'h1, h2, h3, h4, h5, h6, .related, .comments, #respond, .box .entry-summary, .box p, .sidebar' ),
                         ),
                     )
                 );

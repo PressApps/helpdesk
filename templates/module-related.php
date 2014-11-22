@@ -36,12 +36,14 @@ if ($related_articles == 1) {
 if ($related) {
   $related_query = new wp_query( $args );
   if( $related_query->have_posts() ) {
-    echo '<div class="row related module">';
-    echo '<div class="col-md-12"><h2>' . __('Related Articles', 'pressapps') . '</h2></div>';
+    echo '<div class="related module">';
+    echo '<h2>' . __('Related Articles', 'pressapps') . '</h2>';
+    echo '<div class="row">';
     while( $related_query->have_posts() ) {
       $related_query->the_post();
       get_template_part('templates/content', 'related');
     }
+    echo '</div>';
     echo '</div>';
   }
 }

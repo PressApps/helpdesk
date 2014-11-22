@@ -35,10 +35,8 @@ if(comments_open()) {
     <div class="alert alert-warning">
       <?php _e('Comments are closed.', 'roots'); ?>
     </div>
-  <?php endif; ?>
-
   </div>
-<?php //comment_form(); ?>
+<?php endif; ?>
 
 <?php if($reply) : ?>
   <div id="respond" class="module">
