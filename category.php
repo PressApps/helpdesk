@@ -45,7 +45,7 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
         <div class="row kb-row">
       <?php } ?>
       <div class="col-sm-<?php echo $col_class; ?>">
-        <h4><a href="<?php echo get_category_link( $sub_category->term_id ) ?>"><?php echo pa_category_icon_url($sub_category->term_id, TRUE); ?> <?php echo $sub_category->name ?></a></h4>
+        <h4><a href="<?php echo get_category_link( $sub_category->term_id ) ?>"><?php echo pa_category_icon_url($sub_category->term_id, TRUE); ?><?php echo $sub_category->name ?></a></h4>
           <ul>
             <?php 
             $cat_posts = get_posts(array(
@@ -58,7 +58,7 @@ $sub_categories = wp_list_filter($sub_categories,array('parent'=>$sub_category_i
             foreach($cat_posts as $post){
               setup_postdata($post);
               ?>
-              <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon(); ?> <?php the_title(); ?></a></li>
+              <li><a href="<?php the_permalink(); ?>"><?php echo pa_post_format_icon(); ?><?php the_title(); ?></a></li>
               <?php
               if($j++==$cat_post_num)
                   break;

@@ -514,7 +514,6 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                 'id'       => 'call_to_action',
                 'type'     => 'editor',
                 'title'    => __( 'Call To Action Content', 'redux-framework-demo' ),
-                //'default'  => 'Add your call to action content here.',
             ),
         )
     );

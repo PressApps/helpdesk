@@ -1,14 +1,5 @@
 <?php global $helpdesk; ?>
 <footer class="content-info" role="contentinfo">
-  <?php if ( is_active_sidebar('sidebar-footer') ) { ?>
-    <div class="sidebar-footer">
-      <div class="container">
-        <div class="row">
-          <?php dynamic_sidebar('sidebar-footer'); ?>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
   <div class="footer-bottom">
     <div class="container">
       <div class="row">
@@ -19,7 +10,6 @@
             wp_nav_menu(array('theme_location' => 'footer_navigation', 'menu_class' => 'navbar-footer', 'depth' => 1));
           endif;
           ?>
-          <?php echo get_social_bar(); ?>
         </div>
       </div>
     </div>

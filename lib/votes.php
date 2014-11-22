@@ -2,22 +2,21 @@
 /**
  * Article voting
  */
-if ($helpdesk['article_voting'] == 1 || $helpdesk['article_voting'] == 2) {
+global $helpdesk;
+
+$voting_enabled = FALSE;
+if (array_key_exists('voting' ,$helpdesk['single_modules']['Enabled'])) {
+ $voting_enabled = TRUE;
+}
+
+if ($voting_enabled) {
   add_action('init', 'pa_article_vote');
   add_action('wp_head','pa_vote_js');
 }
-
 function pa_article_voting($is_ajax = FALSE) {
   global $helpdesk, $post;        
 
-  if ($helpdesk['article_voting'] == 0) {
-    return;
-  }
-
-  //$votes_like = (int) get_post_meta($post->ID, '_votes_likes', true);
-  //$votes_dislike = (int) get_post_meta($post->ID, '_votes_dislikes', true);
   $cookie_vote_count      = '';
-
   $like_icon = '<span class="icon icon-Yes"></span> ';
   $dislike_icon = '<span class="icon icon-Close"></span> ';
 
@@ -58,8 +57,7 @@ function pa_article_voting($is_ajax = FALSE) {
 }
 
 function pa_article_vote() {
-    global $post;
-    global $helpdesk;    
+    global $post, $helpdesk;
 
     if (is_user_logged_in()) {
         
