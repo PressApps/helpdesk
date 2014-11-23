@@ -2119,8 +2119,6 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on all pages
       $(".main").fitVids();
-
-
     }
   },
   // Home page
@@ -2196,7 +2194,6 @@ jQuery().ready(function(){
 /***************************************************
       Live Search
 ***************************************************/
-
 var _url = '';
 jQuery(function ($) {
     'use strict';
@@ -2217,7 +2214,6 @@ jQuery(function ($) {
             html = '';
         // Build suggestions inner HTML
         $.each(that.suggestions, function (i, suggestion) {
-            //html += '<div class="' + className + suggestion.css + '" data-index="' + i + '"><p class="ls-'+suggestion.type_color+'">'+suggestion.type_label+'</p> <h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
             html += '<div class="' + className + '" data-index="' + i + '"><h4>'+suggestion.icon + formatResult(suggestion, value) + '</h4></div>';
         });
 
@@ -2232,14 +2228,13 @@ jQuery(function ($) {
     };
     
  // Initialize ajax autocomplete:
-    $('[name=s]').autocomplete({
+    $('#live').autocomplete({
         serviceUrl: _url + '/wp-admin/admin-ajax.php',
         params: {'action':'search_title'},
-        minChars: 1,
+        minChars: 2,
         maxHeight: 450,
         onSelect: function(suggestion) {
-        //  $('#content').html('<h2>Redirecting ... </h2>');
-            window.location = suggestion.data.url;
+          window.location = suggestion.data.url;
         }
     });
 });

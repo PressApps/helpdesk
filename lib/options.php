@@ -482,7 +482,7 @@
                         ),
                         array(
                             'id' => 'live_search_in',
-                            'type' => 'select',
+                            'type' => 'button_set',
                             'title' => __('Search In', 'pressapps' ),
                             'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
                             'required'    => array('headline_search','=',array('2')),
@@ -491,6 +491,13 @@
                                 '2' => 'Titles and Content'
                             ),
                             'default' => '2',
+                        ),
+                        array(
+                            'title'     => __( 'Search Placeholder', 'shoestrap' ),
+                            'desc'      => __( 'Enter search field placeholder.', 'shoestrap' ),
+                            'id'        => 'search_placeholder',
+                            'default'   => 'Search Knowledge Base Articles',
+                            'type'      => 'text',
                         ),
                     )
                 );
@@ -659,7 +666,13 @@
                             ),
                             'output'   => array( 'body' ),
                         ),
+                    )
+                );
 
+                $this->sections[] = array(
+                    'icon'   => 'el-icon-tint',
+                    'title'  => __( 'Colors', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
                             'id'       => 'primary_color',
                             'type'     => 'link_color',
@@ -699,6 +712,59 @@
                         ),
                     ),
                 );
+
+                $this->sections[] = array(
+                    'type' => 'divide',
+                );
+
+                if ( file_exists( dirname( __FILE__ ) . '/../README.md' ) ) {
+
+                    $this->sections[] = array(
+                        'icon'   => 'el-icon-list-alt',
+                        'title'  => __( 'Documentation', 'redux-framework-demo' ),
+                        'fields' => array(
+                            array(
+                                'id'       => '17',
+                                'type'     => 'raw',
+                                'markdown' => true,
+                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../README.md' )
+                            ),
+                        ),
+                    );
+                }
+
+                if ( file_exists( dirname( __FILE__ ) . '/../CHANGELOG.md' ) ) {
+
+                    $this->sections[] = array(
+                        'icon'   => 'el-icon-list-alt',
+                        'title'  => __( 'Changelog', 'redux-framework-demo' ),
+                        'fields' => array(
+                            array(
+                                'id'       => '17',
+                                'type'     => 'raw',
+                                'markdown' => true,
+                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../CHANGELOG.md' )
+                            ),
+                        ),
+                    );
+                }
+
+                if ( file_exists( dirname( __FILE__ ) . '/../LICENSE.md' ) ) {
+
+                    $this->sections[] = array(
+                        'icon'   => 'el-icon-list-alt',
+                        'title'  => __( 'License', 'redux-framework-demo' ),
+                        'fields' => array(
+                            array(
+                                'id'       => '17',
+                                'type'     => 'raw',
+                                'markdown' => true,
+                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../LICENSE.md' )
+                            ),
+                        ),
+                    );
+                }
+
 
             }
 

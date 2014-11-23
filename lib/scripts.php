@@ -1,18 +1,6 @@
 <?php
 /**
  * Scripts and stylesheets
- *
- * Enqueue stylesheets in the following order:
- * 1. /theme/assets/css/main.css
- *
- * Enqueue scripts in the following order:
- * 1. jquery-1.11.1.min.js via Google CDN
- * 2. /theme/assets/js/vendor/modernizr.min.js
- * 3. /theme/assets/js/scripts.js
- *
- * Google Analytics is loaded after enqueued scripts if:
- * - An ID has been defined in config.php
- * - You're not logged in as an administrator
  */
 global $helpdesk;
 
@@ -67,19 +55,14 @@ add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 function admin_scripts() {
   wp_enqueue_style('admin_css', get_template_directory_uri() . '/assets/css/admin.css', false, null);
   wp_enqueue_style('icons_css', get_template_directory_uri() . '/assets/css/icons.min.css', false, null);
+  wp_enqueue_script( 'admin_js', get_template_directory_uri() . '/assets/js/admin.js', array( 'jquery' ));
 
-  $js = get_template_directory_uri() . '/assets/js/icon-picker.js';
-  wp_enqueue_script( 'dashicons-picker', $js, array( 'jquery' ), '1.0' );
+  global $pagenow;
+  if ($pagenow=="edit-tags.php" && isset( $_GET['taxonomy'] ) && ($_GET['taxonomy'] == 'category' || $_GET['taxonomy'] == 'actions') ) {
+    wp_enqueue_script( 'icon_picker_js', get_template_directory_uri() . '/assets/js/icon-picker.js', array( 'jquery' ));
+  }
 }
-global $pagenow;
-//if ($pagenow=="edit-tags.php" && isset( $_GET['taxonomy'] ) && $_GET['taxonomy'] == 'category'  ) {
-  add_action( 'admin_enqueue_scripts', 'admin_scripts' );
-//}
-
-
-
-
-
+add_action( 'admin_enqueue_scripts', 'admin_scripts' );
 
 /**
  * Google Analytics snippet from HTML5 Boilerplate
