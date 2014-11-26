@@ -3,10 +3,9 @@
 Helpdesk is a WordPress Knowledge base theme based on [Roots](https://github.com/roots/roots).
 
 * Source: [https://github.com/pressapps/helpdesk](https://github.com/pressapps/helpdesk)
-* Homepage: [http://roots.io/](http://pressapps.co/)
+* Homepage: [http://pressapps.co/](http://pressapps.co/)
 * Documentation: [http://pressapps.co/docs/](http://pressapps.co/docs/)
 * Twitter: [@pressapps](https://twitter.com/pressapps)
-* Forum: [http://discourse.roots.io/](http://discourse.roots.io/)
 
 ## Features
 

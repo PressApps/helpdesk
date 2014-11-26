@@ -77,6 +77,7 @@ module.exports = function(grunt) {
           'assets/js/scripts.min.js': [jsFileList],
           'assets/js/vendor/jquery.fitvids.min.js': 'assets/vendor/fitvids/jquery.fitvids.js',
           'assets/js/vendor/jquery.autocomplete.min.js': 'assets/vendor/devbridge-autocomplete/src/jquery.autocomplete.js',
+          'assets/js/vendor/chart.min.js': 'assets/vendor/chartjs/Chart.js',
         }
       }
     },

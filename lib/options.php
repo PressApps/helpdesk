@@ -736,11 +736,11 @@
                 if ( file_exists( dirname( __FILE__ ) . '/../CHANGELOG.md' ) ) {
 
                     $this->sections[] = array(
-                        'icon'   => 'el-icon-list-alt',
+                        'icon'   => 'el-icon-fork',
                         'title'  => __( 'Changelog', 'redux-framework-demo' ),
                         'fields' => array(
                             array(
-                                'id'       => '17',
+                                'id'       => '18',
                                 'type'     => 'raw',
                                 'markdown' => true,
                                 'content'  => file_get_contents( dirname( __FILE__ ) . '/../CHANGELOG.md' )
@@ -748,24 +748,6 @@
                         ),
                     );
                 }
-
-                if ( file_exists( dirname( __FILE__ ) . '/../LICENSE.md' ) ) {
-
-                    $this->sections[] = array(
-                        'icon'   => 'el-icon-list-alt',
-                        'title'  => __( 'License', 'redux-framework-demo' ),
-                        'fields' => array(
-                            array(
-                                'id'       => '17',
-                                'type'     => 'raw',
-                                'markdown' => true,
-                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../LICENSE.md' )
-                            ),
-                        ),
-                    );
-                }
-
-
             }
 
             /**
