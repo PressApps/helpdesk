@@ -106,16 +106,22 @@ function pa_get_search_views($args){
         'order'                     => 'DESC',
         'posts_per_page'            => 5,
         'page_no'                   => 1,
+        'period'                    => 7,
     );
     
     $args = array_merge($default_args,$args);
     
     $qry['A']  = " SELECT count(DISTINCT(search_term)) as total FROM {$wpdb->prefix}search_terms ";
+    if($args['period'] != 'all_time')
+        $qry['A'] .=  " WHERE DATEDIFF(CURDATE(),search_time)<={$args['period']}";
+    
     
     $results['A'] = $wpdb->get_row($qry['A']);
     
     $qry['B']  = " SELECT search_term,count(id) as total ";
     $qry['B'] .= " FROM {$wpdb->prefix}search_terms ";
+    if($args['period'] != 'all_time')
+        $qry['B'] .=  " WHERE DATEDIFF(CURDATE(),search_time)<={$args['period']}";
     $qry['B'] .= " GROUP BY search_term ";
     $qry['B'] .= " ORDER BY total {$args['order']} ";
     $qry['B'] .= " LIMIT " . ($args['page_no']-1)*$args['posts_per_page'] . ",{$args['posts_per_page']} ";
@@ -146,27 +152,38 @@ function pa_get_popular_searches($days = 7,$number_of_terms = 3){
 }
 
 function pa_the_popular_searches($days = 7,$number_of_terms = 3){
-   $searches = pa_get_popular_searches($days,$number_of_terms); 
-   if(count($searches)>0){
-       foreach($searches as $search){
-           $term[] = "<a href='" . esc_url(home_url('?s=' . $search['search_term'] )) . "'>{$search['search_term']}</a>";
-       }
-   }
-   echo implode(",", $term);
+    global $helpdesk;
+    
+    if(empty($helpdesk['search_analytics']))
+            return ;
+    
+    $searches = pa_get_popular_searches($days,$number_of_terms); 
+    if(count($searches)>0){
+        foreach($searches as $search){
+            $term[] = "<a href='" . esc_url(home_url('?s=' . $search['search_term'] )) . "'>{$search['search_term']}</a>";
+        }
+        echo implode(",", $term);
+    }
 }
 
 function pa_analytics_page(){
-    
+    global $helpdesk;
     $current_tab            = isset($_REQUEST['pa_analytics_case'])?$_REQUEST['pa_analytics_case']:'votes';
     $page_no                = isset($_REQUEST['page_no'])?$_REQUEST['page_no']:1;
+    $current_period         = isset($_REQUEST['pa_analytics_period'])?$_REQUEST['pa_analytics_period']:'all_time';
+    $has_sufficient_data    = FALSE;
+    $is_period_enable       = FALSE;
     
     $col = $labels =  $datasets = array();
     
     $tabs = array(
         'votes'             => __('Votes'       ,'pressapps'),
         'views'             => __('Views'       ,'pressapps'),
-        'searches'          => __('Searches'    ,'pressapps'),
     );
+    
+    if($helpdesk['search_analytics'] == 1){
+        $tabs['searches'] = __('Searches'    ,'pressapps');
+    }
     
     switch($current_tab){
         case 'votes':
@@ -190,34 +207,40 @@ function pa_analytics_page(){
             
             $datas      = pa_get_posts_votes($args);
             
+            if($datas['total']>0){
             
-            foreach($datas['records'] as $data){
-                $labels[]               = $data['post_title'];
-                $col[0]['data'][]       = $data['likes'];
-                $col[1]['data'][]       = $data['dislikes'];
+                foreach($datas['records'] as $data){
+                    $labels[]               = $data['post_title'];
+                    $col[0]['data'][]       = $data['likes'];
+                    $col[1]['data'][]       = $data['dislikes'];
+                }
+
+                $datasets[] = array(
+                    'label'                   =>  __('Likes','pressapps'),
+                    'fillColor'               => "rgba(220,220,220,0.2)",
+                    'strokeColor'             => "rgba(220,220,220,1)",
+                    'pointColor'              => "rgba(220,220,220,1)",
+                    'pointStrokeColor'        => "#fff",
+                    'pointHighlightFill'      => "#fff",
+                    'pointHighlightStroke'    => "rgba(220,220,220,1)",
+                    'data'                    => $col[0]['data'],
+                );
+
+                $datasets[] = array(
+                    'label'                   =>  __('Dislikes','pressapps'),
+                    'fillColor'               => "rgba(151,187,205,0.2)",
+                    'strokeColor'             => "rgba(151,187,205,1)",
+                    'pointColor'              => "rgba(151,187,205,1)",
+                    'pointStrokeColor'        => "#fff",
+                    'pointHighlightFill'      => "#fff",
+                    'pointHighlightStroke'    => "rgba(151,187,205,1)",
+                    'data'                    => $col[1]['data'],
+                );
+                $has_sufficient_data = TRUE;
+            }else{
+                $has_sufficient_data = FALSE;
             }
-            
-            $datasets[] = array(
-                'label'                   =>  __('Likes','pressapps'),
-                'fillColor'               => "rgba(220,220,220,0.2)",
-                'strokeColor'             => "rgba(220,220,220,1)",
-                'pointColor'              => "rgba(220,220,220,1)",
-                'pointStrokeColor'        => "#fff",
-                'pointHighlightFill'      => "#fff",
-                'pointHighlightStroke'    => "rgba(220,220,220,1)",
-                'data'                    => $col[0]['data'],
-            );
-            
-            $datasets[] = array(
-                'label'                   =>  __('Dislikes','pressapps'),
-                'fillColor'               => "rgba(151,187,205,0.2)",
-                'strokeColor'             => "rgba(151,187,205,1)",
-                'pointColor'              => "rgba(151,187,205,1)",
-                'pointStrokeColor'        => "#fff",
-                'pointHighlightFill'      => "#fff",
-                'pointHighlightStroke'    => "rgba(151,187,205,1)",
-                'data'                    => $col[1]['data'],
-            );
+                
             
             break;
         case 'views':
@@ -243,61 +266,81 @@ function pa_analytics_page(){
             
             $datas  = pa_get_posts_views($args);
             
+            if($datas['total']>0) {
             
-            foreach($datas['records'] as $data){
-                $labels[]               = $data['post_title'];
-                $col[0]['data'][]       = $data['states'];
+                foreach($datas['records'] as $data){
+                    $labels[]               = $data['post_title'];
+                    $col[0]['data'][]       = $data['states'];
+                }
+
+                $datasets[] = array(
+                    'label'                   =>  __('States','pressapps'),
+                    'fillColor'               => "rgba(220,220,220,0.2)",
+                    'strokeColor'             => "rgba(220,220,220,1)",
+                    'pointColor'              => "rgba(220,220,220,1)",
+                    'pointStrokeColor'        => "#fff",
+                    'pointHighlightFill'      => "#fff",
+                    'pointHighlightStroke'    => "rgba(220,220,220,1)",
+                    'data'                    => $col[0]['data'],
+                );
+                $has_sufficient_data = TRUE;
+            }else{
+                $has_sufficient_data = FALSE;
             }
-            
-            $datasets[] = array(
-                'label'                   =>  __('States','pressapps'),
-                'fillColor'               => "rgba(220,220,220,0.2)",
-                'strokeColor'             => "rgba(220,220,220,1)",
-                'pointColor'              => "rgba(220,220,220,1)",
-                'pointStrokeColor'        => "#fff",
-                'pointHighlightFill'      => "#fff",
-                'pointHighlightStroke'    => "rgba(220,220,220,1)",
-                'data'                    => $col[0]['data'],
-            );
-            
             break;
         case 'searches':
-            $order_options = array(
+            $is_period_enable   = TRUE;
+            $order_options      = array(
                 'ASC'        => __('Low => High'        ,'pressapps'),
                 'DESC'       => __('High => Low'        ,'pressapps'),
             );
             
+            $periods            = array(
+                '1'         => __('Last 1 Day'   ,'pressapps'),
+                '7'         => __('Last 7 Days'  ,'pressapps'),
+                '30'        => __('Last 30 Days' ,'pressapps'),
+                'all_time'  => __('All Time','pressapps'),
+            );
+            
             $current_option     = ((isset($_REQUEST['pa_analytics_tab_option']))?$_REQUEST['pa_analytics_tab_option']:'DESC');
             $is_asc             = ($current_option == 'ASC')?TRUE:FALSE;
-            $chart_title        = ($is_asc)?__('Searches Low => High','pressapps'):__('Searches High => Low','pressapps');
+            $chart_title        = ($is_asc)?__('Searches Low => High From %s','pressapps'):__('Searches High => Low From %s','pressapps');
             $args               = array(
                 'order'     => ($is_asc)?'ASC':'DESC',
                 'page_no'   => $page_no,
+                'period'    => $current_period,
             );  
+            
+            $chart_title = sprintf($chart_title,$periods[$current_period]);
             
             $query_args     = array(
                 'page'                      => 'pa_analytics',
                 'pa_analytics_case'         => 'searches',
                 'pa_analytics_tab_option'   => $current_option,
+                'pa_analytics_period'       => $current_period,
             );
             
             $datas  = pa_get_search_views($args);
-            
-            foreach($datas['records'] as $data){
-                $labels[]               = $data['search_term'];
-                $col[0]['data'][]       = $data['total'];
+            if($datas['total']>0){
+                foreach($datas['records'] as $data){
+                    $labels[]               = $data['search_term'];
+                    $col[0]['data'][]       = $data['total'];
+                }
+
+                $datasets[] = array(
+                    'label'                   =>  __('States','pressapps'),
+                    'fillColor'               => "rgba(220,220,220,0.2)",
+                    'strokeColor'             => "rgba(220,220,220,1)",
+                    'pointColor'              => "rgba(220,220,220,1)",
+                    'pointStrokeColor'        => "#fff",
+                    'pointHighlightFill'      => "#fff",
+                    'pointHighlightStroke'    => "rgba(220,220,220,1)",
+                    'data'                    => $col[0]['data'],
+                );
+                $has_sufficient_data = TRUE;
+            }else{
+                $has_sufficient_data = FALSE;
             }
-            
-            $datasets[] = array(
-                'label'                   =>  __('States','pressapps'),
-                'fillColor'               => "rgba(220,220,220,0.2)",
-                'strokeColor'             => "rgba(220,220,220,1)",
-                'pointColor'              => "rgba(220,220,220,1)",
-                'pointStrokeColor'        => "#fff",
-                'pointHighlightFill'      => "#fff",
-                'pointHighlightStroke'    => "rgba(220,220,220,1)",
-                'data'                    => $col[0]['data'],
-            );
             
             break;
             
@@ -307,6 +350,9 @@ function pa_analytics_page(){
     ?>
 <script type="text/javascript">
     jQuery().ready(function(){
+       <?php 
+       if($has_sufficient_data) :
+       ?> 
        var data = {
             labels      : <?php echo json_encode($labels); ?>,
             datasets    : <?php echo json_encode($datasets); ?>   
@@ -320,11 +366,15 @@ function pa_analytics_page(){
             jQuery('.tab_frm').submit();
         });
         
+        <?php
+        endif;
+        ?>
     });
 </script>
 <style type="text/css">
-    #chat_ct {
-        text-align:center; 
+    #chat_ct,.pa_note_ct {
+        text-align:center;
+        padding:20px 0px; 
     }
     .tab_frm{
         float:right; 
@@ -354,6 +404,19 @@ function pa_analytics_page(){
         <form method="GET" class="tab_frm">
             <input type="hidden" name="page" value="pa_analytics" />
             <input type="hidden" name="pa_analytics_case" value="<?php echo $current_tab; ?>" />
+            <?php
+            if($is_period_enable) :
+                ?>
+                <select name="pa_analytics_period" class="tab_select_opt">
+                <?php
+                foreach ($periods as $period => $label){
+                    echo "<option value=\"{$period}\"" . (($current_period==$period)?'selected="selected"':'') . ">{$label}</option>";
+                }
+                ?>
+                </select>
+                <?php
+            endif;
+            ?>
             <select name="pa_analytics_tab_option" class="tab_select_opt">
                 <?php 
                 foreach($order_options as $key => $label){
@@ -363,7 +426,18 @@ function pa_analytics_page(){
             </select>
         </form>
         <br/>
-        <canvas id="myChart" width="700" height="400"></canvas>
+        <?php 
+        if($has_sufficient_data):    
+            ?><canvas id="myChart" width="700" height="400"></canvas><?php
+        else:
+            ?>
+            <div class="pa_note_ct">
+                <h2><?php _e('Sorry Sufficient Data is Not Available To generate the Graph','pressapps'); ?></h2>
+            </div>
+                <?php
+        endif;
+        ?>
+        
         <div class="tablenav custom-tablenav">
         <div class="tablenav-pages">
         <span class="pagination-links">

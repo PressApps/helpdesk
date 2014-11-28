@@ -3,9 +3,10 @@
 class PA_Search_Track {
     
     function __construct() {
-        
+        global $helpdesk;
         add_action('after_switch_theme',array($this,'install')); // Install the Table
-        
+        if(empty($helpdesk['search_analytics']))
+            return ;
         add_action('wp_footer'                            ,array($this,'tracking_script'));
         add_action('wp_ajax_pamp_search_analytics'        ,array($this,'record_track'));
         add_action('wp_ajax_nopriv_pamp_search_analytics' ,array($this,'record_track'));
