@@ -110,14 +110,12 @@ function pa_order_save_taxonomies_order() {
 
 /* front end */
 function pa_reorder_front_end_posts( $query ) {
-    if ( is_admin() /* || !$query->is_main_query() */ )
+    if ( is_admin() )
         return;
 
-    //if ( !isset($query->query_vars['post_type']) ) {
-        $query->set( 'orderby', 'menu_order' );
-        $query->set( 'order', 'ASC' );       
-        return;
-    //}
+    $query->set( 'orderby', 'menu_order' );
+    $query->set( 'order', 'ASC' );       
+    return;
 
 }
 
