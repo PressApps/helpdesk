@@ -74,7 +74,10 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'assets/js/scripts.min.js': [jsFileList]
+          'assets/js/scripts.min.js': [jsFileList],
+          'assets/js/vendor/jquery.fitvids.min.js': 'assets/vendor/fitvids/jquery.fitvids.js',
+          'assets/js/vendor/jquery.autocomplete.min.js': 'assets/vendor/devbridge-autocomplete/src/jquery.autocomplete.js',
+          'assets/js/vendor/chart.min.js': 'assets/vendor/chartjs/Chart.js',
         }
       }
     },
@@ -146,12 +149,13 @@ module.exports = function(grunt) {
         // Browser live reloading
         // https://github.com/gruntjs/grunt-contrib-watch#live-reloading
         options: {
-          livereload: false
+          livereload: true
         },
         files: [
           'assets/css/main.css',
           'assets/js/scripts.js',
           'templates/*.php',
+          'lib/*.php',
           '*.php'
         ]
       }

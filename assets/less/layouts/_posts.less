@@ -1,63 +1,68 @@
-.hentry header { }
+.icon-wrap {
+  display: inline-block;
+}
+.icon-wrap, .entry-title .icon-wrap, a .icon-wrap {
+  color: #888;
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+.entry-title {
+  margin-bottom:10px;
+  .icon {
+    color: #bbb;
+    font-size: 0.85em;
+    float: right;
+    margin: 4px 0 0 10px;
+  }
+}
 .post.hentry {
   margin-bottom: 30px;
 }
 .single .post.hentry {
   margin-bottom: 0;
 }
-.entry-title {
-  margin-bottom:10px;
-}
 .single .entry-title {
   margin-bottom: 15px;
   border-bottom: 1px solid @element-border-color;
   padding-bottom: 15px;
 }
-.entry-title .post-format, a .post-format {
-  color: #999;
-  font-size: 0.9em;
-  margin-right: 5px;
-}
-.entry-title .icon {
-  color: #bbb;
-  font-size: 0.85em;
-  float: right;
-  margin: 4px 0 0 10px;
-}
 .meta {
 	font-size: 0.9em;
-	color: #aaa;
   border-top: 1px solid @element-border-color;
   padding-top: 10px;
+  p, time {
+    display: inline-block;
+    margin-right: 20px;
+  }
 }
-.meta p, .meta time {
-  display: inline-block;
-  margin-right: 20px;
+.wrap .meta {
+  color: #aaa;
+  p, time, a {
+    color: #aaa;
+  }
 }
 .tags {
-
-}
-.tags a, .tags a:visited {
-  display: inline-block;
-  padding: 5px 10px 6px;
-  color: #555;
-  font-size: 11px;
-  line-height: 10px;
-  margin: 0 0 5px 20px;
-  text-decoration: none;
-  background-color: #f3f3f3;
-  border-radius: 1px;
-}
-.tags a:hover {
-  color:#333;
-  text-decoration:none;
+  a, a:visited {
+    display: inline-block;
+    padding: 5px 10px 6px;
+    font-size: 11px;
+    line-height: 10px;
+    margin: 0 0 5px 20px;
+    text-decoration: none;
+    background-color: #f3f3f3;
+    border-radius: 1px;
+  }
+  a:hover {
+    text-decoration:none;
+  }
 }
 
-
-
-.hentry .byline { }
-.hentry .entry-content { }
-
+.module {
+  margin-top: @section-spacing;
+  h2 {
+    margin-bottom: 20px;
+  }
+}
 
 /**
  * Article voting
@@ -68,36 +73,41 @@
 	padding-top: 25px;
 	padding-bottom: 25px;
 	border: 1px solid @element-border-color;
-}
-.vote h3 {
-	text-align: center;
-	color: #9b9b9b;
-	margin: 0;
-}
-.vote p {
-	margin: 25px 0 0;
+  h3 {
+    text-align: center;
+    color: #9b9b9b;
+    margin: 0;
+  }
+  p {
+    margin: 25px 0 0;
+  }
+  .icon:hover {
+    opacity: 0.7;
+  }
 }
 .like-btn, .dislike-btn {
   font-size: 36px;
   margin: 0 20px;
 }
-.like-btn .icon {
-  color: #94bc1a;
+.like-btn {
+  .icon {
+    color: #94bc1a;
+  }
 }
-.dislike-btn .icon {
-  color: #c84848;
-}
-.vote .icon:hover {
-  opacity: 0.7;
+.dislike-btn {
+  .icon {
+    color: #c84848;
+  }
 }
 
 /**
  * Related articles
  */
 .related {
-  
+  p {
+    margin-bottom: 0;
+  }
 }
-
 
 /**
  * Comments
@@ -126,3 +136,65 @@
 .comment-author {
   float: left;
 }
+
+/**
+ * Category page
+ */
+.category-sub {
+  margin-bottom: @section-spacing;
+}
+/*
+.category-posts {
+  padding: 0;
+  list-style: none;
+}
+.sub-categories {
+  margin-bottom: 25px;
+}
+
+*/
+
+/**
+ * Document styled ordered list
+ */
+.style-ol {
+  ol {
+      counter-reset:li; /* Initiate a counter */
+      margin-left:0; /* Remove the default left margin */
+      padding-left:0; /* Remove the default left padding */
+  }
+  ol > li {
+      position:relative; /* Create a positioning context */
+      margin:0 0 40px 2em; /* Give each list item a left margin to make room for the numbers */
+      padding-left: 15px; /* Add some spacing around the content */
+      list-style:none; /* Disable the normal item numbering */
+  }
+  ol > li:before {
+      content:counter(li); /* Use the counter as content */
+      counter-increment:li; /* Increment the counter by 1 */
+      /* Position and style the number */
+      position:absolute;
+      top: -2px;
+      left:-2em;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      box-sizing:border-box;
+      width:2em;
+      height: 2em;
+      /* Some space between the number and the content in browsers that support
+         generated content but not positioning it (Camino 2 is one example) */
+      border-radius: 50px;
+      margin-right:8px;
+      padding:3px;
+      color:#fff;
+      background:#3197d1;
+      font-weight:bold;
+      font-family:"Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      text-align:center;
+  }
+  li ol,
+  li ul {margin-top:6px;}
+  ol ol li:last-child {margin-bottom:0;}
+}
+

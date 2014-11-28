@@ -1,10 +1,12 @@
 <?php get_template_part('templates/page', 'header'); ?>
 
 <?php if (!have_posts()) : ?>
-  <div class="alert alert-warning">
-    <?php _e('Sorry, no results were found.', 'roots'); ?>
-  </div>
-  <?php get_search_form(); ?>
+	<p class="no-results">
+		<?php _e('There were no results for your search! Try another search or use the links in header to locate what you’re looking for.', 'roots'); ?>
+	</p>
+	<div class="not-found">
+		<?php get_template_part('templates/search', 'form'); ?>
+	</div>
 <?php endif; ?>
 
 <?php while (have_posts()) : the_post(); ?>

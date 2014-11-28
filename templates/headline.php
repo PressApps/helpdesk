@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7 hidden-xs hidden-sm">
-        <?php pa_breadcrumbs(); ?>
+        <?php breadcrumbs(); ?>
       </div>
       <div class="col-md-5">
         <?php if ($helpdesk['headline_search']) { ?>

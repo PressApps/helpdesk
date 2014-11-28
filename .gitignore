@@ -3,3 +3,4 @@
 node_modules
 assets/vendor/*
 assets/css/main.css.map
+lib/addons/*

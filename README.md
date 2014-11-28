@@ -1,14 +1,11 @@
-# [Roots Starter Theme](http://roots.io/)
-[![devDependency Status](https://david-dm.org/roots/roots/dev-status.svg)](https://david-dm.org/roots/roots#info=devDependencies)
+# [Helpdesk Theme](http://pressapps.co/)
 
-Roots is a WordPress starter theme based on [HTML5 Boilerplate](http://html5boilerplate.com/) & [Bootstrap](http://getbootstrap.com/) that will help you make better themes.
+Helpdesk is a WordPress Knowledge base theme based on [Roots](https://github.com/roots/roots).
 
-* Source: [https://github.com/roots/roots](https://github.com/roots/roots)
-* Homepage: [http://roots.io/](http://roots.io/)
-* Documentation: [http://roots.io/docs/](http://roots.io/docs/)
-* Twitter: [@rootswp](https://twitter.com/rootswp), [@retlehs](https://twitter.com/retlehs), [@swalkinshaw](https://twitter.com/swalkinshaw), [@Foxaii](https://twitter.com/Foxaii), [@c2foryou](https://twitter.com/c2foryou)
-* Newsletter: [Subscribe](http://roots.io/subscribe/)
-* Forum: [http://discourse.roots.io/](http://discourse.roots.io/)
+* Source: [https://github.com/pressapps/helpdesk](https://github.com/pressapps/helpdesk)
+* Homepage: [http://pressapps.co/](http://pressapps.co/)
+* Documentation: [http://pressapps.co/docs/](http://pressapps.co/docs/)
+* Twitter: [@pressapps](https://twitter.com/pressapps)
 
 ## Features
 
@@ -45,10 +42,6 @@ If you don't use [Bedrock](https://github.com/roots/bedrock), you'll need to add
 define('WP_ENV', 'development');
 ```
 
-## Theme activation
-
-Reference the [theme activation](http://roots.io/roots-101/#theme-activation) documentation to understand everything that happens once you activate Roots.
-
 ## Configuration
 
 Edit `lib/config.php` to enable or disable theme features and to define a Google Analytics ID.
@@ -58,8 +51,6 @@ Edit `lib/init.php` to setup navigation menus, post thumbnail sizes, post format
 ## Theme development
 
 Roots uses [Grunt](http://gruntjs.com/) for compiling LESS to CSS, checking for JS errors, live reloading, concatenating and minifying files, versioning assets, and generating lean Modernizr builds.
-
-If you'd like to use Bootstrap Sass, look at the [Roots Sass](https://github.com/roots/roots-sass) fork.
 
 ### Install Grunt and Bower
 

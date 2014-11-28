@@ -6206,6 +6206,9 @@ button.close {
 /**
  * Theme variables
  */
+body {
+  line-height: 1.7em;
+}
 h1,
 h2,
 h3,
@@ -6225,6 +6228,18 @@ a:hover {
 }
 .page-header {
   margin-top: 0;
+}
+.pagination > li > a,
+.pagination > li > span {
+  margin-left: 5px;
+}
+.pagination > li > a,
+.pagination > li > span,
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span,
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-radius: 2px;
 }
 /*
 textarea, .form-control, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
@@ -7930,6 +7945,7 @@ figure.alignnone {
   line-height: 1.3em;
   margin: 5px 0;
   font-weight: 400;
+  color: #666;
 }
 .autocomplete-suggestion p {
   float: right;
@@ -7946,6 +7962,9 @@ figure.alignnone {
 }
 .autocomplete-selected {
   background: WhiteSmoke;
+}
+.widget .icon-wrap {
+  margin-right: 6px;
 }
 .sidebar {
   position: relative;
@@ -8000,14 +8019,6 @@ figure.alignnone {
 .content-info .content-info p {
   margin: 0;
 }
-.content-info a:hover {
-  opacity: 0.8;
-}
-.sidebar-footer {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  border-top: 1px solid #efefef;
-}
 .footer-bottom {
   padding: 20px 0;
   border-top: 1px solid #efefef;
@@ -8015,12 +8026,6 @@ figure.alignnone {
   word-spacing: 2px;
   color: #999;
   font-size: 0.9em;
-}
-.footer-bottom .footer-social {
-  margin-top: 10px;
-}
-.footer-bottom .footer-social i {
-  margin: 0 5px;
 }
 .navbar-footer {
   list-style: none;
@@ -8032,13 +8037,11 @@ figure.alignnone {
   padding: 0 7px;
 }
 .copyright,
-.navbar-footer,
-.footer-social {
+.navbar-footer {
   text-align: center;
 }
 @media (min-width: 992px) {
-  .navbar-footer,
-  .footer-social {
+  .navbar-footer {
     text-align: right;
     margin-top: 0;
   }
@@ -8046,9 +8049,49 @@ figure.alignnone {
     text-align: left;
   }
 }
-.knowledge-base-row ul {
+.no-results {
+  line-height: 1.6em;
+  font-size: 26px;
+}
+/**
+ * Knowledge base template
+ */
+.kb-row {
+  margin-top: 50px;
+}
+.kb-row h2 {
+  margin-bottom: 14px;
+}
+.kb-row ul {
   padding: 0;
   list-style: none;
+}
+.kb-row li {
+  line-height: 1.9em;
+}
+.kb-row-1 {
+  margin-top: 0;
+}
+.not-found {
+  text-align: center;
+}
+.not-found h1 {
+  margin-top: 50px;
+  font-size: 36px;
+}
+.not-found i {
+  font-size: 100px;
+}
+.not-found .search-main {
+  margin: 80px 0;
+}
+.not-found .search-main input {
+  height: 53px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.not-found .icon-Magnifi-Glass2 {
+  top: 19px;
 }
 section {
   padding-top: 60px;
@@ -8130,25 +8173,18 @@ section .box:hover {
 .section-hero .icon-Magnifi-Glass2 {
   top: 19px;
 }
-.post.hentry {
-  margin-bottom: 30px;
+.icon-wrap {
+  display: inline-block;
 }
-.single .post.hentry {
-  margin-bottom: 0;
+.icon-wrap,
+.entry-title .icon-wrap,
+a .icon-wrap {
+  color: #888;
+  margin-right: 5px;
+  font-size: 0.9em;
 }
 .entry-title {
   margin-bottom: 10px;
-}
-.single .entry-title {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #efefef;
-  padding-bottom: 15px;
-}
-.entry-title .post-format,
-a .post-format {
-  color: #999;
-  font-size: 0.9em;
-  margin-right: 5px;
 }
 .entry-title .icon {
   color: #bbb;
@@ -8156,9 +8192,19 @@ a .post-format {
   float: right;
   margin: 4px 0 0 10px;
 }
+.post.hentry {
+  margin-bottom: 30px;
+}
+.single .post.hentry {
+  margin-bottom: 0;
+}
+.single .entry-title {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 15px;
+}
 .meta {
   font-size: 0.9em;
-  color: #aaa;
   border-top: 1px solid #efefef;
   padding-top: 10px;
 }
@@ -8167,11 +8213,18 @@ a .post-format {
   display: inline-block;
   margin-right: 20px;
 }
+.wrap .meta {
+  color: #aaa;
+}
+.wrap .meta p,
+.wrap .meta time,
+.wrap .meta a {
+  color: #aaa;
+}
 .tags a,
 .tags a:visited {
   display: inline-block;
   padding: 5px 10px 6px;
-  color: #555;
   font-size: 11px;
   line-height: 10px;
   margin: 0 0 5px 20px;
@@ -8180,8 +8233,13 @@ a .post-format {
   border-radius: 1px;
 }
 .tags a:hover {
-  color: #333;
   text-decoration: none;
+}
+.module {
+  margin-top: 60px;
+}
+.module h2 {
+  margin-bottom: 20px;
 }
 /**
  * Article voting
@@ -8201,6 +8259,9 @@ a .post-format {
 .vote p {
   margin: 25px 0 0;
 }
+.vote .icon:hover {
+  opacity: 0.7;
+}
 .like-btn,
 .dislike-btn {
   font-size: 36px;
@@ -8212,12 +8273,12 @@ a .post-format {
 .dislike-btn .icon {
   color: #c84848;
 }
-.vote .icon:hover {
-  opacity: 0.7;
-}
 /**
  * Related articles
  */
+.related p {
+  margin-bottom: 0;
+}
 /**
  * Comments
  */
@@ -8245,5 +8306,74 @@ a .post-format {
 }
 .comment-author {
   float: left;
+}
+/**
+ * Category page
+ */
+.category-sub {
+  margin-bottom: 60px;
+}
+/*
+.category-posts {
+  padding: 0;
+  list-style: none;
+}
+.sub-categories {
+  margin-bottom: 25px;
+}
+
+*/
+/**
+ * Document styled ordered list
+ */
+.style-ol ol {
+  counter-reset: li;
+  /* Initiate a counter */
+  margin-left: 0;
+  /* Remove the default left margin */
+  padding-left: 0;
+  /* Remove the default left padding */
+}
+.style-ol ol > li {
+  position: relative;
+  /* Create a positioning context */
+  margin: 0 0 40px 2em;
+  /* Give each list item a left margin to make room for the numbers */
+  padding-left: 15px;
+  /* Add some spacing around the content */
+  list-style: none;
+  /* Disable the normal item numbering */
+}
+.style-ol ol > li:before {
+  content: counter(li);
+  /* Use the counter as content */
+  counter-increment: li;
+  /* Increment the counter by 1 */
+  /* Position and style the number */
+  position: absolute;
+  top: -2px;
+  left: -2em;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 2em;
+  height: 2em;
+  /* Some space between the number and the content in browsers that support
+         generated content but not positioning it (Camino 2 is one example) */
+  border-radius: 50px;
+  margin-right: 8px;
+  padding: 3px;
+  color: #fff;
+  background: #3197d1;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+.style-ol li ol,
+.style-ol li ul {
+  margin-top: 6px;
+}
+.style-ol ol ol li:last-child {
+  margin-bottom: 0;
 }
 /*# sourceMappingURL=main.css.map */

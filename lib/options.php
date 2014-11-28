@@ -1,4 +1,5 @@
 <?php
+
     /**
      * ReduxFramework Sample Config File
      * For full documentation, please visit: http://docs.reduxframework.com/
@@ -231,29 +232,59 @@
                     $sampleHTML = $wp_filesystem->get_contents( dirname( __FILE__ ) . '/info-html.html' );
                 }
 
+                /*
+                $this->sections[] = array(
+                    'icon'   => 'el-icon-screen',
+                    'title'  => __( 'General', 'redux-framework-demo' ),
+                    'fields' => array(
+
+                    )
+                );
+                */
+
                 // ACTUAL DECLARATION OF SECTIONS
                 $this->sections[] = array(
                     'icon'   => 'el-icon-cog',
-                    'title'  => __( 'General Settings', 'redux-framework-demo' ),
+                    'title'  => __( 'General', 'redux-framework-demo' ),
                     'fields' => array(
                         array(
                             'id' => 'logo',
-                            'type' => 'media', 
-                            'title' => __('Logo Upload', 'pressapps' ), 
-                            'subtitle' => __('Upload logo image.', 'pressapps' ),
+                            'type' => 'media',
+                            'title' => __('Logo Upload', 'pressapps' ),
                         ),
                         array(
                             'id' => 'favicon',
-                            'type' => 'media', 
-                            'title' => __('Favicon Upload', 'pressapps' ), 
-                            'subtitle' => __('Upload favicon image.', 'pressapps' ),
+                            'type' => 'media',
+                            'title' => __('Favicon Upload', 'pressapps' ),
                         ),
+                        array(
+                            'title'     => __( 'Google Analytics ID', 'shoestrap' ),
+                            'desc'      => __( 'Paste your Google Analytics ID here to enable analytics tracking. ID should be in the form of UA-XXXXX-Y.', 'shoestrap' ),
+                            'id'        => 'analytics_id',
+                            'default'   => '',
+                            'type'      => 'text',
+                        ),
+                        array(
+                            'id'       => 'custom_css',
+                            'type'     => 'ace_editor',
+                            'title'    => __( 'CSS Code', 'redux-framework-demo' ),
+                            'desc' => __( 'Paste your custom CSS code here.', 'redux-framework-demo' ),
+                            'mode'     => 'css',
+                            'theme'    => 'monokai',
+                            'default'  => '',
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'   => 'el-icon-screen',
+                    'title'  => __( 'Layout', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
                             'id'       => 'layout',
                             'type'     => 'image_select',
-                            'compiler' => true,
-                            'title'    => __( 'Main Layout', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Select main content and sidebar alignment. Choose between 1, 2 or 3 column layout.', 'redux-framework-demo' ),
+                            'title'    => __( 'Main', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select main content and sidebar alignment.', 'redux-framework-demo' ),
                             'options'  => array(
                                 '1' => array(
                                     'alt' => '1 Column',
@@ -268,102 +299,153 @@
                                     'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                                 ),
                             ),
-                            'default'  => '2'
+                            'default'  => '3'
                         ),
                         array(
-                            'id'       => 'opt-textarea',
-                            'type'     => 'textarea',
-                            'required' => array( 'layout', 'equals', '1' ),
-                            'title'    => __( 'Tracking Code', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Paste your Google Analytics (or other) tracking code here. This will be added into the footer template of your theme.', 'redux-framework-demo' ),
-                            'validate' => 'js',
-                            'desc'     => 'Validate that it\'s javascript!',
+                            'id'       => 'layout_category',
+                            'type'     => 'image_select',
+                            'title'    => __( 'Category', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select category page content and sidebar alignment.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => array(
+                                    'alt' => '1 Column',
+                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                                ),
+                                '2' => array(
+                                    'alt' => '2 Column Left',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                                ),
+                                '3' => array(
+                                    'alt' => '2 Column Right',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                                ),
+                            ),
+                            'default'  => '3'
                         ),
                         array(
-                            'id'       => 'opt-ace-editor-css',
-                            'type'     => 'ace_editor',
-                            'title'    => __( 'CSS Code', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Paste your CSS code here.', 'redux-framework-demo' ),
-                            'mode'     => 'css',
-                            'theme'    => 'monokai',
-                            'desc'     => 'Possible modes can be found at <a href="http://ace.c9.io" target="_blank">http://ace.c9.io/</a>.',
-                            'default'  => "#header{\nmargin: 0 auto;\n}"
+                            'id'       => 'layout_single',
+                            'type'     => 'image_select',
+                            'title'    => __( 'Single', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select single page content and sidebar alignment.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => array(
+                                    'alt' => '1 Column',
+                                    'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                                ),
+                                '2' => array(
+                                    'alt' => '2 Column Left',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                                ),
+                                '3' => array(
+                                    'alt' => '2 Column Right',
+                                    'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                                ),
+                            ),
+                            'default'  => '3'
                         ),
                         array(
-                            'id'       => 'footer_text',
-                            'type'     => 'editor',
-                            'title'    => __( 'Footer Text', 'redux-framework-demo' ),
-                            'default'  => 'Powered by Redux Framework.',
-                            'args'     => array(
-                                'media_buttons' => false,
-                                //'teeny'         => false,
+                            'id' => 'kb_columns_category',
+                            'type' => 'select',
+                            'title' => __('Subcategory Columns', 'pressapps' ), 
+                            'desc' => __('Select number of knowledge base subcategory columns displayed on category page.', 'pressapps' ),
+                            'options' => array(
+                                2 => '2 Columns',
+                                3 => '3 Columns',
+                                4 => '4 Columns',
+                            ),
+                            'default'   => '3', 
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'       => 'el-icon-star-empty',
+                    'title'      => __( 'Features', 'redux-framework-demo' ),
+                    'fields'     => array(
+                        array(
+                            'id' => 'reorder',
+                            'type' => 'switch',
+                            'title' => __('Reorder', 'pressapps' ), 
+                            'desc' => __('Enable drag and drop reordering under Posts>>All Posts, Posts>>Categories and Posts>>Actions.', 'pressapps' ),
+                            "default"       => 1,
+                        ),
+                        array(
+                            'id'       => 'search_analytics',
+                            'type'     => 'switch',
+                            'title'    => __( 'Search Analytics', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable to save user search data for for analytics', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'icons_category',
+                            'type'     => 'switch',
+                            'title'    => __( 'Category Icons', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable category icons (Assign icons to categoies under Posts >> Categories).', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'icons_post_format',
+                            'type'     => 'switch',
+                            'title'    => __( 'Post Format Icons', 'redux-framework-demo' ),
+                            'desc'     => __( 'Enable post format icons.', 'redux-framework-demo' ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'title'     => __( 'Enable Nice Search', 'shoestrap' ),
+                            'desc'      => __( 'Redirects /?s=query to /search/query/, convert %20 to +.', 'shoestrap' ),
+                            'id'        => 'nice_search',
+                            'default'   => 1,
+                            'type'      => 'switch',
+                        ),
+                        array(
+                            'id'       => 'reset_all_votes',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Reset All Article Votes', 'redux-framework-demo' ),
+                            'desc'     => __( 'Reset votes on all articles!', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => 'Reset All Votes'
+                            ),
+                            'multi'    => true,
+                            'default'  => '0'
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'   => 'el-icon-minus',
+                    'title'  => __( 'Navigation', 'redux-framework-demo' ),
+                    'fields' => array(
+                        array(
+                            'id'       => 'navbar_link_color',
+                            'type'     => 'link_color',
+                            'title'    => __( 'Link Colors', 'redux-framework-demo' ),
+                            'active'    => false,
+                            'default'  => array(
+                                'regular' => '#999999',
+                                'hover'   => '#439dd0',
                             ),
                         ),
                     )
                 );
 
                 $this->sections[] = array(
-                    'icon'       => 'el-icon-tint',
-                    'title'      => __( 'Styling Options', 'redux-framework-demo' ),
-                    'fields'     => array(
-                        array(
-                            'id'       => 'section-navbar',
-                            'type'     => 'section',
-                            'title'    => __( 'Navigation', 'redux-framework-demo' ),
-                            'indent'   => true, 
-                        ),
-                        array(
-                            'id'       => 'navbar_link_color',
-                            'type'     => 'link_color',
-                            'title'    => __( 'Nav Links Color', 'redux-framework-demo' ),
-                            'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
-                            //'regular'   => false, // Disable Regular Color
-                            //'hover'     => false, // Disable Hover Color
-                            'active'    => false, // Disable Active Color
-                            //'visited'   => true,  // Enable Visited Color
-                            'default'  => array(
-                                'regular' => '#999999',
-                                'hover'   => '#439dd0',
-                            ),
-                            //'output'   => array( '.navbar-default .navbar-nav li > a' ),
-                        ),
-                        array(
-                            'id'       => 'section-hedline',
-                            'type'     => 'section',
-                            'title'    => __( 'Headline', 'redux-framework-demo' ),
-                            'indent'   => true, 
-                        ),
+                    'icon'   => 'el-icon-website',
+                    'title'  => __( 'Headline', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
                             'id'       => 'headline_bg',
                             'type'     => 'background',
                             'output'   => array( '.headline' ),
-                            'title'    => __( 'Headline Background', 'redux-framework-demo' ),
+                            'title'    => __( 'Background', 'redux-framework-demo' ),
                             'desc' => __( 'Headline background with image or color.', 'redux-framework-demo' ),
                             'default'  => array(
                                 'background-color' => '#f3f3f3',
                             )
                         ),
                         array(
-                            'id'       => 'headline_padding',
-                            'type'     => 'spacing',
-                            'output'   => array( '.headline' ),
-                            'mode'     => 'padding',
-                            //'all'      => false,
-                            'right'         => false,
-                            'left'          => false,
-                            'units'         => 'px',
-                            'title'    => __( 'Headline Padding', 'redux-framework-demo' ),
-                            'desc'     => __( 'Default headline top and bottom padding in px.', 'redux-framework-demo' ),
-                            'default'  => array(
-                                'padding-top'    => '30px',
-                                'padding-bottom' => '30px',
-                            )
-                        ),
-                        array(
                             'id'       => 'headline_text',
                             'type'     => 'color',
-                            'title'    => __( 'Headline Text Color', 'redux-framework-demo' ),
-                            'subtitle' => __( 'Pick a headline text color.', 'redux-framework-demo' ),
+                            'title'    => __( 'Text Color', 'redux-framework-demo' ),
                             'default'  => '#aaaaaa',
                             'transparent' => false,
                             'validate' => 'color',
@@ -372,117 +454,140 @@
                             )
                         ),
                         array(
-                            'id'       => 'section-content',
-                            'type'     => 'section',
-                            'title'    => __( 'Content', 'redux-framework-demo' ),
-                            'indent'   => true, 
+                            'id'       => 'headline_padding',
+                            'type'     => 'spacing',
+                            'output'   => array( '.headline' ),
+                            'mode'     => 'padding',
+                            'right'         => false,
+                            'left'          => false,
+                            'units'         => 'px',
+                            'title'    => __( 'Padding', 'redux-framework-demo' ),
+                            'desc'     => __( 'Default headline top and bottom padding in px.', 'redux-framework-demo' ),
+                            'default'  => array(
+                                'padding-top'    => '30px',
+                                'padding-bottom' => '30px',
+                            )
                         ),
                         array(
-                            'id'       => 'link_color',
-                            'type'     => 'link_color',
-                            'title'    => __( 'Links Color Option', 'redux-framework-demo' ),
-                            'desc'     => __( 'This is the description field, again good for additional info.', 'redux-framework-demo' ),
-                            //'regular'   => false, // Disable Regular Color
-                            //'hover'     => false, // Disable Hover Color
-                            'active'    => false, // Disable Active Color
-                            //'visited'   => true,  // Enable Visited Color
-                            'default'  => array(
-                                'regular' => '#439dd0',
-                                'hover'   => '#3d3d3d',
+                            'id' => 'headline_search',
+                            'type' => 'button_set',
+                            'title'       => __( 'Search', 'shoestrap' ),
+                            'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
+                            'options'   => array(
+                                '0' => 'Disabled',
+                                '1' => 'WP Search',
+                                '2' => 'Live Search',
                             ),
-                            'output'   => array( '.wrap a' ),
+                            'default'     => 2,
                         ),
                         array(
-                            'id'       => 'heading_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Title Colors', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
-                            'default'  => '#83959f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
-                        ),
-                        array(
-                            'id'       => 'font_header',
-                            'type'     => 'typography',
-                            'title'    => __( 'Title Font', 'redux-framework-demo' ),
-                            'desc' => __( 'Specify the body font properties.', 'redux-framework-demo' ),
-                            'google'   => true,
-                            'font-size'   => false,
-                            'line-height'   => false,
-                            'text-align'   => false,
-                            'default'  => array(
-                                'color'       => '#439dcf',
-                                'font-family' => 'Open Sans',
-                                'font-weight' => '400',
+                            'id' => 'live_search_in',
+                            'type' => 'button_set',
+                            'title' => __('Search In', 'pressapps' ),
+                            'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
+                            'required'    => array('headline_search','=',array('2')),
+                            'options' => array(
+                                '1' => 'Titles Only',
+                                '2' => 'Titles and Content'
                             ),
-                            'output'   => array( '.entry-title, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a' ),
+                            'default' => '2',
                         ),
                         array(
-                            'id'       => 'font_body',
-                            'type'     => 'typography',
-                            'title'    => __( 'Body Font', 'redux-framework-demo' ),
-                            'desc' => __( 'Specify the body font properties.', 'redux-framework-demo' ),
-                            'google'   => true,
-                            'default'  => array(
-                                'color'       => '#000000',
-                                'font-size'   => '14px',
-                                'font-family' => 'Open Sans',
-                                'font-weight' => '300',
-                                'line-height' => '22px'
-                            ),
-                            'output'   => array( 'body' ),
+                            'title'     => __( 'Search Placeholder', 'shoestrap' ),
+                            'desc'      => __( 'Enter search field placeholder.', 'shoestrap' ),
+                            'id'        => 'search_placeholder',
+                            'default'   => 'Search Knowledge Base Articles',
+                            'type'      => 'text',
                         ),
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'       => 'el-icon-file',
+                    'title'      => __( 'Single Page', 'redux-framework-demo' ),
+                    'fields'     => array(
                         array(
-                            'id'       => 'secondary_content_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Secondary Content Colors', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
-                            'default'  => '#84949f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( '.related, .comments, #respond, .entry-summary, .box p, .sidebar' ),
-                        ),
-                        array(
-                            'id'       => 'section-footer',
-                            'type'     => 'section',
-                            'title'    => __( 'Footer', 'redux-framework-demo' ),
-                            'indent'   => true, 
-                        ),
-                        array(
-                            'id'       => 'footer_sidebar_border',
-                            'type'     => 'border',
-                            'title'    => __( 'Sidebar Top Border', 'redux-framework-demo' ),
-                            'output'   => array( '.sidebar-footer' ),
-                            'left'     => false,
-                            'right'     => false,
-                            'bottom'     => false,
-                            'default'  => array(
-                                'border-color'  => '#efefef',
-                                'border-style'  => 'solid',
-                                'border-top'    => '1px',
+                            'id'       => 'single_modules',
+                            'title'    => __( 'Layout', 'redux-framework-demo' ),
+                            'type'     => 'sorter',
+                            'options'  => array(
+                                'Enabled'  => array(
+                                    'voting' => 'Voting',
+                                    'related'     => 'Related',
+                                    'cta'   => 'CTA',
+                                    'comments' => 'Comments',
+                                ),
+                                'Disabled' => array(),
                             ),
                         ),
                         array(
-                            'id'       => 'footer_sidebar_bg',
-                            'type'     => 'color',
-                            'title'    => __( 'Sidebar Background Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
-                            'transparent' => false,
-                            'default'  => '#fbfbfb',
-                            'validate' => 'color',
-                            'mode'     => 'background',
-                            'output'   => '.sidebar-footer',
+                            'id'       => 'print',
+                            'type'     => 'switch',
+                            'title'    => __( 'Print Button', 'redux-framework-demo' ),
+                            'desc'     => __( 'Display print button on article page.', 'redux-framework-demo' ),
+                            'default'  => '1'
                         ),
                         array(
-                            'id'       => 'footer_sidebar_color',
-                            'type'     => 'color',
-                            'title'    => __( 'Sidebar Text Color', 'redux-framework-demo' ),
-                            'desc' => __( 'Pick a header color.', 'redux-framework-demo' ),
-                            'default'  => '#84949f',
-                            'transparent' => false,
-                            'validate' => 'color',
-                            'output'   => array( '.content-info, .content-info a, .content-info h3, .content-info a .post-format' ),
+                            'id'       => 'article_voting',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
+                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => 'Public Voting',
+                                '2' => 'Logged In Users Only'
+                            ),
+                            'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'related_articles',
+                            'type'     => 'button_set',
+                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
+                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => 'Related by Tag',
+                                '2' => 'Related by Category'
+                            ),
+                            'default'  => '2'
+                        ),
+                        array(
+                            'id'       => 'article_meta',
+                            'type'     => 'checkbox',
+                            'title'    => __( 'Display Article Meta', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select which aticle meta info to display.', 'redux-framework-demo' ),
+                            'options'  => array(
+                                '1' => 'Updated',
+                                '2' => 'Author',
+                                '3' => 'Category',
+                                '4' => 'Tags',
+                            ),
+                            'default'  => array(
+                                '1' => '1',
+                                '2' => '0',
+                                '3' => '0',
+                                '4' => '1',
+                            )
+                        ),
+                        array(
+                            'id'       => 'call_to_action',
+                            'type'     => 'editor',
+                            'title'    => __( 'Call To Action Content', 'redux-framework-demo' ),
+                            'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
+                        ),
+                    )
+                );
+
+                $this->sections[] = array(
+                    'icon'       => 'el-icon-minus',
+                    'title'      => __( 'Footer', 'redux-framework-demo' ),
+                    'fields'     => array(
+                        array(
+                            'id'       => 'footer_text',
+                            'type'     => 'editor',
+                            'title'    => __( 'Footer Text', 'redux-framework-demo' ),
+                            'default'  => 'Powered by Helpdesk Theme.',
+                            'args'     => array(
+                                'media_buttons' => false,
+                            ),
                         ),
                         array(
                             'id'       => 'footer_bottom_border',
@@ -504,7 +609,7 @@
                             'title'    => __( 'Bottom Background Color', 'redux-framework-demo' ),
                             'desc' => __( 'Pick a background color for the footer (default: #dd9933).', 'redux-framework-demo' ),
                             'transparent' => false,
-                            'default'  => '#fbfbfb',
+                            'default'  => '#ffffff',
                             'validate' => 'color',
                             'mode'     => 'background',
                             'output'   => '.footer-bottom',
@@ -519,255 +624,76 @@
                             'validate' => 'color',
                             'output'   => array( '.footer-bottom, .footer-bottom a, .footer-bottom i' ),
                         ),
-
                     )
                 );
 
-
                 $this->sections[] = array(
-                    'icon'       => 'el-icon-file',
-                    'title'      => __( 'Knowledge Base', 'redux-framework-demo' ),
-                    'fields'     => array(
+                    'icon'   => 'el-icon-font',
+                    'title'  => __( 'Typography', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
-                            'id' => 'headline_search',
-                            'type' => 'button_set',
-                            'title'       => __( 'Search', 'shoestrap' ),
-                            'desc'        => __( 'Display a search form in the headline.', 'shoestrap' ),
-                            'options'   => array(
-                                '0' => 'Disabled',
-                                '1' => 'WP Search',
-                                '2' => 'Live Search',
-                            ),
-                            'default'     => 2,
-                        ),
-                        array(
-                            'id' => 'live_search_in',
-                            'type' => 'select',
-                            'title' => __('Search Titles / Content', 'pressapps' ), 
-                            'desc' => __('Search in post titles only or post titles and content.', 'pressapps' ),
-                            'required'    => array('headline_search','=',array('2')),
-                            'options' => array(
-                                '1' => 'Titles Only',
-                                '2' => 'Titles and Content'
-                            ), 
-                            'default' => '2',
-                        ),
-                        array(
-                            'id'       => 'print',
-                            'type'     => 'switch',
-                            'title'    => __( 'Print Button', 'redux-framework-demo' ),
-                            'desc'     => __( 'Display print button on article page.', 'redux-framework-demo' ),
-                            'default'  => '1'
-                        ),
-
-
-                        array(
-                            'id'       => 'article_voting',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Article Voting', 'redux-framework-demo' ),
-                            'desc'     => __( 'Allow users to vote on articles.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '0' => 'Disabled',
-                                '1' => 'Public Voting',
-                                '2' => 'Logged In Users Only'
-                            ),
-                            'default'  => '1'
-                        ),
-                        array(
-                            'id'       => 'related_articles',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Related Articles', 'redux-framework-demo' ),
-                            'desc'     => __( 'Display related articles on single page.', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '0' => 'Disabled',
-                                '1' => 'Related by Tag',
-                                '2' => 'Related by Category'
-                            ),
-                            'default'  => '2'
-                        ),
-                        array(
-                            'id'       => 'article_meta',
-                            'type'     => 'checkbox',
-                            'title'    => __( 'Display Article Meta', 'redux-framework-demo' ),
-                            'desc'     => __( 'Select which aticle meta info to display.', 'redux-framework-demo' ),
-                            //Must provide key => value pairs for multi checkbox options
-                            'options'  => array(
-                                '1' => 'Updated',
-                                '2' => 'Author',
-                                '3' => 'Category',
-                                '4' => 'Tags',
-                            ),
-                            //See how std has changed? you also don't need to specify opts that are 0.
+                            'id'       => 'font_heading',
+                            'type'     => 'typography',
+                            'title'    => __( 'Heading Font', 'redux-framework-demo' ),
+                            'desc' => __( 'Specify the heading font properties.', 'redux-framework-demo' ),
+                            'google'   => true,
+                            'font-size'   => false,
+                            'line-height'   => false,
+                            'text-align'   => false,
+                            'color'     => false,
+                            'subsets'     => false,
                             'default'  => array(
-                                '1' => '1',
-                                '2' => '0',
-                                '3' => '0',
-                                '4' => '1',
-                            )
-                        ),
-                        array(
-                            'id'       => 'call_to_action',
-                            'type'     => 'editor',
-                            'title'    => __( 'Contact Info', 'redux-framework-demo' ),
-                            'default'  => '<h3 style="text-align: center;">Need additional help? We are more than happy to help, <a href="#">contact us</a>!</h3>',
-                        ),
-                        array(
-                            'id'       => 'reset_all_votes',
-                            'type'     => 'button_set',
-                            'title'    => __( 'Reset All Article Votes', 'redux-framework-demo' ),
-                            'desc'     => __( 'Reset votes on all articles!', 'redux-framework-demo' ),
-                            'options'  => array(
-                                '1' => 'Reset All Votes'
+                                'font-family' => 'Open Sans',
+                                'font-weight' => '400',
                             ),
-                            'multi'    => true,
-                            'default'  => '0'
+                            'output'   => array( 'h1, h2, h3, h4, h5, h6' ),
+                        ),
+                        array(
+                            'id'       => 'font_body',
+                            'type'     => 'typography',
+                            'title'    => __( 'Body Font', 'redux-framework-demo' ),
+                            'desc' => __( 'Specify the body font properties.', 'redux-framework-demo' ),
+                            'google'   => true,
+                            'line-height'   => false,
+                            'text-align'   => false,
+                            'subsets'     => false,
+                            'default'  => array(
+                                'color'       => '#000000',
+                                'font-size'   => '14px',
+                                'font-family' => 'Open Sans',
+                                'font-weight' => '300',
+                                'line-height' => '22px'
+                            ),
+                            'output'   => array( 'body' ),
                         ),
                     )
                 );
 
-                // Footer Settings
                 $this->sections[] = array(
-                    'title'   => __( 'Footer', 'shoestrap' ),
-                    'icon' => 'el-icon-website',
-                    'fields'  => array(
+                    'icon'   => 'el-icon-tint',
+                    'title'  => __( 'Colors', 'redux-framework-demo' ),
+                    'fields' => array(
                         array(
-                            'title'       => __( 'Show social icons in footer', 'shoestrap' ),
-                            'desc'        => __( 'Show social icons in the footer.', 'shoestrap' ),
-                            'id'          => 'footer_social',
-                            'type'        => 'switch',
-                            'default'     => 0,
-                        ),
-                    )
-                );
-
-                // Social Settings
-                $this->sections[] = array(
-                    'title'     => __( 'Social Links', 'shoestrap' ),
-                    'icon'      => 'el-icon-heart',
-                    'fields'  => array(
-                        array(
-                            'id'        => 'social_sharing_help_3',
-                            'title'     => __( 'Social Links used in Menus && Footer. Enter full profile URL. To remove, just leave blank.', 'shoestrap' ),
-                            'type'      => 'info'
+                            'id'       => 'primary_color',
+                            'type'     => 'link_color',
+                            'title'    => __( 'Primary Color', 'redux-framework-demo' ),
+                            'desc'     => __( 'Select main content link colors.', 'redux-framework-demo' ),
+                            'active'    => false, 
+                            'default'  => array(
+                                'regular' => '#439dd0',
+                                'hover'   => '#3d3d3d',
+                            ),
+                            'output'   => array( 'a' ),
                         ),
                         array(
-                            'title'     => __( 'Dribbble', 'shoestrap' ),
-                            'id'        => 'dribbble_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Facebook', 'shoestrap' ),
-                            'id'        => 'facebook_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Flickr', 'shoestrap' ),
-                            'id'        => 'flickr_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'GitHub', 'shoestrap' ),
-                            'id'        => 'github_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Google+', 'shoestrap' ),
-                            'id'        => 'google_plus_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Email', 'shoestrap' ),
-                            'id'        => 'email_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'LinkedIn', 'shoestrap' ),
-                            'id'        => 'linkedin_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Picassa', 'shoestrap' ),
-                            'id'        => 'picassa_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Pinterest', 'shoestrap' ),
-                            'id'        => 'pinterest_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'RSS', 'shoestrap' ),
-                            'id'        => 'rss_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Skype', 'shoestrap' ),
-                            'id'        => 'skype_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'SoundCloud', 'shoestrap' ),
-                            'id'        => 'soundcloud_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Stack Overflow', 'shoestrap' ),
-                            'id'        => 'stackoverflow_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Twitter', 'shoestrap' ),
-                            'id'        => 'twitter_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'Vimeo', 'shoestrap' ),
-                            'id'        => 'vimeo_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => __( 'WordPress', 'shoestrap' ),
-                            'id'        => 'wordpress_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
-                        ),
-                        array(
-                            'title'     => 'YouTube',
-                            'id'        => 'youtube_link',
-                            'validate'  => 'url',
-                            'default'   => '',
-                            'type'      => 'text'
+                            'id'       => 'secondary_color',
+                            'type'     => 'color',
+                            'title'    => __( 'Secondary Color', 'redux-framework-demo' ),
+                            'desc' => __( 'Select secondary font color (Applies to article summaries, comments and sidebar.', 'redux-framework-demo' ),
+                            'default'  => '#84949f',
+                            'transparent' => false,
+                            'validate' => 'color',
+                            'output'   => array( 'h1, h2, h3, h4, h5, h6, .related, .comments, #respond, .box .entry-summary, .box p, .sidebar' ),
                         ),
                     )
                 );
@@ -787,6 +713,41 @@
                     ),
                 );
 
+                $this->sections[] = array(
+                    'type' => 'divide',
+                );
+
+                if ( file_exists( dirname( __FILE__ ) . '/../README.md' ) ) {
+
+                    $this->sections[] = array(
+                        'icon'   => 'el-icon-list-alt',
+                        'title'  => __( 'Documentation', 'redux-framework-demo' ),
+                        'fields' => array(
+                            array(
+                                'id'       => '17',
+                                'type'     => 'raw',
+                                'markdown' => true,
+                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../README.md' )
+                            ),
+                        ),
+                    );
+                }
+
+                if ( file_exists( dirname( __FILE__ ) . '/../CHANGELOG.md' ) ) {
+
+                    $this->sections[] = array(
+                        'icon'   => 'el-icon-fork',
+                        'title'  => __( 'Changelog', 'redux-framework-demo' ),
+                        'fields' => array(
+                            array(
+                                'id'       => '18',
+                                'type'     => 'raw',
+                                'markdown' => true,
+                                'content'  => file_get_contents( dirname( __FILE__ ) . '/../CHANGELOG.md' )
+                            ),
+                        ),
+                    );
+                }
             }
 
             /**
@@ -799,7 +760,7 @@
 
                 $this->args = array(
                     // TYPICAL -> Change these values as you need/desire
-                    'opt_name'             => 'helpdesk',
+                    'opt_name'             => OPT_NAME,
                     // This is where your data is stored in the database and also becomes your global variable name.
                     'display_name'         => $theme->get( 'Name' ),
                     // Name that appears at the top of your panel
@@ -939,7 +900,7 @@
               } elseif(something else) {
                 $error = true;
                 $value = $existing_value;
-                
+
               }
              */
 
@@ -993,7 +954,7 @@
           } elseif(something else) {
             $error = true;
             $value = $existing_value;
-            
+
           }
          */
 

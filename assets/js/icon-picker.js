@@ -1,5 +1,4 @@
 /* Icon Picker */
-
 (function($) {
 
 	$.fn.iconPicker = function() {
@@ -531,7 +530,7 @@
 					e.preventDefault();
 					if ($(this).data('direction') === 'back') {
 						//move last 25 elements to front
-						$('li:gt(' + (icons.length - 26) + ')', $list).each(function() {
+						$($('li:gt(' + (icons.length - 26) + ')', $list).toArray().reverse()).each(function() {
 							$(this).prependTo($list);
 						});
 					} else {

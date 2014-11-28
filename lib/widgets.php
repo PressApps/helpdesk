@@ -260,7 +260,7 @@ class Most_Popular_Widget extends WP_Widget {
     foreach ( $posts as $post ):
       setup_postdata( $post );
       ?>
-      <li><a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php echo pa_post_format_icon(); ?><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a></li>
+      <li><a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php echo pa_post_format_icon(); ?> <?php if ( get_the_title() ) the_title(); else the_ID(); ?></a></li>
       <?php
     endforeach;
     echo '</ul>';
@@ -341,7 +341,7 @@ class Custom_Recent_Posts_Widget extends WP_Widget {
 
       <li class="crpw-item">
 
-        <a  href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent link to <?php the_title_attribute(); ?>" class="crpw-title"><?php echo pa_post_format_icon(); ?><?php the_title(); ?></a>
+        <a  href="<?php the_permalink(); ?>" rel="bookmark" title="Permanent link to <?php the_title_attribute(); ?>" class="crpw-title"><?php echo pa_post_format_icon(); ?> <?php the_title(); ?></a>
     
       </li>
 

@@ -48,15 +48,6 @@ function roots_widgets_init() {
   ));
 
   register_sidebar(array(
-    'name'          => __('Footer', 'roots'),
-    'id'            => 'sidebar-footer',
-    'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-footer' ) .'">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>',
-  ));
-
-  register_sidebar(array(
     'name'          => __('Home Page', 'roots'),
     'id'            => 'sidebar-home',
     'before_widget' => '<div class="widget %1$s %2$s'. pa_count_widgets( 'sidebar-home' ) .' half-gutter-col"><div class="widget-inner">',
@@ -80,12 +71,12 @@ function pa_count_widgets( $sidebar_id, $count = FALSE ) {
   if ( empty( $_wp_sidebars_widgets ) ) :
     $_wp_sidebars_widgets = get_option( 'sidebars_widgets', array() );
   endif;
-  
+
   $sidebars_widgets_count = $_wp_sidebars_widgets;
-  
-  if ( isset( $sidebars_widgets_count[ $sidebar_id ] ) ) :
+
+  if ( isset( $sidebars_widgets_count[ $sidebar_id ] ) && count( $sidebars_widgets_count[ $sidebar_id ] ) > 0 ) :
     $widget_count = count( $sidebars_widgets_count[ $sidebar_id ] );
-    $col = ceil(12 / $widget_count); 
+    $col = ceil(12 / $widget_count);
     $widget_classes = ' col-sm-' . $col;
     if ($count) {
       return $widget_count;
@@ -94,7 +85,6 @@ function pa_count_widgets( $sidebar_id, $count = FALSE ) {
     }
   endif;
 }
-
 
 /**
  * Add classes to custom Reduxs sidebar widgets
@@ -107,14 +97,12 @@ function custom_sidebar_classes($options) {
   $home_sidebar = redux_post_meta( 'helpdesk', $post->ID, 'home_sidebar' );
 
   $options = array(
-    'before_title'  => '<h3>', 
+    'before_title'  => '<h3>',
     'after_title'   => '</h3>',
-    'before_widget' => '<div class="widget %1$s %2$s half-gutter-col '. pa_count_widgets( $home_sidebar ) .'"><div class="widget-inner">', 
+    'before_widget' => '<div class="widget %1$s %2$s half-gutter-col '. pa_count_widgets( $home_sidebar ) .'"><div class="widget-inner">',
     'after_widget'  => '</div></div>'
   );
 
     return $options;
 }
 */
-
-

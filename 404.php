@@ -1,13 +1,9 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
-<div class="alert alert-warning">
-  <?php _e('Sorry, but the page you were trying to view does not exist.', 'roots'); ?>
+<div class="not-found">
+  <h1><i class="icon icon-Close"></i></h1>
+  <h1><?php _e('Sorry, but the page you were trying to view does not exist.', 'roots'); ?></h1>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <?php get_template_part('templates/search', 'form'); ?>
+    </div>
+  </div>
 </div>
-
-<p><?php _e('It looks like this was the result of either:', 'roots'); ?></p>
-<ul>
-  <li><?php _e('a mistyped address', 'roots'); ?></li>
-  <li><?php _e('an out-of-date link', 'roots'); ?></li>
-</ul>
-
-<?php get_search_form(); ?>

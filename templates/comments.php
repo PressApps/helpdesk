@@ -10,7 +10,7 @@ if(comments_open()) {
 ?>
 
 <?php if (have_comments()) : ?>
-  <section id="comments" class="comments section">
+  <div id="comments" class="comments module">
     <h2><?php printf(__('Comments on %s', 'roots'), get_the_title()); ?></h2>
 
     <ol class="comment-list">
@@ -35,13 +35,11 @@ if(comments_open()) {
     <div class="alert alert-warning">
       <?php _e('Comments are closed.', 'roots'); ?>
     </div>
-  <?php endif; ?>
-
-  </section>
-<?php //comment_form(); ?>
+  </div>
+<?php endif; ?>
 
 <?php if($reply) : ?>
-  <section id="respond" class="section">
+  <div id="respond" class="module">
     <h3><?php comment_form_title(__('Leave a Reply', 'roots'), __('Leave a Reply to %s', 'roots')); ?></h3>
     <p class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></p>
     <?php if (get_option('comment_registration') && !is_user_logged_in()) : ?>
@@ -76,5 +74,5 @@ if(comments_open()) {
         <?php do_action('comment_form', $post->ID); ?>
       </form>
     <?php endif; ?>
-  </section><!-- /#respond -->
+  </div><!-- /#respond -->
 <?php endif; ?>

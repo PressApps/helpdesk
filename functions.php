@@ -8,6 +8,27 @@
  * Please note that missing files will produce a fatal error.
  *
  */
+
+define('OPT_NAME', 'helpdesk');
+
+/**
+ * Include addons
+ */
+/*
+$path = dirname( __FILE__ ) . '/lib/addons/';
+$addons = scandir( $path, 1 );      
+foreach($addons as $addon_file) {
+  if ( !is_file($path . $addon_file) ) {
+    continue; 
+  } 
+  $addon_path = $path . $addon_file;
+  require_once $addon_path;
+}
+unset($addon_file, $addon_path);
+*/
+/**
+ * Core files
+ */
 $pa_includes = array(
   'lib/extensions/extensions.php',      // Metaboxes
   'lib/options.php',         // Theme Options
@@ -22,6 +43,16 @@ $pa_includes = array(
   'lib/dependencies.php',    // Install deoendency plugins
   'lib/scripts.php',         // Scripts and stylesheets
   'lib/extras.php',          // Custom functions
+  'lib/reorder.php',          // Custom
+  'lib/post-types.php',          // Custom
+  'lib/popular.php',          // Custom
+  'lib/live-search.php',          // Custom
+  'lib/category-icons.php',          // Custom
+  'lib/votes.php',          // Custom
+  'lib/breadcrumbs.php',          // Custom
+  'lib/dynamic-css.php',          // Custom
+  'lib/admin/init.php',      // Initialize the Admin & Graphs Section 
+  'lib/admin/search-track.php' // Track the Search of the Terms on the Help Desk theme   
 );
 
 foreach ($pa_includes as $file) {
@@ -32,4 +63,3 @@ foreach ($pa_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
-
