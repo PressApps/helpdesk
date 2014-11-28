@@ -51,6 +51,8 @@ $pa_includes = array(
   'lib/votes.php',          // Custom
   'lib/breadcrumbs.php',          // Custom
   'lib/dynamic-css.php',          // Custom
+  'lib/admin/init.php',      // Initialize the Admin & Graphs Section 
+  'lib/admin/search-track.php' // Track the Search of the Terms on the Help Desk theme   
 );
 
 foreach ($pa_includes as $file) {

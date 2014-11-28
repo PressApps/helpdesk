@@ -15,3 +15,4 @@
 	  </div>
 	</form>
 <?php } ?>
+<?php pa_the_popular_searches(7,3); ?>

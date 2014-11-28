@@ -56,6 +56,7 @@ function admin_scripts() {
   wp_enqueue_style('admin_css', get_template_directory_uri() . '/assets/css/admin.css', false, null);
   wp_enqueue_style('icons_css', get_template_directory_uri() . '/assets/css/icons.min.css', false, null);
   wp_enqueue_script( 'admin_js', get_template_directory_uri() . '/assets/js/admin.js', array( 'jquery' ));
+  wp_enqueue_script( 'edittax', get_template_directory_uri() . '/assets/js/edittax.js', array( 'jquery' ));
 
   global $pagenow;
   if ($pagenow=="edit-tags.php" && isset( $_GET['taxonomy'] ) && ($_GET['taxonomy'] == 'category' || $_GET['taxonomy'] == 'actions') ) {

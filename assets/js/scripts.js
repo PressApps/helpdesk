@@ -2229,7 +2229,7 @@ jQuery(function ($) {
     
  // Initialize ajax autocomplete:
     $('#live').autocomplete({
-        serviceUrl: _url + '/wp-admin/admin-ajax.php',
+        serviceUrl: PAAV.base_url + '/wp-admin/admin-ajax.php',
         params: {'action':'search_title'},
         minChars: 2,
         maxHeight: 450,

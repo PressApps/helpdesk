@@ -119,7 +119,8 @@ function pa_quick_edit_custom_box($column_name, $screen, $name) {
         <span class="title">Icon</span>
         <span class="input-text-wrap">
               <input class="regular-text" id="category_icon" name="category_icon" type="hidden" value="" />
-              <div id="preview_category_icon" class="button icon-picker" data-target="#category_icon"></div>
+              <div id="quick_preview_category_icon" class="button icon-picker" data-target="#category_icon"></div>
+              <input type="hidden" value="" id="pa_prev_class" />
         </span>
       </label>
     </div>
@@ -157,8 +158,9 @@ function pa_taxonomy_column( $columns, $column, $id ) {
 
     $value = pa_category_icon_url($id, NULL, TRUE);
 
-        if ($value != '') { $preview = explode('|',$value); } else { $preview = array('','');};
-    $columns = '<i class="' .$preview[0].' '.$preview[1]. '"></i>';
+    if ($value != '') { $preview = explode('|',$value); } else { $preview = array('','');};
+    $columns  = '<i class="' . $preview[0].' '.$preview[1]. '"></i>';
+    $columns .= '<input type="hidden" value="' . $value . '" />';
   }
   return $columns;
 }
