@@ -18,6 +18,6 @@
     "respond": "1.4.2",
     "fitvids": "~1.1.0",
     "devbridge-autocomplete": "~1.2.14",
-    "chartjs": "~0.2.0"
+    "chartjs": "1.0.1-beta.4"
   }
 }
