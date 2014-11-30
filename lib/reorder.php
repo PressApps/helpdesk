@@ -114,7 +114,7 @@ function pa_reorder_front_end_posts( $query ) {
     if ( is_admin() )
         return;
     
-    if(is_home('post')){
+    if(is_category() || is_tax('actions')){
         $query->set( 'orderby', 'menu_order' );
         $query->set( 'order', 'ASC' );       
     }
@@ -125,7 +125,7 @@ function pa_reorder_front_end_posts( $query ) {
 
 function pa_reorder_front_end_tax($orderby) {
     
-    if(is_tax('category') || is_tax('actions')){  
+    if(is_page_template('template-knowledgebase.php') || is_page_template('template-home.php') || is_category() || is_tax('actions')){  
         $orderby = "t.term_group";
     }
     
