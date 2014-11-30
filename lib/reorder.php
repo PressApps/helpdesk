@@ -110,19 +110,25 @@ function pa_order_save_taxonomies_order() {
 
 /* front end */
 function pa_reorder_front_end_posts( $query ) {
+    
     if ( is_admin() )
         return;
-
-    $query->set( 'orderby', 'menu_order' );
-    $query->set( 'order', 'ASC' );       
+    
+    if(is_home('post')){
+        $query->set( 'orderby', 'menu_order' );
+        $query->set( 'order', 'ASC' );       
+    }
+    
     return;
 
 }
 
 function pa_reorder_front_end_tax($orderby) {
-
-  $orderby = "t.term_group";
-  
+    
+    if(is_tax('category') || is_tax('actions')){  
+        $orderby = "t.term_group";
+    }
+    
   return $orderby; 
 
 }
