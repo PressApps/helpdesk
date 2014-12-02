@@ -75,7 +75,7 @@ function pa_nice_search_redirect() {
   }
 }
 
-if ($helpdesk['nice_search']) {
+if ((isset($helpdesk['nice_search'])?$helpdesk['nice_search']:FALSE)) {
   add_action('template_redirect', 'pa_nice_search_redirect');
 }
 

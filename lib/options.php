@@ -885,7 +885,7 @@
                     'href'   => 'reduxframework.com/extensions',
                     'title' => __( 'Extensions', 'redux-framework-demo' ),
                 );
-
+                
             }
 
             public function validate_callback_function( $field, $value, $existing_value ) {

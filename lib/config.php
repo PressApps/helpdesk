@@ -4,7 +4,7 @@ global $helpdesk;
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', $helpdesk['analytics_id']); 
+define('GOOGLE_ANALYTICS_ID', isset($helpdesk['analytics_id'])?$helpdesk['analytics_id']:''); 
 
 if (!defined('WP_ENV')) {
   define('WP_ENV', 'production');  // scripts.php checks for values 'production' or 'development'

@@ -4,7 +4,7 @@
  */
 global $pagenow, $helpdesk;
 
-if(is_admin() && $helpdesk['reorder']) {
+if(is_admin() && (isset($helpdesk['reorder'])?$helpdesk['reorder']:FALSE)) {
 
   if( $pagenow == 'edit.php') {
       if ( !isset($_GET['post_type'])  || 'post' == $_GET['post_type'] ) {
@@ -22,7 +22,7 @@ if(is_admin() && $helpdesk['reorder']) {
 
 }
 
-if ($helpdesk['reorder']) {
+if ((isset($helpdesk['reorder'])?$helpdesk['reorder']:FALSE)) {
   add_action( 'admin_enqueue_scripts', 'papc_reorder_scripts' );
 }
 

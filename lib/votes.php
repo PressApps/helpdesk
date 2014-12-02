@@ -5,7 +5,7 @@
 global $helpdesk;
 
 $voting_enabled = FALSE;
-if (array_key_exists('voting' ,$helpdesk['single_modules']['Enabled'])) {
+if (array_key_exists('voting' ,(isset($helpdesk['single_modules']['Enabled'])?$helpdesk['single_modules']['Enabled']:array()))) {
  $voting_enabled = TRUE;
 }
 
@@ -197,7 +197,7 @@ add_action('init','pa_reset_all_post_votes');
 function pa_reset_all_post_votes(){
     global $helpdesk,$wpdb,$reduxConfig;
 
-    $reset_all_votes = $helpdesk['reset_all_votes'];
+    $reset_all_votes = isset($helpdesk['reset_all_votes'])?$helpdesk['reset_all_votes']:NULL;
    
     if(empty($reset_all_votes))
         return NULL;
