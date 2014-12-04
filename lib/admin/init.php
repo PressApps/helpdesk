@@ -151,7 +151,7 @@ function pa_get_popular_searches($days = 7,$number_of_terms = 3){
     
 }
 
-function pa_the_popular_searches($days = 7,$number_of_terms = 3){
+function pa_popular_searches($days = 7,$number_of_terms = 3){
     global $helpdesk;
     
     if(empty($helpdesk['search_analytics']))
@@ -162,7 +162,7 @@ function pa_the_popular_searches($days = 7,$number_of_terms = 3){
         foreach($searches as $search){
             $term[] = "<a href='" . esc_url(home_url('?s=' . $search['search_term'] )) . "'>{$search['search_term']}</a>";
         }
-        echo implode(",", $term);
+        echo implode(", ", $term);
     }
 }
 

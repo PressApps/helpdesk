@@ -229,13 +229,13 @@ function page_navi($before = '', $after = '') {
 /**
  * Styled elements
  */
-function pa_style_tag($id) {
-  $meta = redux_post_meta( 'helpdesk', $id );
+function pa_style_ol() {
+  global $helpdesk;
   $class = '';
-  if ($meta['style_ol']) {
-    $class .= ' style-ol';
+  if ($helpdesk['style_ol']) {
+    $class = ' style-ol';
   }
-  return $class;
+  echo $class;
 }
 
 

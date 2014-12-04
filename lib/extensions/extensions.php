@@ -41,30 +41,6 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
         'sections' => $boxLayout
     );
 
-    $boxStyle = array();
-    $boxStyle[] = array(
-        'icon_class' => 'icon-large',
-        'icon' => 'el-icon-home',
-        'fields' => array(
-            array(
-                'id'       => 'style_ol',
-                'type'     => 'switch',
-                'title'    => __( 'Ordered List', 'redux-framework-demo' ),
-                'desc'     => __( 'Style ordered list.', 'redux-framework-demo' ),
-                'default'  => '0'
-            ),
-        )
-    );
-  
-    $metaboxes[] = array(
-        'id' => 'post-style',
-        'title' => __('Style Options', 'pressapps'),
-        'post_types' => array('post', 'page'),
-        'position' => 'normal', // normal, advanced, side
-        'priority' => 'core', // high, core, default, low
-        'sections' => $boxStyle
-    );
-
     $boxPost = array();
     $boxPost[] = array(
         'icon_class' => 'icon-large',
@@ -246,6 +222,45 @@ if ( !function_exists( "redux_add_metaboxes" ) ):
                     '1' => 'WP Search',
                     '2' => 'Live Search',
                 ),
+            ),
+            array(
+                'id'       => 'top_searches',
+                'type'     => 'switch',
+                'title'    => __( 'Top Searched Terms', 'redux-framework-demo' ),
+                'desc'     => __( 'Display top searched terms under the search field.', 'redux-framework-demo' ),
+                'default'  => 1
+            ),
+            array(
+                'id'       => 'top_searches_title',
+                'type'     => 'text',
+                'title'    => __( 'Title', 'redux-framework-demo' ),
+                'required'    => array('top_searches','=',array('1')),
+                'default'  => 'Common searches:',
+            ),
+            array(
+                'id' => 'top_searches_period',
+                'type' => 'button_set',
+                'title'       => __( 'Search Period', 'shoestrap' ),
+                'desc'        => __( 'Display top searches for a selected time period.', 'shoestrap' ),
+                'required'    => array('top_searches','=',array('1')),
+                'options'   => array(
+                    '1' => '1 Day',
+                    '7' => '1 Week',
+                    '30' => '1 Month',
+                    '999999' => 'All Time',
+                ),
+                'default'  => '999999',
+            ),
+            array(
+                'id'      => 'top_searches_terms',
+                'type'    => 'spinner',
+                'title'   => __( 'Number of Terms', 'redux-framework-demo' ),
+                'desc'    => __( 'Select how many search terms to display.', 'redux-framework-demo' ),
+                'required'    => array('top_searches','=',array('1')),
+                'default' => '4',
+                'min'     => '1',
+                'step'    => '1',
+                'max'     => '20',
             ),
         )
     );

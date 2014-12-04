@@ -422,7 +422,7 @@
                             'active'    => false,
                             'default'  => array(
                                 'regular' => '#999999',
-                                'hover'   => '#439dd0',
+                                'hover'   => '#1cc58e',
                             ),
                         ),
                     )
@@ -496,6 +496,7 @@
                             'title'     => __( 'Search Placeholder', 'shoestrap' ),
                             'desc'      => __( 'Enter search field placeholder.', 'shoestrap' ),
                             'id'        => 'search_placeholder',
+                            'required'    => array('headline_search','=',array('1', '2')),
                             'default'   => 'Search Knowledge Base Articles',
                             'type'      => 'text',
                         ),
@@ -526,6 +527,13 @@
                             'title'    => __( 'Print Button', 'redux-framework-demo' ),
                             'desc'     => __( 'Display print button on article page.', 'redux-framework-demo' ),
                             'default'  => '1'
+                        ),
+                        array(
+                            'id'       => 'style_ol',
+                            'type'     => 'switch',
+                            'title'    => __( 'Ordered List', 'redux-framework-demo' ),
+                            'desc'     => __( 'Style ordered lists on single pages.', 'redux-framework-demo' ),
+                            'default'  => 1
                         ),
                         array(
                             'id'       => 'article_voting',
@@ -658,7 +666,7 @@
                             'text-align'   => false,
                             'subsets'     => false,
                             'default'  => array(
-                                'color'       => '#000000',
+                                'color'       => '#727d93',
                                 'font-size'   => '14px',
                                 'font-family' => 'Open Sans',
                                 'font-weight' => '300',
@@ -680,7 +688,7 @@
                             'desc'     => __( 'Select main content link colors.', 'redux-framework-demo' ),
                             'active'    => false, 
                             'default'  => array(
-                                'regular' => '#439dd0',
+                                'regular' => '#1cc58e',
                                 'hover'   => '#3d3d3d',
                             ),
                             'output'   => array( 'a' ),

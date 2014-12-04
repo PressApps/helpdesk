@@ -8072,6 +8072,16 @@ figure.alignnone {
 .kb-row-1 {
   margin-top: 0;
 }
+.top-searches {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+.top-searches a {
+  color: rgba(255, 255, 255, 0.7);
+}
+.top-searches a:hover {
+  color: #fff;
+}
 .not-found {
   text-align: center;
 }
@@ -8367,6 +8377,7 @@ a .icon-wrap {
   font-weight: bold;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
+  line-height: 22px;
   text-align: center;
 }
 .style-ol li ol,
