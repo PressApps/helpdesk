@@ -27,7 +27,7 @@ function pa_get_posts_votes($args = array()){
     $default_args = array(
         'orderby'                   => 'likes',
         'order'                     => 'DESC',
-        'posts_per_page'            => 5,
+        'posts_per_page'            => 20,
         'page_no'                   => 1,
     );
     
@@ -68,7 +68,7 @@ function pa_get_posts_views($args){
     
     $default_args = array(
         'order'                     => 'DESC',
-        'posts_per_page'            => 5,
+        'posts_per_page'            => 30,
         'page_no'                   => 1,
     );
     
@@ -104,7 +104,7 @@ function pa_get_search_views($args){
     
     $default_args = array(
         'order'                     => 'DESC',
-        'posts_per_page'            => 5,
+        'posts_per_page'            => 30,
         'page_no'                   => 1,
         'period'                    => 7,
     );
@@ -246,13 +246,13 @@ function pa_analytics_page(){
         case 'views':
             
             $order_options = array(
-                'ASC'        => __('Low => High'        ,'pressapps'),
-                'DESC'       => __('High => Low'        ,'pressapps'),
+                'ASC'        => __('Low to High'        ,'pressapps'),
+                'DESC'       => __('High to Low'        ,'pressapps'),
             );
             
             $current_option     = ((isset($_REQUEST['pa_analytics_tab_option']))?$_REQUEST['pa_analytics_tab_option']:'DESC');
             $is_asc             = ($current_option == 'ASC')?TRUE:FALSE;
-            $chart_title        = ($is_asc)?__('Post views Low => High','pressapps'):__('Post views High => Low','pressapps');
+            $chart_title        = ($is_asc)?__('Article Views: Low to High','pressapps'):__('Article Views: High to Low','pressapps');
             $args               = array(
                 'order'   => ($is_asc)?'ASC':'DESC',
                 'page_no'   => $page_no,
@@ -291,8 +291,8 @@ function pa_analytics_page(){
         case 'searches':
             $is_period_enable   = TRUE;
             $order_options      = array(
-                'ASC'        => __('Low => High'        ,'pressapps'),
-                'DESC'       => __('High => Low'        ,'pressapps'),
+                'ASC'        => __('Low to High'        ,'pressapps'),
+                'DESC'       => __('High to Low'        ,'pressapps'),
             );
             
             $periods            = array(
@@ -304,7 +304,7 @@ function pa_analytics_page(){
             
             $current_option     = ((isset($_REQUEST['pa_analytics_tab_option']))?$_REQUEST['pa_analytics_tab_option']:'DESC');
             $is_asc             = ($current_option == 'ASC')?TRUE:FALSE;
-            $chart_title        = ($is_asc)?__('Searches Low => High From %s','pressapps'):__('Searches High => Low From %s','pressapps');
+            $chart_title        = ($is_asc)?__('Searches: Low to High for %s','pressapps'):__('Searches: High to Low for %s','pressapps');
             $args               = array(
                 'order'     => ($is_asc)?'ASC':'DESC',
                 'page_no'   => $page_no,
@@ -407,6 +407,7 @@ function pa_analytics_page(){
             <?php
             if($is_period_enable) :
                 ?>
+                <label for="pa_analytics_period"><?php _e('Filter by period:','pressapps'); ?></label>
                 <select name="pa_analytics_period" class="tab_select_opt">
                 <?php
                 foreach ($periods as $period => $label){
@@ -417,6 +418,7 @@ function pa_analytics_page(){
                 <?php
             endif;
             ?>
+            <label for="pa_analytics_tab_option"><?php _e('Order:','pressapps'); ?></label>
             <select name="pa_analytics_tab_option" class="tab_select_opt">
                 <?php 
                 foreach($order_options as $key => $label){
