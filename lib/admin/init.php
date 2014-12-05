@@ -361,14 +361,14 @@ function pa_analytics_page(){
         Chart.defaults.global.responsive = true;
         var ctx         = document.getElementById("myChart").getContext("2d");
         var myBarChart  = new Chart(ctx).Bar(data);
-        
-        jQuery('.tab_select_opt').change(function(){
-            jQuery('.tab_frm').submit();
-        });
+                
         
         <?php
         endif;
         ?>
+        jQuery('.tab_select_opt').change(function(){
+            jQuery('.tab_frm').submit();
+        });
     });
 </script>
 <style type="text/css">
